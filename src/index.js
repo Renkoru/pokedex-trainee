@@ -4,8 +4,12 @@ import Button from './components/Button';
 import Player from './components/Player';
 
 
+const players = [];
+
+
 function renderer(domID, component) {
     var appContainer = document.getElementById(domID);
+    appContainer.innerHTML = '';
 
     appContainer.appendChild(component);
 }
@@ -23,13 +27,27 @@ function appComponent() {
     var addPlayerButton = Button({
         title: 'Add Player',
         onClick: function () {
-            var player = Player(PlayerModel());
+            trainers.innerHTML = '';
 
-            trainers.appendChild(player);
+            players.push(PlayerModel());
+            players.forEach((player) => trainers.appendChild(Player(player)));
+        },
+    });
+
+    var resetLocationButton = Button({
+        title: 'Reset Location',
+        onClick: function () {
+            trainers.innerHTML = '';
+
+            players.forEach((player) => {
+                player.location = 'Omsk';
+            });
+            players.forEach((player) => trainers.appendChild(Player(player)));
         },
     });
 
     component.appendChild(addPlayerButton);
+    component.appendChild(resetLocationButton);
     component.appendChild(trainers);
 
     return component;

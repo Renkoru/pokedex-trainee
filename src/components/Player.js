@@ -2,16 +2,15 @@ import { getRandom } from '../utils';
 import Button from './Button';
 
 
-function playerComponent({ name, age, location }) {
+function playerComponent({stringId, name, age, location }) {
     var component = document.createElement('div');
-    var playerId = getRandom(154);
     var sayHiButton = Button({
         title: 'Say Hi!',
         onClick: () => alert('Hi Mates!'),
     });
 
     var image = document.createElement('img');
-    image.src = '../static/images/trainers/' + playerId + '.gif';
+    image.src = '../static/images/trainers/' + stringId + '.gif';
     image.width = 100;
     image.style.cssText = [
         "margin-left: auto;",
