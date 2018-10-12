@@ -341,9 +341,23 @@ const firstNames = [
     "Hugh", "Jensen", "Yurem",
 ];
 
+const locations = [
+    'Berry Forest', 'Bond Bridge', 'Canyon Entrance', 'Cape Brink', 'Celadon City', 'Cerulean Cave',
+    'Cerulean City', 'Cinnabar Island', "Diglett's Cave", 'Dotted Hole', 'Five Island', 'Five Isle Meadow',
+    'Four Island', 'Fuchsia City', 'Green Path', 'Icefall Cave', 'Indigo Plateau', 'Kindle Road',
+    'Lavender Town', 'Lost Cave', 'Memorial Pillar', 'Navel Rock', 'One Island', 'Outcast Island',
+    'Pallet Town', 'Pattern Bush', 'Pewter City', 'Power Plant', 'Resort Gorgeous', 'Rock Tunnel',
+    'Rocket Hideout', 'Rocket Warehouse', 'Ruin Valley', 'Safari Zone', 'Saffron City', 'Seafoam Islands',
+    'Seavault Canyon', 'Seven Island', 'Six Island', 'Tanoby Ruins', 'Three Island', 'Three Isle Path',
+    'Three Isle Port', 'Tohjo Falls', 'Trainer Tower', 'Treasure Beach', 'Two Island',
+    'Vermilion City', 'Victory Road', 'Viridian City', 'Viridian Forest', 'Water Labyrinth', 'Water Path',
+]
+
+
 function playerGenerator({ name, age } = {}) {
     const randomAge = getRandom(20, false) + 13;
     const randomName = firstNames[getRandom(firstNames.length, false)];
+    const randomLocation = locations[getRandom(locations.length, false)];
 
     const playerName = name || randomName;
     const playerAge = age || randomAge;
@@ -351,6 +365,7 @@ function playerGenerator({ name, age } = {}) {
     return {
         age: playerAge,
         name: playerName,
+        location: randomLocation,
     };
 }
 
@@ -374,7 +389,7 @@ function buttonComponent({ title, onClick }) {
     return button;
 }
 
-function playerComponent({ name, age }) {
+function playerComponent({ name, age, location }) {
     var component = document.createElement('div');
     var playerId = getRandom(154);
     var sayHiButton = buttonComponent({
@@ -383,7 +398,7 @@ function playerComponent({ name, age }) {
     });
 
     var image = document.createElement('img');
-    image.src = './static/images/trainers/' + playerId + '.gif';
+    image.src = '../static/images/trainers/' + playerId + '.gif';
     image.width = 100;
     image.style.cssText = [
         "margin-left: auto;",
@@ -401,14 +416,21 @@ function playerComponent({ name, age }) {
         "flex-direction: column;",
     ].join(' ');
 
-    var content = document.createElement('span');
+    var content = document.createElement('div');
     content.innerHTML = name + ' : ' + age;
     content.style.cssText = [
         "margin-top: auto;",
     ].join(' ');
 
+    var loc = document.createElement('div');
+    loc.innerHTML = 'Loc: ' + location;
+    loc.style.cssText = [
+        "margin-top: auto;",
+    ].join(' ');
+
     component.appendChild(image);
     component.appendChild(content);
+    component.appendChild(loc);
     component.appendChild(sayHiButton);
 
     return component;
