@@ -12,34 +12,27 @@ const players = [];
 
 function appComponent({ players, onAddPlayer, onResetLocation }) {
 
-    var playersList = players.map((player) => Player(player));
-    var trainers = React.createElement('div', {}, ...playersList);
-
     // trainers.style.cssText = [
     //     "display: flex;",
     //     "align-items: center;",
     //     "flex-wrap: wrap;",
     // ].join(' ');
 
-    var addPlayerButton = Button({
-        title: 'Add Player',
-        onClick: onAddPlayer,
-    });
-
-    var resetLocationButton = Button({
-        title: 'Reset Location',
-        onClick: onResetLocation,
-    });
-
-    var component = React.createElement(
-        'div',
-        {},
-        addPlayerButton,
-        resetLocationButton,
-        trainers,
+    return (
+        <div>
+            <Button
+                title="Add Player"
+                onClick={onAddPlayer}
+            />
+            <Button
+                title="Reset Location"
+                onClick={onResetLocation}
+            />
+            <div>
+                {players.map((player) => <Player {...player}/> )}
+            </div>
+        </div>
     );
-
-    return component;
 }
 
 function tick() {

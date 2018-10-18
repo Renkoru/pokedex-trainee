@@ -5,18 +5,7 @@ import Button from './Button';
 
 
 function playerComponent({stringId, name, age, location }) {
-    var sayHiButton = Button({
-        title: 'Say Hi!',
-        onClick: () => alert('Hi Mates!'),
-    });
 
-    var image = React.createElement(
-        'img',
-        {
-            src: '../static/images/trainers/' + stringId + '.gif',
-            width: 100,
-        }
-    );
     // image.style.cssText = [
     //     "margin-left: auto;",
     //     "margin-right: auto;",
@@ -33,34 +22,32 @@ function playerComponent({stringId, name, age, location }) {
     //     "flex-direction: column;",
     // ].join(' ');
 
-    var content = React.createElement(
-        'div',
-        {},
-        `${name} : ${age}`,
-    );
     // content.style.cssText = [
     //     "margin-top: auto;",
     // ].join(' ');
 
-    var loc = React.createElement(
-        'div',
-        {},
-        `Loc: ${location}`,
-    );
     // loc.style.cssText = [
     //     "margin-top: auto;",
     // ].join(' ');
 
-    var component = React.createElement(
-        'div',
-        {},
-        // image,
-        content,
-        loc,
-        sayHiButton,
+    return (
+        <div>
+            <img
+                src={`../static/images/trainers/${stringId}.gif`}
+                width={100}
+            />
+            <div>
+                {`${name} : ${age}`}
+            </div>
+            <div>
+                {`Loc: ${location}`}
+            </div>
+            <Button
+                title="Say Hi!"
+                onClick={() => alert('Hi Mates!')}
+            />
+        </div>
     );
-
-    return component;
 }
 
 export default playerComponent;

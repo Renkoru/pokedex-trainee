@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "webpack --watch --mode development"
+    "watch": "webpack --watch --mode development --config ./webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -14,11 +14,21 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+     ]
+  },
   "bugs": {
     "url": "https://github.com/Renkoru/pokedex/issues"
   },
   "homepage": "https://github.com/Renkoru/pokedex#readme",
   "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"
   },

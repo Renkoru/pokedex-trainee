@@ -1,1 +1,32 @@
 Here will be React educational project.
+
+https://pokeapi.co/
+
+https://pokemondb.net/sprites
+https://img.pokemondb.net/sprites/black-white/anim/normal/fomantis.gif
+
+https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/sm-series/sm1/16/
+
+
+
+#+NAME: stab
+#+BEGIN_SRC js
+  return React.createElement('div', {className: 'shopping-list'},
+    React.createElement('h1', /* ... h1 children ... */),
+    React.createElement('ul', /* ... ul children ... */)
+  );
+#+END_SRC
+
+* Plan
+1. JS add dom element hi
+2. JS add dom element button
+3. Refactor to JS components (functions)
+4. Add App component
+5. Add renderer function
+6. Add player component. Use object as container for function arguments *function({name, age, level})*
+7. Add player generator. (A lot of names)
+8. Add styles
+9. Use button component to say Hi!
+10. Use arrow function, imports?, add webpack to solve this
+11. Add location and show how browser rerenders all. And when it resets. (Enable 'Rendering' devtool in chrome)
+12. Add a 'tick' function to rerender React elements.
