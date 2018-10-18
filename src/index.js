@@ -1,3 +1,6 @@
+import React from 'react';
+import ReactDom from 'react-dom';
+
 import { Player as PlayerModel } from './models';
 import { getRandom } from './utils';
 import Button from './components/Button';
@@ -7,53 +10,54 @@ import Player from './components/Player';
 const players = [];
 
 
-function renderer(domID, component) {
-    var appContainer = document.getElementById(domID);
-    appContainer.innerHTML = '';
+function appComponent({ players, onAddPlayer, onResetLocation }) {
 
-    appContainer.appendChild(component);
-}
+    var playersList = players.map((player) => Player(player));
+    var trainers = React.createElement('div', {}, ...playersList);
 
-
-function appComponent() {
-    var component = document.createElement('div');
-    var trainers = document.createElement('div');
-    trainers.style.cssText = [
-        "display: flex;",
-        "align-items: center;",
-        "flex-wrap: wrap;",
-    ].join(' ');
+    // trainers.style.cssText = [
+    //     "display: flex;",
+    //     "align-items: center;",
+    //     "flex-wrap: wrap;",
+    // ].join(' ');
 
     var addPlayerButton = Button({
         title: 'Add Player',
-        onClick: function () {
-            trainers.innerHTML = '';
-
-            players.push(PlayerModel());
-            players.forEach((player) => trainers.appendChild(Player(player)));
-        },
+        onClick: onAddPlayer,
     });
 
     var resetLocationButton = Button({
         title: 'Reset Location',
-        onClick: function () {
-            trainers.innerHTML = '';
-
-            players.forEach((player) => {
-                player.location = 'Omsk';
-            });
-            players.forEach((player) => trainers.appendChild(Player(player)));
-        },
+        onClick: onResetLocation,
     });
 
-    component.appendChild(addPlayerButton);
-    component.appendChild(resetLocationButton);
-    component.appendChild(trainers);
+    var component = React.createElement(
+        'div',
+        {},
+        addPlayerButton,
+        resetLocationButton,
+        trainers,
+    );
 
     return component;
 }
 
-renderer(
-    'pageContainer',
-    appComponent()
-);
+function tick() {
+    ReactDom.render(
+        appComponent({
+            players,
+            onAddPlayer: () => {
+                players.push(PlayerModel());
+            },
+            onResetLocation: () => {
+                players.forEach((player) => {
+                    player.location = 'Omsk';
+                });
+            }
+        }),
+        document.getElementById('pageContainer')
+    );
+}
+
+setInterval(tick, 1000);
+
