@@ -1,9 +1,20 @@
 import React from 'react';
 
 
-function buttonComponent({ title, onClick }) {
+function Button({ title, onClick, style }) {
 
-    return <button onClick={onClick}>{title}</button>;
+    return <button
+               style={{
+                   backgroundColor: '#b3d4ff',
+                   borderColor: '#77b2ff',
+                   borderRadius: '5px',
+                   padding: '3px 7px',
+                   ...style,
+               }}
+               onClick={onClick}
+           >
+               {title}
+           </button>;
 }
 
-export default buttonComponent;
+export default Button;

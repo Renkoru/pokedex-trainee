@@ -1,33 +1,64 @@
 import React from 'react';
 
 import { getRandom } from './utils';
+import { Player as PlayerModel } from './models';
 import Button from './components/Button.jsx';
 import Player from './components/Player.jsx';
 
 
-function App({ players, onAddPlayer, onResetLocation }) {
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            players: [],
+        };
 
-    return (
-        <div>
-            <Button
-                title="Add Player"
-                onClick={onAddPlayer}
-            />
-            <Button
-                title="Reset Location"
-                onClick={onResetLocation}
-            />
-            <div
-                style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    flexWrap: 'wrap',
-                }}
-            >
-                {players.map((player) => <Player {...player}/> )}
+        this.onAddPlayer = this.onAddPlayer.bind(this);
+        this.onResetLocation = this.onResetLocation.bind(this);
+    }
+
+    onAddPlayer() {
+        const { players } = this.state;
+
+        this.setState({
+            players: [...players, PlayerModel()]
+        });
+    }
+
+    onResetLocation() {
+        const { players } = this.state;
+
+        this.setState({
+            players: players.map((player) => ({ ...player, location: 'Omsk' }))
+        });
+    }
+
+    render () {
+        return (
+            <div>
+                <Button
+                    title="Add Player"
+                    onClick={this.onAddPlayer}
+                />
+                <Button
+                    style={{ marginLeft: '20px' }}
+                    title="Reset Location"
+                    onClick={this.onResetLocation}
+                />
+                <div
+                    style={{
+                        marginTop: '50px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        flexWrap: 'wrap',
+                    }}
+                >
+                    {this.state.players.map((player, index) => <Player key={index} {...player}/> )}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
+
 }
 
 export default App;
