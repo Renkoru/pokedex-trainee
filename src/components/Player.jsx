@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { getRandom } from '../utils';
-import Button from './Button.jsx';
+import { Button, Card, Box, Flex, Image } from '../components';
 
 
 function Ball() {
     const src = '../static/images/pokeball_1.gif';
 
-    return <img
+    return <Image
                src={src}
                width={30}
                height={30}
@@ -17,19 +17,18 @@ function Ball() {
 
 function Balls({ balls }) {
     return (
-        <div style={{
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            display: 'flex',
-            fontSize: '13px',
-            height: '30px',
-            alignItems: 'center',
-        }}>
+        <Flex
+            fontSize={13}
+            fontSize={13}
+            mx="auto"
+            alignItems="center"
+            css={{ height: '30px' }}
+        >
             {balls.slice(0, 4).map((ball, index) => <Ball key={index} />)}
             <div>
-                {(balls.length > 4) ? `(${balls.length})` : null}
+                {(balls.length > 4) && `(${balls.length})`}
             </div>
-        </div>
+        </Flex>
     );
 }
 
@@ -75,51 +74,50 @@ class Player extends React.Component {
         const { balls } = this.state;
 
         return (
-            <div
-                style={{
-                    backgroundColor: '#fff',
-                    border: '1px solid #ccc',
-                    boxShadow: '2px 2px 3px #eee',
+            <Card
+                bg='#fff'
+                border='1px solid #ccc'
+                boxShadow='2px 2px 3px #eee'
+                width={190}
+                p={15}
+                my="5px"
+                mx={20}
+                css={{
                     height: '242px',
-                    width: '190px',
                     textAlign: 'center',
-                    padding: '15px 15px',
-                    margin: '5px 20px',
-                    display: 'flex',
-                    flexDirection: 'column',
                 }}
             >
-                <div style={{ fontWeight: 'bold' }}>
-                    {`${name} : ${age}`}
-                </div>
+                <Flex flexDirection="column">
+                    <Box fontWeight="bold">
+                        {`${name} : ${age}`}
+                    </Box>
 
-                <div
-                    style={{
-                        marginLeft: 'auto',
-                        marginRight: 'auto',
-                        height: '120px',
-                        padding: '15px 0px',
-                    }}
-                >
-                    <img
-                        style={{
-                            height: '100%',
+                    <Box
+                        mx="auto"
+                        py={15}
+                        css={{
+                            height: 120,
                         }}
-                        src={`../static/images/trainers/${stringId}.gif`}
-                    />
-                </div>
+                    >
+                        <Image
+                            css={{
+                                height: '100%',
+                            }}
+                            src={`../static/images/trainers/${stringId}.gif`}
+                        />
+                    </Box>
 
-                <Balls balls={balls} />
+                    <Balls balls={balls} />
 
-                <div style={{ marginTop: 'auto' }}>
-                    {`Loc: ${location}`}
-                </div>
+                    <Box mt="auto">
+                        {`Loc: ${location}`}
+                    </Box>
 
-                <Button
-                    title="Say Hi!"
-                    onClick={() => alert('Hi Mates!')}
-                />
-            </div>
+                    <Button onClick={() => alert('Hi Mates!')}>
+                        Say Hi!
+                    </Button>
+                </Flex>
+            </Card>
         );
     }
 }

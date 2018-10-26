@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getRandom } from './utils';
 import { Player as PlayerModel } from './models';
-import Button from './components/Button.jsx';
+import { Button, Flex } from './components';
 import Player from './components/Player.jsx';
 
 
@@ -36,25 +36,15 @@ class App extends React.Component {
     render () {
         return (
             <div>
-                <Button
-                    title="Add Player"
-                    onClick={this.onAddPlayer}
-                />
-                <Button
-                    style={{ marginLeft: '20px' }}
-                    title="Reset Location"
-                    onClick={this.onResetLocation}
-                />
-                <div
-                    style={{
-                        marginTop: '50px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexWrap: 'wrap',
-                    }}
-                >
+                <Button onClick={this.onAddPlayer}>
+                    Add Player
+                </Button>
+                <Button onClick={this.onResetLocation} ml="20px" >
+                    Reset Location
+                </Button>
+                <Flex flexWrap="wrap" alignItems="center" mt="50px">
                     {this.state.players.map((player, index) => <Player key={index} {...player}/> )}
-                </div>
+                </Flex>
             </div>
         );
     }

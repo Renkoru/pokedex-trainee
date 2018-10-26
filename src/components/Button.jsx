@@ -1,20 +1,21 @@
 import React from 'react';
+import { Button as Base } from 'rebass';
 
 
-function Button({ title, onClick, style }) {
-
-    return <button
-               style={{
-                   backgroundColor: '#b3d4ff',
-                   borderColor: '#77b2ff',
-                   borderRadius: '5px',
-                   padding: '3px 7px',
-                   ...style,
-               }}
-               onClick={onClick}
-           >
-               {title}
-           </button>;
+function Button(props) {
+    return (
+        <Base
+            bg="#546de5"
+            css={{
+                '&:hover': {
+                    cursor: 'pointer',
+                    backgroundColor: '#4157be',
+                }
+            }}
+            {...props}
+        />
+    );
 }
+
 
 export default Button;
