@@ -70,7 +70,7 @@ class Player extends React.Component {
     }
 
     render() {
-        const { stringId, name, age, location } = this.props;
+        const { stringId, name, age, location, image } = this.props;
         const { balls } = this.state;
 
         return (
@@ -103,7 +103,7 @@ class Player extends React.Component {
                             css={{
                                 height: '100%',
                             }}
-                            src={`../static/images/trainers/${stringId}.gif`}
+                            src={image || `../static/images/trainers/${stringId}.gif`}
                         />
                     </Box>
 

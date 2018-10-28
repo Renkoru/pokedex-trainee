@@ -335,7 +335,7 @@ const locations = [
 ];
 
 
-export const Player = function({ name, age } = {}) {
+export const Player = function({ name, age, location, image } = {}) {
     const randomPlayerId = getRandom(154);
     const randomAge = getRandom(20, false) + 13;
     const randomName = firstNames[getRandom(firstNames.length, false)];
@@ -343,11 +343,13 @@ export const Player = function({ name, age } = {}) {
 
     const playerName = name || randomName;
     const playerAge = age || randomAge;
+    const playerLocation = location || randomLocation;
 
     return {
         stringId: randomPlayerId,
         age: playerAge,
         name: playerName,
-        location: randomLocation,
+        location: playerLocation,
+        image
     };
 };

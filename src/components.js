@@ -1,6 +1,13 @@
-import { Card, Box, Flex, Image } from 'rebass';
+import {
+    Card,
+    Box,
+    Flex,
+    Image,
+    Heading,
+} from 'rebass';
 
 import Button from './components/Button.jsx';
+
 
 export {
     Button,
@@ -9,4 +16,5 @@ export {
     Box,
     Flex,
     Image,
+    Heading,
 }
