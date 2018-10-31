@@ -17,6 +17,17 @@ https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/sm-series/sm1/16/
   );
 #+END_SRC
 
+* Articles to Analyze and include to the course
+1. Selectors in Redux are a MUST. https://hackernoon.com/selectors-in-redux-are-a-must-d6b0637c79b7
+2. Severlas stores and Selectors http://randycoulman.com/blog/2016/09/20/redux-reducer-selector-asymmetry/
+* UI component libs to use
+1. Rebass
+2. Grommet https://v2.grommet.io/
+3. https://react.semantic-ui.com/
+4. http://www.material-ui.com/
+5. Bootstrap
+* Todo
+1. Write Lisp function to convert browser styles to JS object format
 * Plan
 1. JS add dom element hi
 2. JS add dom element button
@@ -30,3 +41,9 @@ https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/sm-series/sm1/16/
 10. Use arrow function, imports?, add webpack to solve this
 11. Add location and show how browser rerenders all. And when it resets. (Enable 'Rendering' devtool in chrome)
 12. Add a 'tick' function to rerender React elements.
+13. Use ES6 React class for App component. Add state, remove tick function.
+14. Add componentDidMount, componentWillUnmount for Player component to show lifesycle methods (release resources)
+    Pokeballs
+15. Conditional rendering. Pokeballs, inline conditionals
+16. Add react router.
+17. React Dev Tools
