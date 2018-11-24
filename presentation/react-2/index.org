@@ -1,0 +1,95 @@
+#+OPTIONS: num:nil toc:nil reveal_slide_number:h/v
+#+REVEAL_ROOT: ../reveal.js
+#+REVEAL_THEME: solarized
+#+REVEAL_PLUGINS: (highlight)
+#+Title: React course
+#+Author: Maxim Rurenko
+#+Email: mrurenko@gmail.com
+
+* React Course
+*Lecture 2*
+
+Maxim Rurenko
+* What we have learned
+- UI building blocks in React are Components. Independent and reusable.
+- Component can be considered as function that takes props and returns an element
+- React 'reacts' on changes (state, props) and updates UI when it is needed.
+- Data on input -> UI on output
+* Remember about
+- Do Not Modify State Directly, use *setState()*
+- The data flows down. From parent to child
+- React has a powerful composition model, and we recommend using composition instead of inheritance
+  to reuse code between components.
+* Context
+Context provides a way to pass data through the component tree without
+having to pass props down manually at every level.
+
+** When to Use Context
+Context is designed to share data that can be considered “global” for
+a tree of React components, such as the current authenticated user,
+theme, or preferred language.
+** Before You Use Context
+Context is primarily used when some data needs to be accessible by
+many components at different nesting levels. Apply it sparingly
+because it makes component reuse more difficult.
+
+https://reactjs.org/docs/context.html
+* Error Boundaries
+In the past, JavaScript errors inside components used to corrupt
+React’s internal state and cause it to emit cryptic errors on next
+renders. These errors were always caused by an earlier error in the
+application code, but React did not provide a way to handle them
+gracefully in components, and could not recover from them.
+
+** Introducing Error Boundaries
+Error boundaries are React components that catch JavaScript errors
+anywhere in their child component tree, log those errors, and display
+a fallback UI instead of the component tree that crashed.
+
+** Notes
+- Error boundaries only catch errors in the components below them in the tree.
+- Errors that were not caught by any error boundary will result in unmounting of the whole React component tree.
+- Error boundaries do not catch errors inside event handlers.
+* Fragments
+A common pattern in React is for a component to return multiple
+elements. Fragments let you group a list of children without adding
+extra nodes to the DOM. (*<React.Fragment>*)
+* Higher-Order Components
+A higher-order component (HOC) is an advanced technique in React for
+reusing component logic. HOCs are not part of the React API, per
+se. They are a pattern that emerges from React’s compositional nature.
+
+*Concretely, a higher-order component is a function that takes a component and returns a new component.*
+** Notes
+ HOC doesn’t modify the input component, nor does it use inheritance
+ to copy its behavior. Rather, a HOC composes the original component
+ by wrapping it in a container component. A HOC is a pure function
+ with zero side-effects.
+** Don’t Mutate the Original Component. Use Composition.
+Resist the temptation to modify a component’s prototype (or otherwise mutate it) inside a HOC.
+* Portals
+Portals provide a first-class way to render children into a DOM node
+that exists outside the DOM hierarchy of the parent component.
+
+*ReactDOM.createPortal(child, container)*
+
+https://reactjs.org/docs/portals.html
+* Refs and the DOM
+Refs provide a way to access DOM nodes or React elements created in the render method.
+
+In the typical React dataflow, props are the only way that parent
+components interact with their children. To modify a child, you
+re-render it with new props. However, there are a few cases where you
+need to imperatively modify a child outside of the typical dataflow.
+
+** When to Use Refs
+There are a few good use cases for refs:
+
+- Managing focus, text selection, or media playback.
+- Triggering imperative animations.
+- Integrating with third-party DOM libraries.
+
+Avoid using refs for anything that can be done declaratively.
+* Useful resources
+1. CSS. Flexbox https://scrimba.com/g/gflexbox
+2. CSS. Grid https://scrimba.com/g/gR8PTE

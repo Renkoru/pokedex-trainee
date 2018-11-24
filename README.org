@@ -1,4 +1,60 @@
-Here will be React educational project.
+* Result plan
+** Create index.html
+#+BEGIN_SRC web
+  <!DOCTYPE html>
+  <html>
+    <head>
+    </head>
+
+    <body>
+      <h1>
+        React Course.
+      </h1>
+    </body>
+  </html>
+#+END_SRC
+
+
+** Add Javascript file
+#+BEGIN_SRC web
+  <script type="text/javascript" src="./main.js" async defer></script>
+#+END_SRC
+** Add Players Array
+#+BEGIN_SRC js2
+  var player = document.createElement('div');
+  player.innerHTML = name;
+#+END_SRC
+** Add Players Div
+- Code duplication
+- Create function to create a component
+** Create component function
+** Html Tag is also looks like a component?
+** Add random player generator, utils file
+#+BEGIN_SRC js2
+function getRandom(maxNumber) {
+    var baseNumber = Math.floor((Math.random() * 1000) + 1);
+    return  baseNumber % maxNumber;
+}
+#+END_SRC
+** Use random generator
+** Add button component to add players.
+#+BEGIN_SRC js2
+  var button = document.createElement('button');
+  button.innerHTML = title;
+  button.addEventListener ('click', onClick);
+#+END_SRC
+** Add reset location button
+** Add ticker function
+** It is time to Webpack
+** It is time to React
+#+BEGIN_SRC web
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+#+END_SRC
+** Create component App
+** Use JSX
+** Split components to its files
+* Rest
 
 https://pokeapi.co/
 
@@ -47,3 +103,21 @@ https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/sm-series/sm1/16/
 15. Conditional rendering. Pokeballs, inline conditionals
 16. Add react router.
 17. React Dev Tools
+* Useful reveal slides
+http://jr0cket.co.uk/slides/revealjs.html
+* 1124
+** Lesson Plan
+- Show fix of rerendering of Reset location
+** Layout
+- Login / Regestration
+- Navigation
+- User Profile
+- User list
+** Functionality
+- Add Post
+- Add Friend
+- Show Friends Posts. News feed
+** Styles
+*** classNames
+*** styled components
+** Usefull links

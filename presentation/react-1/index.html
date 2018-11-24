@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>React course</title>
+<meta name="author" content="(Maxim Rurenko)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.css"/>
+
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/moon.css" id="theme"/>
+
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/css/zenburn.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">React course</h1><h2 class="author">Maxim Rurenko</h2><p class="date">Created: 2018-11-18 Sun 13:51</p>
+</section>
+
+<section>
+<section id="slide-sec-">
+<h2 id="org7d31fc0">Regulations</h2>
+<ul>
+<li>4 lessons: React + Redux</li>
+<li>2+ hours of lecture and about 4 hours of practice</li>
+<li>Questions - anytime.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org6b414b8">Desired outcome</h2>
+<ul>
+<li>Understand core concepts of React</li>
+<li>Comfortable to use React in your apps.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org7a8fe14">React</h2>
+<ul>
+<li>A JavaScript library for building user interfaces.</li>
+<li>Declarative</li>
+<li>Component-Based</li>
+<li>Learn Once, Write Anywhere</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org4ad9b0f">Livecoding time</h2>
+<ul>
+<li>Goal: To understand what I am doing. Have a question - please ask!</li>
+<li>Do not repeat what I am doing. Just follow and ask questions</li>
+<li>I will share a code if it is needed</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="orgac0bbfe">React</h2>
+<div class="outline-text-2" id="text-orgac0bbfe">
+</div>
+</section>
+<section id="slide-sec-">
+<h3 id="orgafac5e5">Declarative</h3>
+<ul>
+<li>React makes it painless to create interactive UIs.</li>
+<li>Design simple views for each state in your application, and React will efficiently
+update and render just the right components when your data changes.</li>
+<li>Declarative views make your code more predictable and easier to debug.</li>
+
+</ul>
+</section>
+<section id="slide-sec-">
+<h3 id="orge78187d">Component-Based</h3>
+<ul>
+<li>Build encapsulated components that manage their own state, then compose them to make complex UIs.</li>
+<li>Since component logic is written in JavaScript instead of templates,
+you can easily pass rich data through your app and keep state out of the DOM.</li>
+
+</ul>
+</section>
+<section id="slide-sec-">
+<h3 id="orgb29d8ed">Learn Once, Write Anywhere</h3>
+<ul>
+<li>We don’t make assumptions about the rest of your technology stack,
+so you can develop new features in React without rewriting existing code.</li>
+<li>React can also render on the server using Node and power mobile apps using React Native.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org1a85bb0">React Elements</h2>
+<ul>
+<li>Elements are the smallest building blocks of React apps.</li>
+<li>React elements are immutable. Once you create an element,
+you can’t change its children or attributes.
+An element is like a single frame in a movie: it represents the UI at a certain point in time.</li>
+<li>React Only Updates What’s Necessary</li>
+<li>In our experience, thinking about how the UI should look at any given moment rather than how to change it over time eliminates a whole class of bugs.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org441711e">Components and Props</h2>
+<ul>
+<li>Components let you split the UI into independent, reusable pieces, and think about each piece in isolation.</li>
+<li>The simplest way to define a component is to write a JavaScript function</li>
+<li>Don’t be afraid to split components into smaller components.</li>
+
+</ul>
+</section>
+<section id="slide-sec-">
+<h3 id="orgdb33cc4">Function and Class Components</h3>
+<ul>
+<li>A function will be a valid React component if it accepts a single “props” object argument with data
+and returns a React element.</li>
+<li>Class components</li>
+
+</ul>
+</section>
+<section id="slide-sec-">
+<h3 id="org6d2e079">Composing Components</h3>
+<ul>
+<li>Components can refer to other components in their output.</li>
+<li>This lets us use the same component abstraction for any level of detail.</li>
+
+</ul>
+</section>
+<section id="slide-sec-">
+<h3 id="org289f78a">Props are Read-Only</h3>
+<ul>
+<li>All React components must act like pure functions with respect to their props.</li>
+<li>Component must never modify its own props.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="orgbe1ef94">About JSX</h2>
+<ul>
+<li>JSX it is a syntax extension to JavaScript.</li>
+<li>We recommend using it with React to describe what the UI should look like.</li>
+<li>JSX may remind you of a template language, but it comes with the full power of JavaScript.</li>
+<li>React doesn’t require using JSX, but most people find it helpful as a visual aid when
+working with UI inside the JavaScript code.</li>
+<li>Babel compiles JSX down to React.createElement() calls.</li>
+
+</ul>
+</section>
+<section id="slide-sec-">
+<h3 id="org5618bd4">Embedding Expressions in JSX</h3>
+<ul>
+<li>You can put any valid JavaScript expression inside the curly braces in JSX.</li>
+<li>For example, 2 + 2, user.firstName, or formatName(user) are all valid JavaScript expressions.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org37e1235">State and Lifecycle</h2>
+<ul>
+<li>Only class components have this</li>
+
+</ul>
+</section>
+<section id="slide-sec-">
+<h3 id="orgfe66394">Lifecycle Methods</h3>
+<ul>
+<li>componentDidMount() method runs after the component output has been rendered to the DOM</li>
+<li>componentWillUnmount() method runs when the component going to be unmounted from DOM</li>
+
+</ul>
+</section>
+<section id="slide-sec-">
+<h3 id="orgad8f7b9">Using State Correctly</h3>
+<ul>
+<li>Do Not Modify State Directly. Use setState()</li>
+<li>State Updates May Be Asynchronous</li>
+<li>State Updates are Merged</li>
+
+</ul>
+</section>
+<section id="slide-sec-">
+<h3 id="org932a663">The Data Flows Down</h3>
+<ul>
+<li>Neither parent nor child components can know if a certain component is stateful or stateless,
+and they shouldn’t care whether it is defined as a function or a class.</li>
+<li>This is why state is often called local or encapsulated.
+It is not accessible to any component other than the one that owns and sets it.</li>
+<li>A component may choose to pass its state down as props to its child components.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org0af4fa7">Handling Events</h2>
+<ul>
+<li>Handling events with React elements is very similar to handling events on DOM elements.</li>
+<li>React events are named using camelCase, rather than lowercase</li>
+<li>With JSX you pass a function as the event handler, rather than a string</li>
+<li>Remeber to bind your event handlers to components 'this'.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="orgc0dc25f">Conditional Rendering</h2>
+<ul>
+<li>In React, you can create distinct components that encapsulate behavior you need.</li>
+<li>Then, you can render only some of them, depending on the state of your application.</li>
+
+</ul>
+</section>
+<section id="slide-sec-">
+<h3 id="org397f388">Element Variables</h3>
+<ul>
+<li>You can use variables to store elements.</li>
+<li>This can help you conditionally render a part of the component while the rest of the output doesn’t change.</li>
+
+</ul>
+</section>
+<section id="slide-sec-">
+<h3 id="orgdd90bdc">Inline If with Logical &amp;&amp; Operator</h3>
+<ul>
+<li>You may embed any expressions in JSX by wrapping them in curly braces.</li>
+<li>This includes the JavaScript logical &amp;&amp; operator.</li>
+
+</ul>
+</section>
+<section id="slide-sec-">
+<h3 id="org6724fbe">Inline If-Else with Conditional Operator</h3>
+<ul>
+<li>Another method for conditionally rendering elements inline is to use the JavaScript
+conditional operator `condition ? true : false`</li>
+
+</ul>
+</section>
+<section id="slide-sec-">
+<h3 id="org716af5a">Preventing Component from Rendering</h3>
+<ul>
+<li>In rare cases you might want a component to hide itself even though it was rendered by another component.</li>
+<li>To do this return null instead of its render output.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org6868d1b">Lists and Keys</h2>
+<ul>
+<li>A “key” is a special string attribute you need to include when creating lists of elements</li>
+<li>Keys help React identify which items have changed, are added, or are removed</li>
+<li>Keys should be given to the elements inside the array to give the elements a stable identity</li>
+<li>The best way to pick a key is to use a string that uniquely identifies a list item among its siblings</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org044e42a">Forms</h2>
+<ul>
+<li>HTML form elements work a little bit differently from other DOM elements in React,
+because form elements naturally keep some internal state.</li>
+<li>This form has the default HTML form behavior of browsing to a new page when the user submits the form.</li>
+<li>If you want this behavior in React, it just works.</li>
+<li>But in most cases, it’s convenient to have a JavaScript function that handles the submission of
+the form and has access to the data that the user entered into the form.</li>
+
+</ul>
+</section>
+<section id="slide-sec-">
+<h3 id="org0bcb1b6">Controlled Components</h3>
+<ul>
+<li>In HTML, form elements such as &lt;input&gt;, &lt;textarea&gt;, and &lt;select&gt; typically maintain their own state and update it based on user input.</li>
+<li>In React, mutable state is typically kept in the state property of components,
+and only updated with setState().</li>
+<li>We can combine the two by making the React state be the “single source of truth”.</li>
+<li>Then the React component that renders a form also controls what happens in that form on subsequent user input.</li>
+<li>An input form element whose value is controlled by React in this way is called a “controlled component”.</li>
+
+</ul>
+</section>
+<section id="slide-sec-">
+<h3 id="org1a38512">Alternatives to Controlled Components</h3>
+<ul>
+<li>Uncontrolled components</li>
+<li>this.input = React.createRef();</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="orgfb517f7">Lifting State Up</h2>
+<ul>
+<li>Often, several components need to reflect the same changing data.</li>
+<li>In React, sharing state is accomplished by moving it up to the closest common ancestor of the components that need it.</li>
+<li>This is called “lifting state up”.</li>
+<li>There should be a single “source of truth” for any data that changes in a React application.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org2f4a598">Composition vs Inheritance</h2>
+<ul>
+<li>React has a powerful composition model, and we recommend using composition instead of inheritance
+to reuse code between components.</li>
+<li>At Facebook, they use React in thousands of components, and they haven’t found any use cases
+where we would recommend creating component inheritance hierarchies.</li>
+<li>Props and composition give you all the flexibility you need to customize a component’s look
+and behavior in an explicit and safe way.</li>
+<li>Remember that components may accept arbitrary props, including primitive values, React elements, or functions.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="orgb1a48ca">Thinking in React</h2>
+<div class="outline-text-2" id="text-orgb1a48ca">
+</div>
+</section>
+<section id="slide-sec-">
+<h3 id="orgfd1c232">Start With A Mock</h3>
+</section>
+<section id="slide-sec-">
+<h3 id="org107bc04">Step 1: Break The UI Into A Component Hierarchy</h3>
+</section>
+<section id="slide-sec-">
+<h3 id="org082216d">Step 2: Build A Static Version in React</h3>
+</section>
+<section id="slide-sec-">
+<h3 id="org71910eb">Step 3: Identify The Minimal (but complete) Representation Of UI State</h3>
+</section>
+<section id="slide-sec-">
+<h3 id="orgd03c701">Step 4: Identify Where Your State Should Live</h3>
+</section>
+<section id="slide-sec-">
+<h3 id="orgd4ba083">Step 5: Add Inverse Data Flow</h3>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="orga7d7413">What to do next</h2>
+<ul>
+<li>Setup React.</li>
+<li>Create base layout.</li>
+<li>Will share a basic layout</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org1dc083b">Tools</h2>
+<ul>
+<li>React DOM</li>
+<li>React Developer Tools</li>
+<li>React Router</li>
+<li>React</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org2e2eb5a">Used resources</h2>
+<ul>
+<li>React Docs: <a href="https://reactjs.org/docs/getting-started.html">https://reactjs.org/docs/getting-started.html</a></li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+<script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }]
+});
+</script>
+</body>
+</html>
