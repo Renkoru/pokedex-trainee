@@ -90,6 +90,15 @@ There are a few good use cases for refs:
 - Integrating with third-party DOM libraries.
 
 Avoid using refs for anything that can be done declaratively.
+* Is there anything else about React?
+1. Accessibility
+2. Forwarding Refs
+3. Integrating with Other Libraries
+4. Optimizing Performance
+5. Reconciliation
+6. Render Props
+7. Static Type Checking
+...
 * Useful resources
 1. CSS. Flexbox https://scrimba.com/g/gflexbox
 2. CSS. Grid https://scrimba.com/g/gR8PTE

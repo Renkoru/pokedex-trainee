@@ -48,7 +48,7 @@ class PlayerAdd extends React.Component {
         });
 
         this.props.onAddPlayer(player);
-        this.props.history.push('/');
+        this.props.history.push('/admin');
     }
 
     onRandomize() {

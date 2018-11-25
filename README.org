@@ -121,3 +121,13 @@ http://jr0cket.co.uk/slides/revealjs.html
 *** classNames
 *** styled components
 ** Usefull links
+** Live coding plan
+1. Players Profile
+2. Error Boundaries with empty pokemon list
+3. Add pokemon
+4. Fragments to list pokemons
+5. Players list with pokemons
+6. Context with players list and pokemons
+7. HOC to get players from the store
+8. Add a Ref and a button to focus an 'Add Player' input
+9. Add Portal, a modal for example. ????
