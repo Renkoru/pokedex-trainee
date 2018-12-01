@@ -20,8 +20,9 @@ class App extends React.Component {
 
         this.state = {
             players: [...initialPlayers],
-            currentPlayerId: null,
+            currentPlayerId: initialPlayers[0].stringId,
             monsters: {},
+            allMonsters: [],
         };
 
 
@@ -29,6 +30,12 @@ class App extends React.Component {
         this.onResetLocation = this.onResetLocation.bind(this);
         this.onMonsterAdd = this.onMonsterAdd.bind(this);
         this.onSetCurrentPlayer = this.onSetCurrentPlayer.bind(this);
+    }
+
+    componentWillMount() {
+        fetch('/api/v1/monsters')
+            .then(res => res.json())
+            .then(allMonsters => this.setState({ allMonsters }));
     }
 
     onAddPlayer(player) {
@@ -47,10 +54,12 @@ class App extends React.Component {
 
     onMonsterAdd(playerId, monster) {
         const { monsters } = this.state;
+        const playerMonsters = monsters[playerId] || [];
+
         this.setState({
             monsters: {
                 ...monsters,
-                [playerId]: [...monsters[playerId], monster]
+                [playerId]: [...playerMonsters, monster]
             }
         });
     }
@@ -70,7 +79,7 @@ class App extends React.Component {
             return {};
         }
 
-        return players.find(({ id }) => id === currentPlayerId);
+        return players.find(({ stringId }) => stringId === currentPlayerId);
     }
 
     getCurrentMonsters() {
@@ -88,18 +97,20 @@ class App extends React.Component {
         return (
             <Router>
               <div>
-                <Heading>Players net.</Heading>
-                <ul css={{ listStyleType: 'none', display: 'flex' }}>
-                  <li css={navBarLinks}>
-                    <Link to="/">Home</Link>
-                  </li>
-                  <li css={navBarLinks}>
-                    <Link to="/players">Players</Link>
-                  </li>
-                  <li css={navBarLinks}>
-                    <Link to="/admin">Admin</Link>
-                  </li>
-                </ul>
+                <nav css={{ backgroundColor: '#92ef9d', padding: '2px 5px' }}>
+                  <Heading>Players net.</Heading>
+                  <ul css={{ listStyleType: 'none', display: 'flex' }}>
+                    <li css={navBarLinks}>
+                      <Link to="/">Home</Link>
+                    </li>
+                    <li css={navBarLinks}>
+                      <Link to="/players">Players</Link>
+                    </li>
+                    <li css={navBarLinks}>
+                      <Link to="/admin">Admin</Link>
+                    </li>
+                  </ul>
+                </nav>
 
                 <Route
                   exact
@@ -108,6 +119,7 @@ class App extends React.Component {
                       <PlayerProfile
                         player={this.getCurrentPlayer()}
                         monsters={this.getCurrentMonsters()}
+                        allMonsters={this.state.allMonsters}
                         onMonsterAdd={this.onMonsterAdd}
                         {...props}
                       />

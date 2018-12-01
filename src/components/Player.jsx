@@ -40,6 +40,7 @@ class Player extends React.Component {
         };
 
         this.addBall= this.addBall.bind(this);
+        this.setMeAsCurrent= this.setMeAsCurrent.bind(this);
     }
 
     componentDidMount() {
@@ -63,6 +64,10 @@ class Player extends React.Component {
         this.setState({
             balls: [...balls, {}]
         });
+    }
+
+    setMeAsCurrent() {
+        this.props.onSetCurrentPlayer(this.props.stringId);
     }
 
     componentWillUnmount() {
@@ -113,9 +118,9 @@ class Player extends React.Component {
                         {`Loc: ${location}`}
                     </Box>
 
-                    <Button onClick={() => alert('Hi Mates!')}>
-                        Say Hi!
-                    </Button>
+                  <Button onClick={this.setMeAsCurrent}>
+                    Make Current
+                  </Button>
                 </Flex>
             </Card>
         );

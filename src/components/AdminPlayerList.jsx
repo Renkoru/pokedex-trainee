@@ -19,7 +19,13 @@ class PlayerList extends React.Component {
                     Reset Location
                 </Button>
                 <Flex flexWrap="wrap" alignItems="center" mt="50px">
-                    {this.props.players.map((player, index) => <Player key={index} {...player}/> )}
+                  {this.props.players.map((player, index) => (
+                      <Player
+                        key={index}
+                        onSetCurrentPlayer={this.props.onSetCurrentPlayer}
+                        {...player}
+                      />
+                  ))}
                 </Flex>
             </div>
         );

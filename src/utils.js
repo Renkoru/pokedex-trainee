@@ -6,19 +6,23 @@ export function getRandom(maxNumber) {
     return  baseNumber % maxNumber;
 }
 
+export function stringifyId(id) {
+    if (id < 10) {
+        return `00${id}`;
+    }
+
+    if (id < 100) {
+        return `0${id}`;
+    }
+
+    return `${id}`;
+}
+
 
 export function getRandomStringId(maxNumber) {
     const randomNumber = getRandom(maxNumber);
 
-    if (randomNumber < 10) {
-        return '00' + randomNumber;
-    }
-
-    if (randomNumber < 100) {
-        return '0' + randomNumber;
-    }
-
-    return '' + randomNumber;
+    return stringifyId(randomNumber);
 }
 
 

@@ -1,4 +1,8 @@
-import { getRandom, getRandomStringId } from './utils';
+import {
+    getRandom,
+    getRandomStringId,
+    stringifyId,
+} from './utils';
 
 const firstNames = [
     "Emma", "Isabella", "Emily", "Madison", "Ava",
@@ -357,6 +361,12 @@ export const Player = function({ name, age, location, image } = {}) {
 };
 
 
-        image
+export const Monster = function({ id } = {}) {
+    const randomMonsterId = getRandom(151);
+    const stringId = stringifyId(randomMonsterId);
+
+    return {
+        id: randomMonsterId,
+        stringId,
     };
 };
