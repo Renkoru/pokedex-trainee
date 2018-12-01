@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { getRandom } from '../utils';
 import { Button, Card, Box, Flex, Image } from '../components';
 
 
@@ -44,7 +43,8 @@ class Player extends React.Component {
     }
 
     componentDidMount() {
-        const speed = getRandom(10, false) + 5;
+        const speed = this.props.randomGenerationSpeed;
+
         console.log(`Generation speed: ${speed}`);
 
         this.timerID = setInterval(

@@ -1,4 +1,4 @@
-import { getRandom } from './utils';
+import { getRandom, getRandomStringId } from './utils';
 
 const firstNames = [
     "Emma", "Isabella", "Emily", "Madison", "Ava",
@@ -336,10 +336,11 @@ const locations = [
 
 
 export const Player = function({ name, age, location, image } = {}) {
-    const randomPlayerId = getRandom(154);
-    const randomAge = getRandom(20, false) + 13;
-    const randomName = firstNames[getRandom(firstNames.length, false)];
-    const randomLocation = locations[getRandom(locations.length, false)];
+    const randomPlayerId = getRandomStringId(154);
+    const randomAge = getRandom(20) + 13;
+    const randomName = firstNames[getRandom(firstNames.length)];
+    const randomLocation = locations[getRandom(locations.length)];
+    const randomGenerationSpeed = getRandom(10) + 5;
 
     const playerName = name || randomName;
     const playerAge = age || randomAge;
@@ -350,6 +351,12 @@ export const Player = function({ name, age, location, image } = {}) {
         age: playerAge,
         name: playerName,
         location: playerLocation,
+        image,
+        randomGenerationSpeed,
+    };
+};
+
+
         image
     };
 };

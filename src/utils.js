@@ -1,23 +1,24 @@
 import range from 'lodash/range';
 
 
-export function getRandom(maxNumber, returnString = true) {
+export function getRandom(maxNumber) {
     var baseNumber = Math.floor((Math.random() * 1000) + 1);
-    var intRandom =  baseNumber % maxNumber;
+    return  baseNumber % maxNumber;
+}
 
-    if (!returnString) {
-        return intRandom;
+
+export function getRandomStringId(maxNumber) {
+    const randomNumber = getRandom(maxNumber);
+
+    if (randomNumber < 10) {
+        return '00' + randomNumber;
     }
 
-    if (intRandom < 10) {
-        return '00' + intRandom;
+    if (randomNumber < 100) {
+        return '0' + randomNumber;
     }
 
-    if (intRandom < 100) {
-        return '0' + intRandom;
-    }
-
-    return '' + intRandom;
+    return '' + randomNumber;
 }
 
 

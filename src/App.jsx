@@ -107,7 +107,7 @@ class App extends React.Component {
                   render={(props) => (
                       <PlayerProfile
                         player={this.getCurrentPlayer()}
-                        monsters={this.state.monsters}
+                        monsters={this.getCurrentMonsters()}
                         onMonsterAdd={this.onMonsterAdd}
                         {...props}
                       />
