@@ -11,7 +11,8 @@ function Monster({stringId, name}) {
           border='1px solid #ccc'
           boxShadow='2px 2px 3px #eee'
           width={100}
-          mx={10}
+          mx="10px"
+          my="5px"
           p={10}
           css={{
               textAlign: 'center',
@@ -39,7 +40,7 @@ class MonsterList extends React.Component {
         const { monsters } = this.props;
 
         return (
-            <Flex my={12}>
+            <Flex my={12} flexWrap="wrap">
               {monsters.map(monster => <Monster key={monster.stringId} {...monster} />)}
             </Flex>
         );

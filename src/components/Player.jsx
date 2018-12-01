@@ -1,6 +1,16 @@
 import React from 'react';
 
-import { Button, Card, Box, Flex, Image } from '../components';
+import {
+    Button,
+    Card,
+    Box,
+    Flex,
+    Image,
+    Grid,
+    GridItem,
+} from '../components';
+
+import MonsterList from '../containers/MonsterList.jsx';
 
 
 function Ball() {
@@ -70,7 +80,7 @@ class Player extends React.Component {
     }
 
     render() {
-        const { stringId, name, age, location, image } = this.props;
+        const { stringId, name, age, location, image, monsters } = this.props;
         const { balls } = this.state;
 
         return (
@@ -78,41 +88,54 @@ class Player extends React.Component {
               bg='#fff'
               border='1px solid #ccc'
               boxShadow='2px 2px 3px #eee'
-              width={190}
-              p={15}
-              my="5px"
+              width="70%"
+              my="20px"
               mx={20}
               css={{
                   height: '260px',
                   textAlign: 'center',
               }}
             >
-              <Flex flexDirection="column">
-                <Box fontWeight="bold">
-                  {`${name} : ${age}`}
-                </Box>
+              <Grid
+                height="100%"
+                gridTemplateColumns="1fr 2fr"
+                gridTemplateRows="20px auto 20px"
+              >
+                <GridItem gridColumn="1/2" gridRow="1/2">
+                  <Box fontSize="19px" bg="#015eaf" color="white">
+                    {`${name} : ${age}`}
+                  </Box>
+                </GridItem>
 
-                <Box
-                  mx="auto"
-                  py={15}
-                  css={{
-                      height: 120,
-                  }}
-                >
-                  <Image
+                <GridItem gridColumn="1/2" gridRow="2/3">
+                  <Box
+                    mx="auto"
+                    py={15}
                     css={{
-                        height: '100%',
+                        height: 120,
                     }}
-                    src={image || `../static/images/trainers/${stringId}.gif`}
-                  />
-                </Box>
+                  >
+                    <Image
+                      css={{
+                          height: '170px',
+                      }}
+                      src={image || `../static/images/trainers/${stringId}.gif`}
+                    />
 
-                <Balls balls={balls} />
+                    <Balls balls={balls} />
+                  </Box>
+                </GridItem>
 
-                <Box>
-                  {`Loc: ${location}`}
-                </Box>
-              </Flex>
+                <GridItem gridColumn="1/2" gridRow="3/4">
+                  <Box bg="#99a99c" color="white">
+                    {`${location}`}
+                  </Box>
+                </GridItem>
+
+                <GridItem gridColumn="2/3" gridRow="1/4" overflow="auto" css={{ borderLeft: '1px dashed grey'}}>
+                  <MonsterList monsters={monsters}/>
+                </GridItem>
+              </Grid>
             </Card>
         );
     }

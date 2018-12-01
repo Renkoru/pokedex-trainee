@@ -115,12 +115,12 @@ class App extends React.Component {
 
                 <Route
                   exact
-                  path="/admin"
+                  path="/players"
                   render={(props) => (
-                      <AdminPlayerList
+                      <PlayersList
                         players={this.state.players}
-                        onResetLocation={this.onResetLocation}
-                        onSetCurrentPlayer={this.onSetCurrentPlayer}
+                        allMonsters={this.state.allMonsters}
+                        monsters={this.state.monsters}
                         {...props}
                       />
                   )}
@@ -128,10 +128,12 @@ class App extends React.Component {
 
                 <Route
                   exact
-                  path="/players"
+                  path="/admin"
                   render={(props) => (
-                      <PlayersList
+                      <AdminPlayerList
                         players={this.state.players}
+                        onResetLocation={this.onResetLocation}
+                        onSetCurrentPlayer={this.onSetCurrentPlayer}
                         {...props}
                       />
                   )}

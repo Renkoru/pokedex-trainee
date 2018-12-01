@@ -5,15 +5,19 @@ import { Flex } from '../components';
 import Player from '../components/Player.jsx';
 
 
-export default ({ players }) => (
-    <div>
-      <Flex flexWrap="wrap" alignItems="center" mt="50px">
-        {players.map((player, index) => (
-            <Player
-              key={index}
-              {...player}
-            />
-        ))}
-      </Flex>
-    </div>
-);
+export default ({ players, monsters }) => {
+    return (
+        <div>
+          <Flex flexDirection="column" alignItems="center" mt="50px">
+            {players.map((player, index) => (
+                <Player
+                  key={index}
+                  monsters={monsters[player.stringId] || []}
+                  {...player}
+                />
+            ))}
+          </Flex>
+        </div>
+    );
+
+}
