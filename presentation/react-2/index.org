@@ -100,5 +100,7 @@ Avoid using refs for anything that can be done declaratively.
 7. Static Type Checking
 ...
 * Useful resources
-1. CSS. Flexbox https://scrimba.com/g/gflexbox
-2. CSS. Grid https://scrimba.com/g/gR8PTE
+1. REACT ROUTER https://reacttraining.com/react-router/web/guides/quick-start
+2. CSS. Flexbox https://scrimba.com/g/gflexbox
+3. CSS. Grid https://scrimba.com/g/gR8PTE
+4. Maxim Rurenko repo, only for usage example https://github.com/Renkoru/pokedex/tree/develop

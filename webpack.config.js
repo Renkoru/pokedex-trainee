@@ -1,4 +1,5 @@
 var path = require('path');
+var monsters = require('./static/monsters.json');
 
 
 module.exports = {
@@ -7,7 +8,12 @@ module.exports = {
         contentBase: [path.join(__dirname, 'dist'), path.join(__dirname)],
         compress: true,
         port: 8080,
-        historyApiFallback: true
+        historyApiFallback: true,
+        before: function(app, server) {
+            app.get('/api/v1/monsters', function(req, res) {
+                res.json(monsters);
+            });
+        }
     },
     module: {
         rules: [

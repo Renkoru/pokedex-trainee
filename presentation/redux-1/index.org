@@ -1,0 +1,68 @@
+#+OPTIONS: num:nil toc:nil reveal_slide_number:h/v
+#+REVEAL_ROOT: ../reveal.js
+#+REVEAL_THEME: sky
+#+REVEAL_PLUGINS: (highlight)
+#+Title: React course
+#+Author: Maxim Rurenko
+#+Email: mrurenko@gmail.com
+
+* React Course
+*Lecture 3: Redux*
+
+Maxim Rurenko
+
+* Redux
+Redux is a predictable state container for JavaScript apps.
+
+You can use Redux together with React, or with any other view library.
+
+Redux evolves the ideas of Flux, but avoids its complexity by taking cues from Elm.
+
+** Think before add Redux to your app
+Redux is a valuable tool for organizing your state, but you should
+also consider whether it's appropriate for your situation. Don't use
+Redux just because someone said you should - take some time to
+understand the potential benefits and tradeoffs of using it.
+
+Every tool comes with it's overhead.
+
+** When it makes sense to use it?
+- You have reasonable amounts of data changing over time
+- You need a single source of truth for your state
+- You find that keeping all your state in a top-level component is no longer sufficient
+
+* The Gist
+The whole state of your app is stored in an object tree inside a single *store*.
+
+The only way to change the state tree is to emit an *action*, an object describing what happened.
+
+To specify how the actions transform the state tree, you write pure *reducers*.
+** Store
+Single object of your app
+** Actions
+Functions that returns you an object with *type* and *payload*
+** Reducers
+Functions that gets current state and
+* Three Principles
+Redux can be described in three fundamental principles
+** Single source of truth
+The state of your whole application is stored in an object tree within a single store.
+** State is read-only
+The only way to change the state is to emit an action, an object describing what happened.
+** Changes are made with pure functions
+To specify how the state tree is transformed by actions, you write pure reducers.
+* Notes
+- 90% of your app Redux code is plain Javascript
+* Tests
+- Jest
+- Chai
+- Enzyme
+* Practice notes
+- Error boundaries
+- Context
+- High-order Components HOC()
+* Useful resources
+1. Redux https://redux.js.org/
+2. Jest
+3. Enzyme
+4. Maxim Rurenko repo, only for usage example https://github.com/Renkoru/pokedex/tree/develop
