@@ -6,6 +6,7 @@ import { Button, Flex, Heading } from './components';
 import AdminPlayerList from './components/AdminPlayerList.jsx';
 import PlayersList from './containers/PlayersList.jsx';
 import PlayerProfile from './containers/PlayerProfile.jsx';
+import NavBar from './containers/NavBar.jsx';
 import PlayerAdd from './components/PlayerAdd.jsx';
 
 
@@ -93,24 +94,10 @@ class App extends React.Component {
     }
 
     render () {
-        const navBarLinks = { marginRight: '15px' };
         return (
             <Router>
               <div>
-                <nav css={{ backgroundColor: '#92ef9d', padding: '2px 5px' }}>
-                  <Heading>Players net.</Heading>
-                  <ul css={{ listStyleType: 'none', display: 'flex' }}>
-                    <li css={navBarLinks}>
-                      <Link to="/">Home</Link>
-                    </li>
-                    <li css={navBarLinks}>
-                      <Link to="/players">Players</Link>
-                    </li>
-                    <li css={navBarLinks}>
-                      <Link to="/admin">Admin</Link>
-                    </li>
-                  </ul>
-                </nav>
+                <NavBar currentPlayer={this.getCurrentPlayer()} />
 
                 <Route
                   exact

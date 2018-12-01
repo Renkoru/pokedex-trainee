@@ -1,35 +1,47 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import { Player as PlayerModel } from '../models';
-import { Button, Flex } from '../components';
-import Player from './Player.jsx';
+import { Button, Flex, Box } from '../components';
+import { routes } from '../constants';
+import AdminPlayer from './AdminPlayer.jsx';
 
 
-class PlayerList extends React.Component {
+const listStyle = {
+    listStyle: 'none',
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    width: '80%',
+};
+
+class AdminPlayerList extends React.Component {
     render() {
         return (
-            <div>
-                <Link to="/add-player/">
-                    <Button>
-                        Add Player
-                    </Button>
-                </Link>
-                <Button onClick={this.props.onResetLocation} ml="20px" >
-                    Reset Location
-                </Button>
-                <Flex flexWrap="wrap" alignItems="center" mt="50px">
-                  {this.props.players.map((player, index) => (
-                      <Player
-                        key={index}
+            <Flex>
+              <ul css={listStyle}>
+                {this.props.players.map((player, index) => (
+                    <li key={index}>
+                      <AdminPlayer
                         onSetCurrentPlayer={this.props.onSetCurrentPlayer}
                         {...player}
                       />
-                  ))}
-                </Flex>
-            </div>
+                    </li>
+                ))}
+              </ul>
+
+              <Box ml="auto" mt="5px" mr="10px">
+                <Link to={routes.addPlayer}>
+                  <Button>
+                    Add Player
+                  </Button>
+                </Link>
+                <Button onClick={this.props.onResetLocation} ml="20px" >
+                  Reset Location
+                </Button>
+              </Box>
+            </Flex>
         );
     }
 }
 
-export default PlayerList;
+export default AdminPlayerList;
