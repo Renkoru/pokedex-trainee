@@ -1,4 +1,12 @@
 export const ADD_MONSTER = "ADD_MONSTER";
+// ActionCreators
+export function addMonster(playerId, monster) {
+    return {
+        type: ADD_MONSTER,
+        playerId,
+        monster,
+    };
+}
 
 
 const initialState = {

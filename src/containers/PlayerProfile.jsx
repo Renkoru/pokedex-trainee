@@ -3,7 +3,7 @@ import { Button, Heading, Flex, Box, Image } from '../components';
 import { Monster } from '../models';
 import MonsterList from './MonsterList.jsx';
 import { withStore } from '../containers/Provider.jsx';
-import { ADD_MONSTER } from '../store';
+import { addMonster } from '../store';
 
 
 class PlayerProfile extends React.Component {
@@ -22,14 +22,13 @@ class PlayerProfile extends React.Component {
         //     stringId: monster.stringId,
         // });
 
-        this.props.dispatch({
-            type: ADD_MONSTER,
-            playerId: this.props.player.stringId,
-            monster: {
+        this.props.dispatch(addMonster(
+            this.props.player.stringId,
+            {
                 ...original,
                 stringId: monster.stringId,
-            },
-        });
+            }
+        ));
     }
 
     getCurrentMonsters() {
