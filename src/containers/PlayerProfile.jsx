@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Heading, Flex, Box, Image } from '../components';
 import { Monster } from '../models';
 import MonsterList from './MonsterList.jsx';
-import { withStore } from '../containers/Provider.jsx';
+import { withStore, ADD_MONSTER } from '../containers/Provider.jsx';
 
 
 class PlayerProfile extends React.Component {
@@ -16,14 +16,23 @@ class PlayerProfile extends React.Component {
         const monster = Monster();
         const original = this.props.allMonsters.find(({ id }) => id === monster.id);
 
-        this.props.onMonsterAdd(this.props.player.stringId, {
-            ...original,
-            stringId: monster.stringId,
+        // this.props.onMonsterAdd(this.props.player.stringId, {
+        //     ...original,
+        //     stringId: monster.stringId,
+        // });
+
+        this.props.dispatch({
+            type: ADD_MONSTER,
+            playerId: this.props.player.stringId,
+            monster: {
+                ...original,
+                stringId: monster.stringId,
+            },
         });
     }
 
     getCurrentMonsters() {
-        const { player, monsters } = this.props;
+        const { player, store: { monsters } } = this.props;
 
         if (!player.stringId) {
             return [];

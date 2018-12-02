@@ -9,8 +9,8 @@ export function withStore(WrappedComponent) {
         render () {
             return (
                 <WrappedComponent
-                  monsters={this.context.monsters}
-                  onMonsterAdd={this.context.onMonsterAdd}
+                  store={this.context.store}
+                  dispatch={this.context.dispatch}
                   {...this.props}
                 />
             );
@@ -22,6 +22,9 @@ export function withStore(WrappedComponent) {
 }
 
 
+export const ADD_MONSTER = "ADD_MONSTER";
+
+
 class Provider extends React.Component {
     constructor(props) {
         super(props);
@@ -30,7 +33,18 @@ class Provider extends React.Component {
             monsters: {},
         };
 
+        this.dispatch = this.dispatch.bind(this);
         this.onMonsterAdd = this.onMonsterAdd.bind(this);
+    }
+
+    dispatch(action) {
+        console.log('\n>>>>>> Got Action');
+        console.log(action);
+        console.log('<<<<<< end block Got Action');
+
+        if (action.type === ADD_MONSTER) {
+            this.onMonsterAdd(action.playerId, action.monster);
+        }
     }
 
     onMonsterAdd(playerId, monster) {
@@ -47,8 +61,8 @@ class Provider extends React.Component {
 
     render () {
         const contextValue = {
-            monsters: this.state.monsters,
-            onMonsterAdd: this.onMonsterAdd,
+            store: this.state,
+            dispatch: this.dispatch,
         };
 
         return (
