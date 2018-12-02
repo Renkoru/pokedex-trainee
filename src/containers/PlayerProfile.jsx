@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Heading, Flex, Box, Image } from '../components';
 import { Monster } from '../models';
 import MonsterList from './MonsterList.jsx';
+import { StoreContext } from '../containers/Provider.jsx';
 
 
 class PlayerProfile extends React.Component {
@@ -12,17 +13,30 @@ class PlayerProfile extends React.Component {
     }
 
     onMonsterAdd() {
+        const { onMonsterAdd } = this.context;
+
         const monster = Monster();
         const original = this.props.allMonsters.find(({ id }) => id === monster.id);
 
-        this.props.onMonsterAdd(this.props.player.stringId, {
+        onMonsterAdd(this.props.player.stringId, {
             ...original,
             stringId: monster.stringId,
         });
     }
 
+    getCurrentMonsters() {
+        const { player } = this.props;
+        const { monsters } = this.context;
+
+        if (!player.stringId) {
+            return [];
+        }
+
+        return monsters[player.stringId] || [];
+    }
+
     render() {
-        const { player, monsters, allMonsters } = this.props;
+        const { player, allMonsters } = this.props;
 
         return (
             <Flex>
@@ -49,11 +63,15 @@ class PlayerProfile extends React.Component {
                 </Button>
               </Flex>
               <Box  width="80%">
-                <MonsterList monsters={monsters}/>
+                <MonsterList monsters={this.getCurrentMonsters()}/>
               </Box>
             </Flex>
         );
     }
 }
+
+
+PlayerProfile.contextType = StoreContext;
+
 
 export default PlayerProfile;

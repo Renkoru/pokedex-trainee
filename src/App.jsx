@@ -7,6 +7,7 @@ import AdminPlayerList from './components/AdminPlayerList.jsx';
 import PlayersList from './containers/PlayersList.jsx';
 import PlayerProfile from './containers/PlayerProfile.jsx';
 import NavBar from './containers/NavBar.jsx';
+import Provider from './containers/Provider.jsx';
 import PlayerAdd from './components/PlayerAdd.jsx';
 
 
@@ -22,14 +23,12 @@ class App extends React.Component {
         this.state = {
             players: [...initialPlayers],
             currentPlayerId: initialPlayers[0].stringId,
-            monsters: {},
             allMonsters: [],
         };
 
 
         this.onAddPlayer = this.onAddPlayer.bind(this);
         this.onResetLocation = this.onResetLocation.bind(this);
-        this.onMonsterAdd = this.onMonsterAdd.bind(this);
         this.onSetCurrentPlayer = this.onSetCurrentPlayer.bind(this);
     }
 
@@ -53,18 +52,6 @@ class App extends React.Component {
         });
     }
 
-    onMonsterAdd(playerId, monster) {
-        const { monsters } = this.state;
-        const playerMonsters = monsters[playerId] || [];
-
-        this.setState({
-            monsters: {
-                ...monsters,
-                [playerId]: [...playerMonsters, monster]
-            }
-        });
-    }
-
     onResetLocation() {
         const { players } = this.state;
 
@@ -83,20 +70,10 @@ class App extends React.Component {
         return players.find(({ stringId }) => stringId === currentPlayerId);
     }
 
-    getCurrentMonsters() {
-        const { monsters, currentPlayerId } = this.state;
-
-        if (!currentPlayerId) {
-            return [];
-        }
-
-        return monsters[currentPlayerId] || [];
-    }
-
     render () {
         return (
             <Router>
-              <div>
+              <Provider>
                 <NavBar currentPlayer={this.getCurrentPlayer()} />
 
                 <Route
@@ -105,9 +82,7 @@ class App extends React.Component {
                   render={(props) => (
                       <PlayerProfile
                         player={this.getCurrentPlayer()}
-                        monsters={this.getCurrentMonsters()}
                         allMonsters={this.state.allMonsters}
-                        onMonsterAdd={this.onMonsterAdd}
                         {...props}
                       />
                   )}
@@ -119,7 +94,6 @@ class App extends React.Component {
                   render={(props) => (
                       <PlayersList
                         players={this.state.players}
-                        monsters={this.state.monsters}
                         {...props}
                       />
                   )}
@@ -148,7 +122,7 @@ class App extends React.Component {
                       />
                   )}
                 />
-              </div>
+              </Provider>
             </Router>
         );
     }
