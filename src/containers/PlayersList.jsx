@@ -23,4 +23,10 @@ const PlayersList = ({ players, monsters }) => {
 
 };
 
-export default withStore(PlayersList);
+const mapStateToProps = (store) => {
+    return {
+        monsters: store.monsters,
+    };
+};
+
+export default withStore(mapStateToProps, () => {})(PlayersList);

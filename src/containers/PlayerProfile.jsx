@@ -22,17 +22,14 @@ class PlayerProfile extends React.Component {
         //     stringId: monster.stringId,
         // });
 
-        this.props.dispatch(addMonster(
-            this.props.player.stringId,
-            {
-                ...original,
-                stringId: monster.stringId,
-            }
-        ));
+        this.props.onMonsterAdd(this.props.player.stringId, {
+            ...original,
+            stringId: monster.stringId,
+        });
     }
 
     getCurrentMonsters() {
-        const { player, store: { monsters } } = this.props;
+        const { player, monsters } = this.props;
 
         if (!player.stringId) {
             return [];
@@ -76,5 +73,17 @@ class PlayerProfile extends React.Component {
     }
 }
 
+const mapStateToProps = (store) => {
+    return {
+        monsters: store.monsters,
+    };
+};
 
-export default withStore(PlayerProfile);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onMonsterAdd: (playerId, monster) => dispatch(addMonster(playerId, monster)),
+    };
+};
+
+
+export default withStore(mapStateToProps, mapDispatchToProps)(PlayerProfile);

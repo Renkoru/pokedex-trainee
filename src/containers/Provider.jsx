@@ -6,21 +6,27 @@ import Store from '../store';
 export const StoreContext = React.createContext({});
 
 
-export function withStore(WrappedComponent) {
-    class WithStoreComponent extends React.Component {
-        render () {
-            return (
-                <WrappedComponent
-                  store={this.context.store}
-                  dispatch={this.context.dispatch}
-                  {...this.props}
-                />
-            );
-        }
-    }
+export function withStore(mapStateToProps, mapDispatchToProps) {
 
-    WithStoreComponent.contextType = StoreContext;
-    return WithStoreComponent;
+    return function wrapComponent(WrappedComponent) {
+        class WithStoreComponent extends React.Component {
+            render () {
+                const storeProps = mapStateToProps(this.context.store);
+                const storeDispatchProps = mapDispatchToProps(this.context.dispatch);
+
+                return (
+                    <WrappedComponent
+                      {...storeProps}
+                      {...storeDispatchProps}
+                      {...this.props}
+                    />
+                );
+            }
+        }
+
+        WithStoreComponent.contextType = StoreContext;
+        return WithStoreComponent;
+    };
 }
 
 
