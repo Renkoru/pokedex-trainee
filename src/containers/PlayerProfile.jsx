@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import { Button, Heading, Flex, Box, Image } from '../components';
 import { Monster } from '../models';
 import MonsterList from './MonsterList.jsx';
@@ -86,4 +88,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default withStore(mapStateToProps, mapDispatchToProps)(PlayerProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerProfile);

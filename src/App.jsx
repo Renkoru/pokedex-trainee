@@ -1,13 +1,14 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
+import store from './store';
 import { Player as PlayerModel } from './models';
 import { Button, Flex, Heading } from './components';
 import AdminPlayerList from './components/AdminPlayerList.jsx';
 import PlayersList from './containers/PlayersList.jsx';
 import PlayerProfile from './containers/PlayerProfile.jsx';
 import NavBar from './containers/NavBar.jsx';
-import Provider from './containers/Provider.jsx';
 import PlayerAdd from './components/PlayerAdd.jsx';
 
 
@@ -73,55 +74,57 @@ class App extends React.Component {
     render () {
         return (
             <Router>
-              <Provider>
-                <NavBar currentPlayer={this.getCurrentPlayer()} />
+              <Provider store={store}>
+                <div>
+                  <NavBar currentPlayer={this.getCurrentPlayer()} />
 
-                <Route
-                  exact
-                  path="/"
-                  render={(props) => (
-                      <PlayerProfile
-                        player={this.getCurrentPlayer()}
-                        allMonsters={this.state.allMonsters}
-                        {...props}
-                      />
-                  )}
-                />
+                  <Route
+                    exact
+                    path="/"
+                    render={(props) => (
+                        <PlayerProfile
+                          player={this.getCurrentPlayer()}
+                          allMonsters={this.state.allMonsters}
+                          {...props}
+                        />
+                    )}
+                  />
 
-                <Route
-                  exact
-                  path="/players"
-                  render={(props) => (
-                      <PlayersList
-                        players={this.state.players}
-                        {...props}
-                      />
-                  )}
-                />
+                  <Route
+                    exact
+                    path="/players"
+                    render={(props) => (
+                        <PlayersList
+                          players={this.state.players}
+                          {...props}
+                        />
+                    )}
+                  />
 
-                <Route
-                  exact
-                  path="/admin"
-                  render={(props) => (
-                      <AdminPlayerList
-                        players={this.state.players}
-                        onResetLocation={this.onResetLocation}
-                        onSetCurrentPlayer={this.onSetCurrentPlayer}
-                        {...props}
-                      />
-                  )}
-                />
+                  <Route
+                    exact
+                    path="/admin"
+                    render={(props) => (
+                        <AdminPlayerList
+                          players={this.state.players}
+                          onResetLocation={this.onResetLocation}
+                          onSetCurrentPlayer={this.onSetCurrentPlayer}
+                          {...props}
+                        />
+                    )}
+                  />
 
-                <Route
-                  exact
-                  path="/add-player"
-                  render={(props) => (
-                      <PlayerAdd
-                        onAddPlayer={this.onAddPlayer}
-                        {...props}
-                      />
-                  )}
-                />
+                  <Route
+                    exact
+                    path="/add-player"
+                    render={(props) => (
+                        <PlayerAdd
+                          onAddPlayer={this.onAddPlayer}
+                          {...props}
+                        />
+                    )}
+                  />
+                </div>
               </Provider>
             </Router>
         );

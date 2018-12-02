@@ -1,5 +1,8 @@
-export const ADD_MONSTER = "ADD_MONSTER";
+import { createStore } from 'redux';
+
+
 // ActionCreators
+export const ADD_MONSTER = "ADD_MONSTER";
 export function addMonster(playerId, monster) {
     return {
         type: ADD_MONSTER,
@@ -36,23 +39,5 @@ const initialState = {
     monsters: {},
 };
 
-export default class Store {
-    constructor(onUpdate) {
-        this.onUpdate = onUpdate;
-        this.store = {...initialState};
 
-        this.dispatch = this.dispatch.bind(this);
-    }
-
-    dispatch(action) {
-        console.log('\n>>>>>> Got Action');
-        console.log(action);
-        console.log('<<<<<< end block Got Action');
-
-        let newStore = this.store;
-        newStore = monsterReducer(newStore, action);
-
-        this.store = newStore;
-        this.onUpdate(this.store);
-    }
-};
+export default createStore(monsterReducer, initialState);

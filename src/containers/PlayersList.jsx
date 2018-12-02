@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 
 import { Flex } from '../components';
@@ -29,4 +30,4 @@ const mapStateToProps = (store) => {
     };
 };
 
-export default withStore(mapStateToProps, () => {})(PlayersList);
+export default connect(mapStateToProps)(PlayersList);
