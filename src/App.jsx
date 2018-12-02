@@ -119,7 +119,6 @@ class App extends React.Component {
                   render={(props) => (
                       <PlayersList
                         players={this.state.players}
-                        allMonsters={this.state.allMonsters}
                         monsters={this.state.monsters}
                         {...props}
                       />
@@ -144,7 +143,6 @@ class App extends React.Component {
                   path="/add-player"
                   render={(props) => (
                       <PlayerAdd
-                        players={this.state.players}
                         onAddPlayer={this.onAddPlayer}
                         {...props}
                       />
