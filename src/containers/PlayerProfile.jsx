@@ -2,7 +2,8 @@ import React from 'react';
 import { Button, Heading, Flex, Box, Image } from '../components';
 import { Monster } from '../models';
 import MonsterList from './MonsterList.jsx';
-import { withStore, ADD_MONSTER } from '../containers/Provider.jsx';
+import { withStore } from '../containers/Provider.jsx';
+import { ADD_MONSTER } from '../store';
 
 
 class PlayerProfile extends React.Component {

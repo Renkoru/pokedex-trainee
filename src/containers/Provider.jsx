@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Store from '../store';
+
 
 export const StoreContext = React.createContext({});
 
@@ -22,47 +24,21 @@ export function withStore(WrappedComponent) {
 }
 
 
-export const ADD_MONSTER = "ADD_MONSTER";
-
-
 class Provider extends React.Component {
     constructor(props) {
         super(props);
 
+        this.store = new Store((newState) => this.setState(newState));
+
         this.state = {
-            monsters: {},
+            ...this.store.store,
         };
-
-        this.dispatch = this.dispatch.bind(this);
-        this.onMonsterAdd = this.onMonsterAdd.bind(this);
-    }
-
-    dispatch(action) {
-        console.log('\n>>>>>> Got Action');
-        console.log(action);
-        console.log('<<<<<< end block Got Action');
-
-        if (action.type === ADD_MONSTER) {
-            this.onMonsterAdd(action.playerId, action.monster);
-        }
-    }
-
-    onMonsterAdd(playerId, monster) {
-        const { monsters } = this.state;
-        const playerMonsters = monsters[playerId] || [];
-
-        this.setState({
-            monsters: {
-                ...monsters,
-                [playerId]: [...playerMonsters, monster]
-            }
-        });
     }
 
     render () {
         const contextValue = {
             store: this.state,
-            dispatch: this.dispatch,
+            dispatch: this.store.dispatch,
         };
 
         return (
@@ -75,4 +51,3 @@ class Provider extends React.Component {
 }
 
 export default Provider;
-
