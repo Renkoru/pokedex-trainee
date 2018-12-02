@@ -9,25 +9,16 @@ export function addMonster(playerId, monster) {
 }
 
 
-const initialState = {
-    monsters: {},
-};
+// Reducers
+function monsterReducer(store, action) {
+    if (action.type === ADD_MONSTER) {
+        const { playerId, monster } = action;
 
-
-export default class Store {
-    constructor(onUpdate) {
-        this.onUpdate = onUpdate;
-        this.store = {...initialState};
-
-        this.dispatch = this.dispatch.bind(this);
-    }
-
-    onMonsterAdd(playerId, monster) {
-        const { monsters } = this.store;
+        const { monsters } = store;
         const playerMonsters = monsters[playerId] || [];
 
         const newStore = {
-            ...this.store,
+            ...store,
             monsters: {
                 ...monsters,
                 [playerId]: [...playerMonsters, monster]
@@ -37,16 +28,29 @@ export default class Store {
         return newStore;
     }
 
+    return store;
+};
+
+
+const initialState = {
+    monsters: {},
+};
+
+export default class Store {
+    constructor(onUpdate) {
+        this.onUpdate = onUpdate;
+        this.store = {...initialState};
+
+        this.dispatch = this.dispatch.bind(this);
+    }
+
     dispatch(action) {
         console.log('\n>>>>>> Got Action');
         console.log(action);
         console.log('<<<<<< end block Got Action');
 
-        let newStore;
-
-        if (action.type === ADD_MONSTER) {
-            newStore = this.onMonsterAdd(action.playerId, action.monster);
-        }
+        let newStore = this.store;
+        newStore = monsterReducer(newStore, action);
 
         this.store = newStore;
         this.onUpdate(this.store);
