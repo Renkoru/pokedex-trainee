@@ -4,6 +4,24 @@ import React from 'react';
 export const StoreContext = React.createContext({});
 
 
+export function withStore(WrappedComponent) {
+    class WithStoreComponent extends React.Component {
+        render () {
+            return (
+                <WrappedComponent
+                  monsters={this.context.monsters}
+                  onMonsterAdd={this.context.onMonsterAdd}
+                  {...this.props}
+                />
+            );
+        }
+    }
+
+    WithStoreComponent.contextType = StoreContext;
+    return WithStoreComponent;
+}
+
+
 class Provider extends React.Component {
     constructor(props) {
         super(props);
@@ -41,7 +59,6 @@ class Provider extends React.Component {
     }
 
 }
-
 
 export default Provider;
 

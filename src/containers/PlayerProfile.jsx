@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Heading, Flex, Box, Image } from '../components';
 import { Monster } from '../models';
 import MonsterList from './MonsterList.jsx';
-import { StoreContext } from '../containers/Provider.jsx';
+import { withStore } from '../containers/Provider.jsx';
 
 
 class PlayerProfile extends React.Component {
@@ -13,20 +13,17 @@ class PlayerProfile extends React.Component {
     }
 
     onMonsterAdd() {
-        const { onMonsterAdd } = this.context;
-
         const monster = Monster();
         const original = this.props.allMonsters.find(({ id }) => id === monster.id);
 
-        onMonsterAdd(this.props.player.stringId, {
+        this.props.onMonsterAdd(this.props.player.stringId, {
             ...original,
             stringId: monster.stringId,
         });
     }
 
     getCurrentMonsters() {
-        const { player } = this.props;
-        const { monsters } = this.context;
+        const { player, monsters } = this.props;
 
         if (!player.stringId) {
             return [];
@@ -71,7 +68,4 @@ class PlayerProfile extends React.Component {
 }
 
 
-PlayerProfile.contextType = StoreContext;
-
-
-export default PlayerProfile;
+export default withStore(PlayerProfile);

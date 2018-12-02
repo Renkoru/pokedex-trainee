@@ -2,7 +2,7 @@ import range from 'lodash/range';
 
 
 export function getRandom(maxNumber) {
-    var baseNumber = Math.floor((Math.random() * 1000) + 1);
+    var baseNumber = Math.floor((Math.random() * 1000)) + 1;
     return  baseNumber % maxNumber;
 }
 
