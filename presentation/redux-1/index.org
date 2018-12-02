@@ -38,11 +38,19 @@ The only way to change the state tree is to emit an *action*, an object describi
 
 To specify how the actions transform the state tree, you write pure *reducers*.
 ** Store
-Single object of your app
+Single object of your app that hold all your shared state.
 ** Actions
 Functions that returns you an object with *type* and *payload*
+
+Actions are payloads of information that send data from your
+application to your store. They are the only source of information for
+the store.
 ** Reducers
-Functions that gets current state and
+Functions that gets current state and returns new state.
+
+Reducers specify how the application's state changes in response to
+actions sent to the store. Remember that actions only describe what
+happened, but don't describe how the application's state changes.
 * Three Principles
 Redux can be described in three fundamental principles
 ** Single source of truth
@@ -52,17 +60,10 @@ The only way to change the state is to emit an action, an object describing what
 ** Changes are made with pure functions
 To specify how the state tree is transformed by actions, you write pure reducers.
 * Notes
-- 90% of your app Redux code is plain Javascript
-* Tests
-- Jest
-- Chai
-- Enzyme
-* Practice notes
-- Error boundaries
-- Context
-- High-order Components HOC()
-* Useful resources
+90% of your app Redux code is plain Javascript
+* Useful links
 1. Redux https://redux.js.org/
-2. Jest
-3. Enzyme
-4. Maxim Rurenko repo, only for usage example https://github.com/Renkoru/pokedex/tree/develop
+2. React-Redux https://github.com/reduxjs/react-redux
+3. Jest
+4. Enzyme
+5. Maxim Rurenko repo, only for usage example https://github.com/Renkoru/pokedex/tree/develop
