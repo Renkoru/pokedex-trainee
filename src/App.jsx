@@ -15,60 +15,7 @@ import PlayerAdd from './components/PlayerAdd.jsx';
 class App extends React.Component {
     constructor(props) {
         super(props);
-        const initialPlayers = [
-            PlayerModel(),
-            PlayerModel(),
-            PlayerModel(),
-        ];
 
-        this.state = {
-            players: [...initialPlayers],
-            currentPlayerId: initialPlayers[0].stringId,
-            allMonsters: [],
-        };
-
-
-        this.onAddPlayer = this.onAddPlayer.bind(this);
-        this.onResetLocation = this.onResetLocation.bind(this);
-        this.onSetCurrentPlayer = this.onSetCurrentPlayer.bind(this);
-    }
-
-    componentWillMount() {
-        fetch('/api/v1/monsters')
-            .then(res => res.json())
-            .then(allMonsters => this.setState({ allMonsters }));
-    }
-
-    onAddPlayer(player) {
-        const { players } = this.state;
-
-        this.setState({
-            players: [...players, player]
-        });
-    }
-
-    onSetCurrentPlayer(playerId) {
-        this.setState({
-            currentPlayerId: playerId,
-        });
-    }
-
-    onResetLocation() {
-        const { players } = this.state;
-
-        this.setState({
-            players: players.map((player) => ({ ...player, location: 'Omsk' }))
-        });
-    }
-
-    getCurrentPlayer() {
-        const { players, currentPlayerId } = this.state;
-
-        if (!currentPlayerId) {
-            return {};
-        }
-
-        return players.find(({ stringId }) => stringId === currentPlayerId);
     }
 
     render () {
@@ -76,54 +23,14 @@ class App extends React.Component {
             <Router>
               <Provider store={store}>
                 <div>
-                  <NavBar currentPlayer={this.getCurrentPlayer()} />
 
-                  <Route
-                    exact
-                    path="/"
-                    render={(props) => (
-                        <PlayerProfile
-                          player={this.getCurrentPlayer()}
-                          allMonsters={this.state.allMonsters}
-                          {...props}
-                        />
-                    )}
-                  />
+                  <NavBar />
 
-                  <Route
-                    exact
-                    path="/players"
-                    render={(props) => (
-                        <PlayersList
-                          players={this.state.players}
-                          {...props}
-                        />
-                    )}
-                  />
+                  <Route exact path="/" component={PlayerProfile} />
+                  <Route exact path="/players" component={PlayersList} />
+                  <Route exact path="/admin" component={AdminPlayerList} />
+                  <Route exact path="/add-player" component={PlayerAdd} />
 
-                  <Route
-                    exact
-                    path="/admin"
-                    render={(props) => (
-                        <AdminPlayerList
-                          players={this.state.players}
-                          onResetLocation={this.onResetLocation}
-                          onSetCurrentPlayer={this.onSetCurrentPlayer}
-                          {...props}
-                        />
-                    )}
-                  />
-
-                  <Route
-                    exact
-                    path="/add-player"
-                    render={(props) => (
-                        <PlayerAdd
-                          onAddPlayer={this.onAddPlayer}
-                          {...props}
-                        />
-                    )}
-                  />
                 </div>
               </Provider>
             </Router>

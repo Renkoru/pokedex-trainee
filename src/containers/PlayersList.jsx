@@ -24,9 +24,17 @@ const PlayersList = ({ players, monsters }) => {
 
 };
 
-const mapStateToProps = (store) => {
+const mapStateToProps = (state) => {
+    const {
+        playersState: {
+            players,
+            playersMonsters,
+        },
+    } = state;
+
     return {
-        monsters: store.monsters,
+        players,
+        monsters: playersMonsters,
     };
 };
 

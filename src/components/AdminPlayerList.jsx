@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 
+import { setCurrentPlayer, playersResetLocation } from '../store';
 import { Button, Flex, Box } from '../components';
 import { routes } from '../constants';
 import AdminPlayer from './AdminPlayer.jsx';
@@ -15,6 +17,21 @@ const listStyle = {
 };
 
 class AdminPlayerList extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.onSetCurrentPlayer = this.onSetCurrentPlayer.bind(this);
+        this.onResetLocation = this.onResetLocation.bind(this);
+    }
+
+    onSetCurrentPlayer(playerId) {
+        this.props.setCurrentPlayer(playerId);
+    }
+
+    onResetLocation() {
+        this.props.playersResetLocation('Omsk');
+    }
+
     render() {
         return (
             <Flex>
@@ -22,7 +39,7 @@ class AdminPlayerList extends React.Component {
                 {this.props.players.map((player, index) => (
                     <li key={index}>
                       <AdminPlayer
-                        onSetCurrentPlayer={this.props.onSetCurrentPlayer}
+                        onSetCurrentPlayer={this.onSetCurrentPlayer}
                         {...player}
                       />
                     </li>
@@ -35,7 +52,7 @@ class AdminPlayerList extends React.Component {
                     Add Player
                   </Button>
                 </Link>
-                <Button onClick={this.props.onResetLocation} ml="20px" >
+                <Button onClick={this.onResetLocation} ml="20px" >
                   Reset Location
                 </Button>
               </Box>
@@ -44,4 +61,17 @@ class AdminPlayerList extends React.Component {
     }
 }
 
-export default AdminPlayerList;
+const mapStateToProps = (state) => {
+    const {
+        playersState: {
+            players,
+        },
+    } = state;
+
+    return {
+        players,
+    };
+};
+
+
+export default connect(mapStateToProps, { setCurrentPlayer, playersResetLocation })(AdminPlayerList);

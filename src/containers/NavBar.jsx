@@ -1,11 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 
 import { routes } from '../constants';
 import { Button, Flex, Heading } from '../components';
 
 
-export default function ({ currentPlayer }) {
+function NavBar({ currentPlayer }) {
     const navBarLinks = { marginRight: '15px' };
 
     return (
@@ -32,3 +33,19 @@ export default function ({ currentPlayer }) {
         </nav>
     );
 }
+
+function mapStateToProps(state) {
+    const { playersState: { players, currentPlayerId } } = state;
+    let currentPlayer = {};
+
+    if (!!currentPlayerId) {
+        currentPlayer =  players.find(({ stringId }) => stringId === currentPlayerId);
+    }
+
+    return {
+        currentPlayer,
+    };
+}
+
+
+export default connect(mapStateToProps)(NavBar);

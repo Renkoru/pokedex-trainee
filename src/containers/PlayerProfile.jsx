@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { setAllMonsters, addMonster  } from '../store';
 import { Button, Heading, Flex, Box, Image } from '../components';
 import { Monster } from '../models';
 import MonsterList from './MonsterList.jsx';
 import { withStore } from '../containers/Provider.jsx';
-import { addMonster } from '../store';
 
 
 class PlayerProfile extends React.Component {
@@ -15,16 +15,17 @@ class PlayerProfile extends React.Component {
         this.onMonsterAdd = this.onMonsterAdd.bind(this);
     }
 
+    componentWillMount() {
+        fetch('/api/v1/monsters')
+            .then(res => res.json())
+            .then(allMonsters => this.props.setAllMonsters(allMonsters));
+    }
+
     onMonsterAdd() {
         const monster = Monster();
         const original = this.props.allMonsters.find(({ id }) => id === monster.id);
 
-        // this.props.onMonsterAdd(this.props.player.stringId, {
-        //     ...original,
-        //     stringId: monster.stringId,
-        // });
-
-        this.props.onMonsterAdd(this.props.player.stringId, {
+        this.props.addMonster(this.props.player.stringId, {
             ...original,
             stringId: monster.stringId,
         });
@@ -75,17 +76,28 @@ class PlayerProfile extends React.Component {
     }
 }
 
-const mapStateToProps = (store) => {
+const mapStateToProps = (state) => {
+    const {
+        playersState: {
+            players,
+            currentPlayerId,
+            playersMonsters,
+        },
+        monstersState: { monsters }
+    } = state;
+
+    let currentPlayer = {};
+
+    if (!!currentPlayerId) {
+        currentPlayer =  players.find(({ stringId }) => stringId === currentPlayerId);
+    }
+
     return {
-        monsters: store.monsters,
+        player: currentPlayer,
+        monsters: playersMonsters,
+        allMonsters: monsters,
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onMonsterAdd: (playerId, monster) => dispatch(addMonster(playerId, monster)),
-    };
-};
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(PlayerProfile);
+export default connect(mapStateToProps, { setAllMonsters, addMonster })(PlayerProfile);

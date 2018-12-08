@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
+import { addPlayer } from '../store';
 import { Player as PlayerModel } from '../models';
 import { Button, Flex, Box, Image } from '../components';
 import FormField from './FormField.jsx';
@@ -26,6 +28,11 @@ class PlayerAdd extends React.Component {
         this.onFieldChange = this.onFieldChange.bind(this);
         this.onPlayerAdd = this.onPlayerAdd.bind(this);
         this.onRandomize = this.onRandomize.bind(this);
+        this.onAddPlayer = this.onAddPlayer.bind(this);
+    }
+
+    onAddPlayer(player) {
+        this.props.addPlayer(player);
     }
 
     onImageClick(event) {
@@ -47,7 +54,7 @@ class PlayerAdd extends React.Component {
             image: this.state.selectedImage,
         });
 
-        this.props.onAddPlayer(player);
+        this.onAddPlayer(player);
         this.props.history.push('/admin');
     }
 
@@ -138,4 +145,4 @@ class PlayerAdd extends React.Component {
 }
 
 
-export default PlayerAdd;
+export default connect(null, { addPlayer })(PlayerAdd);
