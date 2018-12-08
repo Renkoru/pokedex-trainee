@@ -1,4 +1,4 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
 import { Player } from './models';
 
@@ -68,39 +68,31 @@ const initialState = {
 function monsterReducer(store, action) {
     if (action.type === SET_ALL_MONSTERS) {
         const { monsters } = action;
-        const { monstersState } = store;
 
         const newStore = {
             ...store,
-            monstersState: {
-                ...monstersState,
-                monsters: monsters,
-            }
+            monsters: monsters,
         };
 
         return newStore;
     }
 
-    return store;
+    return store || {};
 };
 
 function playersReducer(store, action) {
     if (action.type === ADD_MONSTER) {
         const { playerId, monster } = action;
-        const { playersState } = store;
+        const { playersMonsters } = store;
 
-        const { playersMonsters } = playersState;
         const monsters = playersMonsters[playerId] || [];
 
         const newStore = {
             ...store,
-            playersState: {
-                ...playersState,
-                playersMonsters: {
-                    ...playersMonsters,
-                    [playerId]: [...monsters, monster]
-                },
-            }
+            playersMonsters: {
+                ...playersMonsters,
+                [playerId]: [...monsters, monster]
+            },
         };
 
         return newStore;
@@ -108,15 +100,11 @@ function playersReducer(store, action) {
 
     if (action.type === ADD_PLAYER) {
         const { player } = action;
-        const { playersState } = store;
-        const { players } = playersState;
+        const { players } = store;
 
         const newStore = {
             ...store,
-            playersState: {
-                ...playersState,
-                players: [...players, player]
-            }
+            players: [...players, player]
         };
 
         return newStore;
@@ -124,14 +112,10 @@ function playersReducer(store, action) {
 
     if (action.type === SET_CURRENT_PLAYER) {
         const { playerId } = action;
-        const { playersState } = store;
 
         const newStore = {
             ...store,
-            playersState: {
-                ...playersState,
-                currentPlayerId: playerId,
-            }
+            currentPlayerId: playerId,
         };
 
         return newStore;
@@ -139,33 +123,25 @@ function playersReducer(store, action) {
 
     if (action.type === PLAYERS_RESET_LOCATION) {
         const { location } = action;
-        const { playersState } = store;
-        const { players } = playersState;
+        const { players } = store;
 
         const newPlayers = players.map((player) => ({ ...player, location: location }));
 
         const newStore = {
             ...store,
-            playersState: {
-                ...playersState,
-                players: newPlayers,
-            }
+            players: newPlayers,
         };
 
         return newStore;
     }
 
-    return store;
+    return store || {};
 };
 
-function mainReducer(store, action) {
-    let newStore = store;
-
-    newStore = monsterReducer(newStore, action);
-    newStore = playersReducer(newStore, action);
-
-    return newStore;
-}
+const mainReducer = combineReducers({
+    monstersState: monsterReducer,
+    playersState: playersReducer,
+});
 
 
 export default createStore(mainReducer, initialState);
