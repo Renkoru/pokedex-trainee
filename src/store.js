@@ -1,4 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { createAction, createActions, handleActions } from 'redux-actions';
 
 import { Player } from './models';
@@ -27,6 +28,12 @@ export const fetchResource = createAction(
     (url, successAction) => ({ url, successAction: successAction.toString() })
 );
 
+export const fetchMonsters = () => (dispatch) => {
+    return fetch('/api/v1/monsters')
+        .then(res => res.json())
+        .then(res => dispatch(setAllMonsters(res)));
+};
+
 // Initial State
 const initialPlayers = [
     Player(),
@@ -51,7 +58,7 @@ const monsterReducer = handleActions({
     [setAllMonsters]: (state, action) => {
         return {
             ...state,
-            monsters: action.payload,
+            monsters: action.payload.monsters,
         };
     },
 }, initialState);
@@ -115,22 +122,7 @@ const logger = store => next => action => {
 };
 
 
-const fetcher = store => next => action => {
-    if (action.type === 'FETCH_RESOURCE') {
-        const { url, successAction } = action.payload;
-        fetch(url)
-            .then(res => res.json())
-            .then(res => store.dispatch({
-                type: successAction,
-                payload: res,
-            }));
-    }
-
-    return next(action);
-};
-
-
 export default createStore(mainReducer, initialState, applyMiddleware(
     logger,
-    fetcher,
+    thunk,
 ));
