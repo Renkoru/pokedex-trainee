@@ -1,48 +1,26 @@
 import { createStore, combineReducers } from 'redux';
+import { createActions, handleActions } from 'redux-actions';
 
 import { Player } from './models';
 
 
 // ActionCreators
-export const ADD_MONSTER = 'ADD_MONSTER';
-export function addMonster(playerId, monster) {
-    return {
-        type: ADD_MONSTER,
+export const {
+    addMonster,
+    setAllMonsters,
+    addPlayer,
+    setCurrentPlayer,
+    playersResetLocation,
+} = createActions({
+    ADD_MONSTER: (playerId, monster) => ({
         playerId,
         monster,
-    };
-}
-export const SET_ALL_MONSTERS = 'SET_ALL_MONSTERS';
-export function setAllMonsters(monsters) {
-    return {
-        type: SET_ALL_MONSTERS,
-        monsters,
-    };
-}
-
-export const ADD_PLAYER = 'ADD_PLAYER';
-export function addPlayer(player) {
-    return {
-        type: ADD_PLAYER,
-        player,
-    };
-}
-
-export const SET_CURRENT_PLAYER = 'SET_CURRENT_PLAYER';
-export function setCurrentPlayer(playerId) {
-    return {
-        type: SET_CURRENT_PLAYER,
-        playerId,
-    };
-}
-
-export const PLAYERS_RESET_LOCATION = 'PLAYERS_RESET_LOCATION';
-export function playersResetLocation(location) {
-    return {
-        type: PLAYERS_RESET_LOCATION,
-        location,
-    };
-}
+    }),
+    SET_ALL_MONSTERS: (monsters) => ({ monsters }),
+    ADD_PLAYER: (player) => ({ player }),
+    SET_CURRENT_PLAYER: (playerId) => ({ playerId }),
+    PLAYERS_RESET_LOCATION: (location) => ({location}),
+});
 
 
 // Initial State
@@ -65,78 +43,63 @@ const initialState = {
 
 
 // Reducers
-function monsterReducer(store, action) {
-    if (action.type === SET_ALL_MONSTERS) {
-        const { monsters } = action;
+const monsterReducer = handleActions({
+    [setAllMonsters]: (state, action) => {
+        const { monsters } = action.payload;
 
-        const newStore = {
-            ...store,
+        return {
+            ...state,
             monsters: monsters,
         };
+    },
+}, initialState);
 
-        return newStore;
-    }
-
-    return store || {};
-};
-
-function playersReducer(store, action) {
-    if (action.type === ADD_MONSTER) {
-        const { playerId, monster } = action;
-        const { playersMonsters } = store;
+const playersReducer = handleActions({
+    [addMonster]: (state, action) => {
+        const { playerId, monster } = action.payload;
+        const { playersMonsters } = state;
 
         const monsters = playersMonsters[playerId] || [];
 
-        const newStore = {
-            ...store,
+        return {
+            ...state,
             playersMonsters: {
                 ...playersMonsters,
                 [playerId]: [...monsters, monster]
             },
         };
+    },
+    [addPlayer]: (state, action) => {
+        const { player } = action.payload;
+        const { players } = state;
 
-        return newStore;
-    }
-
-    if (action.type === ADD_PLAYER) {
-        const { player } = action;
-        const { players } = store;
-
-        const newStore = {
-            ...store,
+        return {
+            ...state,
             players: [...players, player]
         };
 
-        return newStore;
-    }
+    },
+    [setCurrentPlayer]: (state, action) => {
+        const { playerId } = action.payload;
 
-    if (action.type === SET_CURRENT_PLAYER) {
-        const { playerId } = action;
-
-        const newStore = {
-            ...store,
+        return {
+            ...state,
             currentPlayerId: playerId,
         };
-
-        return newStore;
-    }
-
-    if (action.type === PLAYERS_RESET_LOCATION) {
-        const { location } = action;
-        const { players } = store;
+    },
+    [playersResetLocation]: (state, action) => {
+        const { location } = action.payload;
+        const { players } = state;
 
         const newPlayers = players.map((player) => ({ ...player, location: location }));
 
-        const newStore = {
-            ...store,
+        return {
+            ...state,
             players: newPlayers,
         };
+    },
+}, initialState);
 
-        return newStore;
-    }
-
-    return store || {};
-};
 
 const mainReducer = combineReducers({
     monstersState: monsterReducer,
