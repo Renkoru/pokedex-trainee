@@ -131,3 +131,10 @@ http://jr0cket.co.uk/slides/revealjs.html
 7. HOC to get players from the store
 8. Add a Ref and a button to focus an 'Add Player' input
 9. Add Portal, a modal for example. ????
+* Redux 2 lecture plan
+1. *PRE* Refactored all to redux.
+2. Use *combineReducers*
+3. Use *redux-actions*
+4. Middlewares Logger, fetcher
+5. Thunk
+6. Tests Jest Enzyme. Action, Component.
