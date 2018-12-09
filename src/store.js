@@ -1,5 +1,5 @@
-import { createStore, combineReducers } from 'redux';
-import { createActions, handleActions } from 'redux-actions';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createAction, createActions, handleActions } from 'redux-actions';
 
 import { Player } from './models';
 
@@ -19,9 +19,13 @@ export const {
     SET_ALL_MONSTERS: (monsters) => ({ monsters }),
     ADD_PLAYER: (player) => ({ player }),
     SET_CURRENT_PLAYER: (playerId) => ({ playerId }),
-    PLAYERS_RESET_LOCATION: (location) => ({location}),
+    PLAYERS_RESET_LOCATION: (location) => ({ location }),
 });
 
+export const fetchResource = createAction(
+    'FETCH_RESOURCE',
+    (url, successAction) => ({ url, successAction: successAction.toString() })
+);
 
 // Initial State
 const initialPlayers = [
@@ -45,11 +49,9 @@ const initialState = {
 // Reducers
 const monsterReducer = handleActions({
     [setAllMonsters]: (state, action) => {
-        const { monsters } = action.payload;
-
         return {
             ...state,
-            monsters: monsters,
+            monsters: action.payload,
         };
     },
 }, initialState);
@@ -107,4 +109,28 @@ const mainReducer = combineReducers({
 });
 
 
-export default createStore(mainReducer, initialState);
+const logger = store => next => action => {
+    console.log('Dispatching:', action);
+    return next(action);
+};
+
+
+const fetcher = store => next => action => {
+    if (action.type === 'FETCH_RESOURCE') {
+        const { url, successAction } = action.payload;
+        fetch(url)
+            .then(res => res.json())
+            .then(res => store.dispatch({
+                type: successAction,
+                payload: res,
+            }));
+    }
+
+    return next(action);
+};
+
+
+export default createStore(mainReducer, initialState, applyMiddleware(
+    logger,
+    fetcher,
+));

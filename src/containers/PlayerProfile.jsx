@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setAllMonsters, addMonster  } from '../store';
+import { setAllMonsters, addMonster, fetchResource  } from '../store';
 import { Button, Heading, Flex, Box, Image } from '../components';
 import { Monster } from '../models';
 import MonsterList from './MonsterList.jsx';
@@ -16,9 +16,11 @@ class PlayerProfile extends React.Component {
     }
 
     componentWillMount() {
-        fetch('/api/v1/monsters')
-            .then(res => res.json())
-            .then(allMonsters => this.props.setAllMonsters(allMonsters));
+        this.props.fetchResource('/api/v1/monsters', setAllMonsters);
+
+        // fetch('/api/v1/monsters')
+        //     .then(res => res.json())
+        //     .then(allMonsters => this.props.setAllMonsters(allMonsters));
     }
 
     onMonsterAdd() {
@@ -100,4 +102,4 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, { setAllMonsters, addMonster })(PlayerProfile);
+export default connect(mapStateToProps, { setAllMonsters, addMonster, fetchResource })(PlayerProfile);
