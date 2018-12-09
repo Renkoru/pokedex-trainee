@@ -1,0 +1,47 @@
+#+OPTIONS: num:nil toc:nil reveal_slide_number:h/v
+#+REVEAL_ROOT: ../reveal.js
+#+REVEAL_THEME: sky
+#+REVEAL_PLUGINS: (highlight)
+#+Title: React course
+#+Author: Maxim Rurenko
+#+Email: mrurenko@gmail.com
+
+* React Course
+*Lecture 4: Redux (Advanced)*
+
+Maxim Rurenko
+
+* Redux
+*Redux is a predictable state container for JavaScript applications.*
+
+1. Store
+2. Actions
+3. Reducers
+* Immutable Data Structures
+Do not mutate the state object!
+
+1) JavaScript's primitive data types (Number, String, Boolean, Undefined, and Null) are already immutable.
+2) Objects, arrays, and functions are mutable.
+** How to implement immutability
+1. var newState = Object.assign({}, state, { foo: 123 });
+2. const newState = { ...state, foo: 123 };
+3. seamless-immutable, immutable-js, ...
+* Combining Reducers
+* Middlewares
+Middleware is some code you can put between the framework receiving a request,
+and the framework generating a response.
+
+Redux middleware solves different problems than Express or Koa
+middleware, but in a conceptually similar way. It provides a
+third-party extension point between dispatching an action, and the
+moment it reaches the reducer.
+
+** Last middleware in a chain sould return a plain object
+* Tools
+- Redux Actions https://github.com/redux-utilities/redux-actions
+- Redux Thunk https://github.com/reduxjs/redux-thunk
+- Jest https://jestjs.io/en/
+- Enzyme https://github.com/airbnb/enzyme
+- Redux DevTools
+- Redux Saga https://github.com/redux-saga/redux-saga
+- Redux Observable https://redux-observable.js.org/

@@ -12,11 +12,18 @@ class PlayerProfile extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            errorMessage: '',
+        };
+
         this.onMonsterAdd = this.onMonsterAdd.bind(this);
     }
 
     componentWillMount() {
-        this.props.fetchMonsters();
+        this.props.fetchMonsters()
+            .catch((error) => {
+                this.setState({ errorMessage: 'Connection Error' });
+            });
     }
 
     onMonsterAdd() {
@@ -44,6 +51,11 @@ class PlayerProfile extends React.Component {
 
         return (
             <Flex>
+              {!!this.state.errorMessage && (
+                  <Heading as="h2" fontSize={6} css={{ color: 'red' }}>
+                    {this.state.errorMessage}
+                  </Heading>
+              )}
               <Flex
                 flexDirection="column"
                 alignItems="center"

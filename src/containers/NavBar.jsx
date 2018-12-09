@@ -6,13 +6,13 @@ import { routes } from '../constants';
 import { Button, Flex, Heading } from '../components';
 
 
-export function NavBarComponent({ currentPlayer }) {
+export function NavBarComponent({ currentPlayer, errorMessage = '' }) {
     const navBarLinks = { marginRight: '15px' };
 
     return (
         <nav css={{ backgroundColor: '#92ef9d', padding: '2px 5px' }}>
           <Flex alignItems="center">
-            <Heading>Players net.</Heading>
+            <Heading>Players net. {errorMessage}</Heading>
 
             <ul css={{ listStyleType: 'none', display: 'flex' }}>
               <li css={navBarLinks}>
@@ -44,6 +44,7 @@ function mapStateToProps(state) {
 
     return {
         currentPlayer,
+        errorMessage: state.monstersState.errorMessage,
     };
 }
 

@@ -12,6 +12,7 @@ export const {
     addPlayer,
     setCurrentPlayer,
     playersResetLocation,
+    setErrorMessage,
 } = createActions({
     ADD_MONSTER: (playerId, monster) => ({
         playerId,
@@ -21,6 +22,7 @@ export const {
     ADD_PLAYER: (player) => ({ player }),
     SET_CURRENT_PLAYER: (playerId) => ({ playerId }),
     PLAYERS_RESET_LOCATION: (location) => ({ location }),
+    SET_ERROR_MESSAGE: (message) => ({ message }),
 });
 
 export const fetchResource = createAction(
@@ -61,6 +63,12 @@ export const monsterReducer = handleActions({
             monsters: action.payload.monsters,
         };
     },
+    [setErrorMessage]: (state, action) => {
+        return {
+            ...state,
+            errorMessage: action.payload.message,
+        };
+    }
 }, initialState);
 
 export const playersReducer = handleActions({
