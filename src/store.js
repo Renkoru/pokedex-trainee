@@ -54,7 +54,7 @@ const initialState = {
 
 
 // Reducers
-const monsterReducer = handleActions({
+export const monsterReducer = handleActions({
     [setAllMonsters]: (state, action) => {
         return {
             ...state,
@@ -63,7 +63,7 @@ const monsterReducer = handleActions({
     },
 }, initialState);
 
-const playersReducer = handleActions({
+export const playersReducer = handleActions({
     [addMonster]: (state, action) => {
         const { playerId, monster } = action.payload;
         const { playersMonsters } = state;

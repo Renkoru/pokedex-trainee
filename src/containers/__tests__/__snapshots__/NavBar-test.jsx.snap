@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar renders correctly 1`] = `
+<nav
+  css={
+    Object {
+      "backgroundColor": "#92ef9d",
+      "padding": "2px 5px",
+    }
+  }
+>
+  <Styled(styled.div)
+    alignItems="center"
+  >
+    <Styled(Styled(styled.div))
+      as="h2"
+      fontSize={4}
+      fontWeight="bold"
+      m={0}
+    >
+      Players net.
+    </Styled(Styled(styled.div))>
+    <ul
+      css={
+        Object {
+          "display": "flex",
+          "listStyleType": "none",
+        }
+      }
+    >
+      <li
+        css={
+          Object {
+            "marginRight": "15px",
+          }
+        }
+      >
+        <Link
+          replace={false}
+          to="/"
+        >
+          Home
+        </Link>
+      </li>
+      <li
+        css={
+          Object {
+            "marginRight": "15px",
+          }
+        }
+      >
+        <Link
+          replace={false}
+          to="/players"
+        >
+          Players
+        </Link>
+      </li>
+      <li
+        css={
+          Object {
+            "marginRight": "15px",
+          }
+        }
+      >
+        <Link
+          replace={false}
+          to="/admin"
+        >
+          Admin
+        </Link>
+      </li>
+    </ul>
+    <Styled(Styled(styled.div))
+      as="h2"
+      fontSize={4}
+      fontWeight="bold"
+      m={0}
+      ml="auto"
+      mr="20px"
+    >
+      Lilly
+       : 
+       (
+      Moscow
+      )
+    </Styled(Styled(styled.div))>
+  </Styled(styled.div)>
+</nav>
+`;

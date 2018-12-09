@@ -6,7 +6,7 @@ import { routes } from '../constants';
 import { Button, Flex, Heading } from '../components';
 
 
-function NavBar({ currentPlayer }) {
+export function NavBarComponent({ currentPlayer }) {
     const navBarLinks = { marginRight: '15px' };
 
     return (
@@ -48,4 +48,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(NavBar);
+export default connect(mapStateToProps)(NavBarComponent);

@@ -4,7 +4,7 @@
     "description": "Here will be React educational project.",
     "private": true,
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "jest",
         "watch": "webpack --watch --mode development --config ./webpack.config.js",
         "dev": "webpack-dev-server"
     },
@@ -20,11 +20,19 @@
     },
     "homepage": "https://github.com/Renkoru/pokedex#readme",
     "devDependencies": {
-        "@babel/core": "^7.1.2",
-        "@babel/preset-env": "^7.1.0",
+        "@babel/core": "^7.2.0",
+        "@babel/preset-env": "^7.2.0",
         "@babel/preset-react": "^7.0.0",
+        "babel-core": "^7.0.0-bridge.0",
+        "babel-jest": "^23.6.0",
         "babel-loader": "^8.0.4",
         "babel-plugin-emotion": "^9.2.11",
+        "enzyme": "^3.7.0",
+        "enzyme-adapter-react-16": "^1.7.0",
+        "jest": "^23.6.0",
+        "jest-environment-enzyme": "^7.0.1",
+        "jest-enzyme": "^7.0.1",
+        "regenerator-runtime": "^0.13.1",
         "webpack": "^4.20.2",
         "webpack-cli": "^3.1.2",
         "webpack-dev-server": "^3.1.10"
@@ -42,5 +50,14 @@
         "redux-actions": "^2.6.4",
         "redux-thunk": "^2.3.0",
         "styled-components": "^4.0.2"
+    },
+    "jest": {
+        "verbose": true,
+        "setupTestFrameworkScriptFile": "jest-enzyme",
+        "testEnvironment": "enzyme",
+        "testPathIgnorePatterns": [
+            "/node_modules/",
+            "/presentation/"
+        ]
     }
 }
