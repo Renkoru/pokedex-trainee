@@ -9,9 +9,90 @@
 - 4 lessons: React + Redux
 - 2+ hours of lecture and about 4 hours of practice
 - Questions - anytime.
+- Если возникают вопросы или что-то непонятно - задавать вопросы.
+- TODO Please move back your node tasks and let's start React!
+* TODO Git
+https://www.git-tower.com/learn/git/ebook/en/command-line/appendix/best-practices
+* TODO Analysis paralysis
+PICTURE HERE
+** Preventing and overcoming
+- Set limits
+  Set initial constraints (deadline, time, people, money, resources,...) to what you are willing to commit
+  for this plan. Setting deadlines: "Set a 'drop dead' date."[21] "Set a deadline and hold yourself accountable."[20] Limit the amount of info: "Curb your curiosity."[21] "Intentionally limit the amount of information you consume."[20]
+- Clarify objectives and priorities
+  Having a clear goal can simplify your decisions and actions for any project. "Know your main objective."[20]
+- Remember nothing is perfect
+  "Recognize that the moons will never align."[21]
+- Take small iterative steps
+  Agile development and design thinking are two recent movements emphasizing small iterations to discover the problem space. "Approach problems with an iterative mindset."[20] Decide something: "Stair step your decisions."[21] Resorting to Flipism, at least to reveal your preference, can resolve seeming equal choices. Do something: "Start before you feel ready."[20]
+- Change number of options
+  Increasing the number of options in the beginning increases the likelihood of including a good solution (Design thinking: divergent thinking, ideation). Decreasing the number of options later simplifies the decision process (Paradox of choice, convergent thinking).
+- Add or remove emotion
+  Decision making works best with a mix of rational, intuitive and emotional thinking.[22]
+- Talk about it
+  Talking with someone can get another viewpoint. This can also help reduce groupthink. "Get a sanity check."[21] "Get out of your own head and talk it out with someone else."[20] It doesn't even have to be a person (see Rubber duck debugging).
+- Make your best decision
+  Decision fatigue can affect or even prevent good decision making. "Structure your day for the decisions that matter most."[20] When you do make your decision, support it. "Make your decision the right one."[20]
+** Adages
+"Better one safe way than a hundred on which you cannot reckon." — Aesop's The Fox and the Cat
+"The perfect is the enemy of the good." — Voltaire
+"The best thing is to do the right thing; the next best is to do the wrong thing; the worst thing of all things is to stand perfectly still" — Alfred Henry Lewis (on Theodore Roosevelt and politics)
+"The maxim 'Nothing avails but perfection' may be spelt shorter: 'Paralysis.'" — Winston Churchill
+"Give them the third best to go on with; the second best comes too late, the best never comes" — Robert Watson-Watt
+"Better a good decision quickly than the best decision too late." — Harold Geneen
+* TODO Descisions you need to make
+** File structure
+Goals:
+- Easy to navigate
+- Easy to maintain
+Have a structure, , .
+- Productivity should be increased. Fuzzy searching files in text editor must be easier.
+- Moving files should be effortless.
+- Flexible and not too highly dictative. There should be some room for developers to do their own thing.
+- Structure should encourage scalability, but also reusability.
+- Structure should be simple enough for new team members to quickly get onboard and dive into the project.
+
+- Grouping by features or routes
+  Directory per view - This approach becomes relevant once you want to
+  introduce routing to your application.
+- Grouping by file type
+- Your own way (Avoid too much nesting)
+
+Possible folder names:
+- components
+- pages
+- stores
+- actions
+- utils
+- utils/api
+- constants
+- services
+- (with nesting), pages(per route), stores, constants, actions,
+ services (api requests) ,
+
+File per concept - Perfect for small prototypes. You can split this up
+as you get more serious with your application.
+
+Directory per component - It is possible to push components to
+directories of their own. Even though this is a heavier approach,
+there are some interesting advantages as we'll see soon.
+
+Directory per view - This approach becomes relevant once you want to
+introduce routing to your application.
+** File structure / What does a Dan says
+move files around until it feels right
+Click http://react-file-structure.surge.sh/
+* TODO React is a view layer for your data managment
+* TODO Types of components
+- General. Business logic free (Atoms)
+- Building blocks. Elements. Bigger components. NavBars, SideBars, Modals, ... (Molecules)
+  “do one thing and do it well”
+- Pages.
 * Desired outcome
 - Understand core concepts of React
 - Comfortable to use React in your apps.
+Лучше понять что нужно выделять в компонент, и что такое React компонент, зачем он нужен.
+По возможности выносить всю бизнес логику, которая не относится к отображению, из React компонента.
 * React
 - A JavaScript library for building user interfaces.
 - Declarative
@@ -143,6 +224,7 @@
 ** Step 3: Identify The Minimal (but complete) Representation Of UI State
 ** Step 4: Identify Where Your State Should Live
 ** Step 5: Add Inverse Data Flow
+** TODO Step 6: There should be as less business logic as possible. (Let it be just a view layer of you data)
 * What to do next
 - Setup React.
 - Create base layout.
@@ -154,3 +236,13 @@
 - React
 * Used resources
 - React Docs: https://reactjs.org/docs/getting-started.html
+* Links
+- https://en.wikipedia.org/wiki/Analysis_paralysis
+- https://www.studiogallant.com/the-fox-and-the-cat/
+- Directory structure https://reactjs.org/docs/faq-structure.html
+- Directory structure http://react-file-structure.surge.sh/
+- Directory structure https://medium.com/@alexmngn/how-to-better-organize-your-react-applications-2fd3ea1920f1
+- Directory structure https://hackernoon.com/the-100-correct-way-to-structure-a-react-app-or-why-theres-no-such-thing-3ede534ef1ed
+- Directory structure https://survivejs.com/react/advanced-techniques/structuring-react-projects/
+
+- http://bradfrost.com/blog/post/atomic-web-design/

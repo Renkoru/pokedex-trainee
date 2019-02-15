@@ -45,3 +45,7 @@ moment it reaches the reducer.
 - Redux DevTools
 - Redux Saga https://github.com/redux-saga/redux-saga
 - Redux Observable https://redux-observable.js.org/
+* Code review
+Send me a link to your repo.
+
+Skype: mrurenko.thumbtack
