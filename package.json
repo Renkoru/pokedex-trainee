@@ -1,0 +1,58 @@
+{
+  "name": "pokedex-example",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack --config webpack.config.js --watch",
+    "css:build": "node-sass --indented-syntax --omit-source-map-url styles/styles.scss public/styles.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Renkoru/pokedex.git"
+  },
+  "author": "Maxim Rurenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Renkoru/pokedex/issues"
+  },
+  "homepage": "https://github.com/Renkoru/pokedex#readme",
+  "dependencies": {
+    "@emotion/core": "^10.0.9",
+    "@reach/router": "^1.2.1",
+    "axios": "^0.18.0",
+    "bulma": "^0.7.4",
+    "classnames": "^2.2.6",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1",
+    "redux-actions": "^2.6.5",
+    "redux-saga": "^1.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "@emotion/babel-preset-css-prop": "^10.0.9",
+    "@emotion/styled": "^10.0.9",
+    "babel-jest": "^24.5.0",
+    "babel-loader": "^8.0.5",
+    "eslint": "^5.15.2",
+    "eslint-plugin-react": "^7.12.4",
+    "node-sass": "^4.11.0",
+    "prettier": "^1.16.4",
+    "typescript": "^3.3.3333",
+    "typescript-language-server": "^0.3.7",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  }
+}
