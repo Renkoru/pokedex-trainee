@@ -29,23 +29,26 @@ const createElement = ({
   return element;
 };
 
-// Pokeball animation by:
-// https://codepen.io/havardob/pen/GZXOox/
 const pContainer = createElement({ className: 'mr-container' });
 const pokeball = createElement({ className: 'mr-pokeball' });
 pContainer.appendChild(pokeball);
 
 const catchButton = createElement({
   el: 'button',
-  html: 'Catch!',
+  html: 'Throw',
   css: 'font-size: 24px',
   onClick: () => {
     pokeball.classList.add('mr-throw');
-    window.setTimeout(() => pokeball.classList.remove('mr-throw'), 1000);
+    window.setTimeout(
+      () => pokeball.classList.remove('mr-throw'),
+      1000,
+    );
   },
 });
 
-const catchContainer = createElement({ css: 'text-align: center; width: 200px' });
+const catchContainer = createElement({
+  css: 'text-align: center; width: 200px',
+});
 catchContainer.appendChild(pContainer);
 catchContainer.appendChild(catchButton);
 
@@ -55,11 +58,17 @@ const pokemonContainer = createElement({
   css: 'margin-left: auto; height: 200px',
 });
 
-const mainContainer = createElement({ css: 'margin: 200px; display: flex; width: 30%' });
+const mainContainer = createElement({
+  css: 'margin: 100px; display: flex; width: 80%',
+});
 mainContainer.appendChild(catchContainer);
 mainContainer.appendChild(pokemonContainer);
 
-const header = createElement({ el: 'h1', css: 'font-size: 64px', html: 'Catch them All!' });
+const header = createElement({
+  el: 'h1',
+  css: 'font-size: 64px; text-align: center;',
+  html: 'Catch them All!',
+});
 
 const appContainer = document.getElementById('app');
 

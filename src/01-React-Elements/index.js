@@ -2,8 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const pokeballRef = React.createRef();
-const pokeball = React.createElement('div', { className: 'mr-pokeball', ref: pokeballRef });
-const pContainer = React.createElement('div', { className: 'mr-container' }, pokeball);
+const pokeball = React.createElement('div', {
+  className: 'mr-pokeball',
+  ref: pokeballRef,
+});
+const pContainer = React.createElement(
+  'div',
+  { className: 'mr-container' },
+  pokeball,
+);
 
 const catchButton = React.createElement(
   'button',
@@ -11,7 +18,10 @@ const catchButton = React.createElement(
     style: { fontSize: '24px' },
     onClick: () => {
       pokeballRef.current.classList.add('mr-throw');
-      window.setTimeout(() => pokeballRef.current.classList.remove('mr-throw'), 1000);
+      window.setTimeout(
+        () => pokeballRef.current.classList.remove('mr-throw'),
+        1000,
+      );
     },
   },
   'Catch!',
@@ -36,16 +46,20 @@ const mainContainer = React.createElement(
   'div',
   {
     style: {
-      margin: '200px',
+      margin: '100px',
       display: 'flex',
-      width: '30%',
+      width: '80%',
     },
   },
   catchContainer,
   pokemonContainer,
 );
 
-const header = React.createElement('h1', { style: { fontSize: '64px' } }, 'Catch them All!');
+const header = React.createElement(
+  'h1',
+  { style: { fontSize: '64px', textAlign: 'center' } },
+  'Catch them All!',
+);
 
 const app = React.createElement('div', {}, header, mainContainer);
 

@@ -14,7 +14,10 @@ const catchButton = (
     style={{ fontSize: '24px' }}
     onClick={() => {
       pokeballRef.current.classList.add('mr-throw');
-      window.setTimeout(() => pokeballRef.current.classList.remove('mr-throw'), 1300);
+      window.setTimeout(
+        () => pokeballRef.current.classList.remove('mr-throw'),
+        1300,
+      );
     }}
   >
     Catch!
@@ -41,9 +44,9 @@ const pokemonContainer = (
 const mainContainer = (
   <div
     style={{
-      margin: '200px',
+      margin: '100px',
       display: 'flex',
-      width: '30%',
+      width: '80%',
     }}
   >
     {catchContainer}
@@ -51,7 +54,11 @@ const mainContainer = (
   </div>
 );
 
-const header = <h1 style={{ fontSize: '64px' }}>Catch them All!</h1>;
+const header = (
+  <h1 style={{ fontSize: '64px', textAlign: 'center' }}>
+    Catch them All!
+  </h1>
+);
 
 const app = (
   <div>

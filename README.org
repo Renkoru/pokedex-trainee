@@ -1,1 +1,9 @@
 Here will be React educational project.
+
+1. React Element
+2.
+
+* Links
+** React
+- [[https://www.youtube.com/watch?v=V-QO-KO90iQ][Great demo about hooks]]
+- [[http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/][Lifecycle diagram]]

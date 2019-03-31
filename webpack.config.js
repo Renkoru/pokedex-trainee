@@ -5,9 +5,11 @@ const lessons = [
   '01-React-Elements',
   '02-JSX',
   '03-React-Components',
+  '04-Routing',
+  '05-Forms',
 ];
 
-const currentLesson = lessons[3];
+const currentLesson = lessons[5];
 
 module.exports = {
   mode: 'development',
@@ -18,12 +20,23 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.(js)$/, exclude: /node_modules/, loader: 'babel-loader' }
-    ]
+      {
+        test: /\.(js)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
+    ],
   },
   resolve: {
     alias: {
-      Components: path.resolve(__dirname, `src/${currentLesson}/components/`),
+      Components: path.resolve(
+        __dirname,
+        `src/${currentLesson}/components/`,
+      ),
+      Services: path.resolve(
+        __dirname,
+        `src/${currentLesson}/services/`,
+      ),
     },
   },
 };

@@ -16,7 +16,6 @@ class Garden extends React.Component {
     this.state = {
       pokemonId: getRandomId(),
       allPokemons: [],
-      trainerPokemons: [],
     };
 
     this.onFight = this.onFight.bind(this);
@@ -38,9 +37,10 @@ class Garden extends React.Component {
     const pokemonData = this.state.allPokemons.find(
       ({ id }) => id === pokemonId,
     );
-    this.setState(({ trainerPokemons }) => ({
-      trainerPokemons: [...trainerPokemons, pokemonData],
-    }));
+    this.props.setTrainerPokemons([
+      ...this.props.trainerPokemons,
+      pokemonData,
+    ]);
   }
 
   onFight() {
@@ -57,7 +57,7 @@ class Garden extends React.Component {
         <Flex>
           <Trainer
             onFight={this.onFight}
-            pokemons={this.state.trainerPokemons}
+            pokemons={this.props.trainerPokemons}
           />
 
           <Pokemon
