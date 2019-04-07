@@ -10,11 +10,17 @@ import Garden from './scenes/Garden';
 import Trainer from './scenes/Trainer';
 import Pokedex from './scenes/Pokedex';
 
+import { PokemonsContext } from './context';
+
 const Header = styled.h1`
   font-size: 38px;
   text-align: center;
   padding-bottom: 50px;
 `;
+
+const Home = () => {
+  return <Header path="/home">Catch them All!</Header>;
+};
 
 const Nav = styled.nav`
   a {
@@ -30,6 +36,11 @@ function App() {
     getPokemons().then(pokemons => setAllPokemons(pokemons));
   }, []);
 
+  const contextValue = {
+    trainerPokemons,
+    pokemons: allPokemons,
+  };
+
   return (
     <Section>
       <Nav>
@@ -38,25 +49,23 @@ function App() {
         <Link to="/trainer">Trainer</Link>
         <Link to="/pokedex">Pokedex</Link>
       </Nav>
-      <Router>
-        <Header path="/">Catch them All!</Header>
-        <Garden
-          path="/garden"
-          trainerPokemons={trainerPokemons}
-          allPokemons={allPokemons}
-          setTrainerPokemons={setTrainerPokemons}
-        />
-        <Trainer
-          path="/trainer"
-          pokemons={trainerPokemons}
-          setTrainerPokemons={setTrainerPokemons}
-        />
-        <Pokedex
-          path="/pokedex"
-          pokemons={trainerPokemons}
-          knownPokemons={trainerPokemons}
-        />
-      </Router>
+      <PokemonsContext.Provider value={contextValue}>
+        <Router>
+          <Home path="/" />
+          <Garden
+            path="/garden"
+            trainerPokemons={trainerPokemons}
+            allPokemons={allPokemons}
+            setTrainerPokemons={setTrainerPokemons}
+          />
+          <Trainer
+            path="/trainer"
+            pokemons={trainerPokemons}
+            setTrainerPokemons={setTrainerPokemons}
+          />
+          <Pokedex path="/pokedex" />
+        </Router>
+      </PokemonsContext.Provider>
     </Section>
   );
 }

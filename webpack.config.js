@@ -7,9 +7,13 @@ const lessons = [
   '03-React-Components',
   '04-Routing',
   '05-Forms',
+  '06-Fragments',
+  '07-Context',
+  '08-HOC',
 ];
 
-const currentLesson = lessons[5];
+// const currentLesson = lessons[5];
+const currentLesson = lessons[8];
 
 module.exports = {
   mode: 'development',

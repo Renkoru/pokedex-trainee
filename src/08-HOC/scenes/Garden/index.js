@@ -5,6 +5,7 @@ import { isCought, getRandomId } from 'Services/pokemon';
 import Container from 'Components/Container';
 import Flex from 'Components/Flex';
 
+import { PokemonsContext } from '../../context.js';
 import Pokemon from './Pokemon';
 import Trainer from './Trainer';
 
@@ -24,11 +25,11 @@ class Garden extends React.Component {
   }
 
   addPokemon(pokemonId) {
-    const pokemonData = this.props.allPokemons.find(
+    const pokemonData = this.context.pokemons.find(
       ({ id }) => id === pokemonId,
     );
-    this.props.setTrainerPokemons([
-      ...this.props.trainerPokemons,
+    this.context.setTrainerPokemons([
+      ...this.context.trainerPokemons,
       pokemonData,
     ]);
   }
@@ -47,7 +48,7 @@ class Garden extends React.Component {
         <Flex>
           <Trainer
             onFight={this.onFight}
-            pokemons={this.props.trainerPokemons}
+            pokemons={this.context.trainerPokemons}
           />
 
           <Pokemon
@@ -59,5 +60,7 @@ class Garden extends React.Component {
     );
   }
 }
+
+Garden.contextType = PokemonsContext;
 
 export default Garden;

@@ -16,6 +16,10 @@ const Header = styled.h1`
   padding-bottom: 50px;
 `;
 
+const Home = () => {
+  return <Header path="/home">Catch them All!</Header>;
+};
+
 const Nav = styled.nav`
   a {
     margin-right: 10px;
@@ -39,7 +43,7 @@ function App() {
         <Link to="/pokedex">Pokedex</Link>
       </Nav>
       <Router>
-        <Header path="/">Catch them All!</Header>
+        <Home path="/" />
         <Garden
           path="/garden"
           trainerPokemons={trainerPokemons}
@@ -53,7 +57,7 @@ function App() {
         />
         <Pokedex
           path="/pokedex"
-          pokemons={trainerPokemons}
+          pokemons={allPokemons}
           knownPokemons={trainerPokemons}
         />
       </Router>
