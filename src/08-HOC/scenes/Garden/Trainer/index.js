@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 import Button from 'Components/Button';
 
+import { withPokemons } from '../../../store';
 import Pokeball from './Pokeball';
 import PokemonList from './PokemonList';
 
@@ -11,7 +12,7 @@ const CatcherContainer = styled.div`
   width: 200px;
 `;
 
-function Trainer({ onFight, pokemons }) {
+function Trainer({ onFight, trainerPokemons, poket }) {
   const [isThrown, setThrown] = useState(false);
 
   const onClick = () => {
@@ -21,6 +22,10 @@ function Trainer({ onFight, pokemons }) {
       setThrown(false);
     }, 1300);
   };
+
+  const pokemons = trainerPokemons.filter(
+    ({ id }) => poket.indexOf(id) !== -1,
+  );
 
   return (
     <div>
@@ -36,4 +41,4 @@ function Trainer({ onFight, pokemons }) {
   );
 }
 
-export default Trainer;
+export default withPokemons(Trainer);

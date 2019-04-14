@@ -23,5 +23,5 @@ export function isCought() {
   const result = Math.floor(Math.random() * 10);
 
   // return result > 4;
-  return result > 3;
+  return result > 2;
 }

@@ -24,7 +24,12 @@ const colorMap = {
 function Button({ children, type, size, ...rest }) {
   return (
     <a
-      className={classNames('button', sizeMap[size], colorMap[type])}
+      className={classNames(
+        'button',
+        'is-delete',
+        sizeMap[size],
+        colorMap[type],
+      )}
       {...rest}
     >
       {children}

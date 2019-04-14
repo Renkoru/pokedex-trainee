@@ -3,33 +3,51 @@ import styled from '@emotion/styled';
 
 import capitalize from 'lodash/capitalize';
 
-import { getFileNameById } from 'Services/pokemon';
+import PokemonImage from 'Components/PokemonImage';
+import Icon from 'Components/Icon';
 import Button from 'Components/Button';
 import Flex from 'Components/Flex';
+import Box from 'Shared/Box';
 
-const Container = styled.div`
+const Container = styled(Box)`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   font-size: 24px;
-  margin-bottom: 50px;
+  height: 275px;
+  margin: 10px !important;
+  ${({ isActive }) =>
+    isActive ? 'background-color: hsl(204, 86%, 53%)' : ''}
 `;
 
-function Image({ pid, ...rest }) {
-  const fileName = getFileNameById(pid);
-  return (
-    <img
-      src={`/images/pokemons/${fileName}.gif`}
-      style={{
-        width: '20%',
-      }}
-      {...rest}
-    />
-  );
-}
+const NameContainer = styled.span`
+  margin-top: auto;
+`;
 
-function Pokemon({ id, name, onChange }) {
+const DeleteIcon = styled(Icon)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 18px;
+  opacity: 0.1;
+  :hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+`;
+
+function Pokemon({
+  id,
+  pid,
+  name,
+  imageUrl,
+  onChange,
+  onRemove,
+  isActive,
+  onClick,
+}) {
   const [currentName, setName] = useState(name);
 
   const onNameChange = ({ target }) => {
@@ -38,24 +56,32 @@ function Pokemon({ id, name, onChange }) {
 
   const onSubmitChange = () => {
     onChange({
-      id,
+      pid,
       name: currentName,
     });
   };
 
   return (
-    <Container>
-      <Image pid={id} />
-      {capitalize(currentName)}
-      <Flex>
-        <input
-          name="name"
-          type="text"
-          onChange={onNameChange}
-          value={currentName}
-        />
-        <Button onClick={onSubmitChange}>Ok</Button>
-      </Flex>
+    <Container isActive={isActive}>
+      <DeleteIcon type="times" onClick={() => onRemove(id)} />
+      <PokemonImage
+        onClick={() => onClick(id)}
+        src={imageUrl}
+        size="medium"
+      />
+      <NameContainer>{capitalize(currentName)}</NameContainer>
+
+      {false && (
+        <Flex>
+          <input
+            name="name"
+            type="text"
+            onChange={onNameChange}
+            value={currentName}
+          />
+          <Button onClick={onSubmitChange}>Ok</Button>
+        </Flex>
+      )}
     </Container>
   );
 }

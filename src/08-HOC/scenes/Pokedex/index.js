@@ -1,73 +1,46 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import capitalize from 'lodash/capitalize';
-import styled from '@emotion/styled';
 
-import { getFileNameById } from 'Services/pokemon';
+import Table from 'Shared/Table';
+import PokemonImage from 'Components/PokemonImage';
 
-import { PokemonsContext } from '../../context.js';
+import { withPokemons } from '../../store';
 
-// extract this into shared components
-function Image({ pid, ...rest }) {
-  const fileName = getFileNameById(pid);
+function Poketable({ pokemons, trainerPokemons }) {
+  const ownedIds = new Set();
+  trainerPokemons.forEach(pokemon => {
+    ownedIds.add(pokemon.pid);
+  });
+
   return (
-    <img
-      src={`/images/pokemons/${fileName}.gif`}
-      style={{
-        width: '150px',
-      }}
-      {...rest}
-    />
+    <Table head={['Image', 'Id', 'Name', 'Weight', 'Owned']}>
+      {pokemons.map(({ pid, name, weight, imageUrl }) => {
+        const isKnown = ownedIds.has(pid);
+        return (
+          <Table.Tr key={pid} selected={ownedIds.has(pid)}>
+            <td>
+              <PokemonImage size="medium" src={imageUrl} />
+            </td>
+            <td>{pid}</td>
+            <td>{isKnown ? capitalize(name) : '???'}</td>
+            <td>{isKnown ? weight : '???'}</td>
+            <td>{isKnown ? 'Owned' : 'Unknown'}</td>
+          </Table.Tr>
+        );
+      })}
+    </Table>
   );
 }
 
-const Td = styled.td`
-  text-align: center;
-  vertical-align: middle;
-`;
-
-function Columns({ pokemons }) {
-  return (
-    <React.Fragment>
-      {pokemons.map(pokemon => (
-        <tr key={pokemon.id}>
-          <Td>
-            <Image pid={pokemon.id} />
-          </Td>
-          <Td>{pokemon.id}</Td>
-          <Td>{capitalize(pokemon.name)}</Td>
-          <Td>{pokemon.weight}</Td>
-        </tr>
-      ))}
-    </React.Fragment>
-  );
-}
-
-function Poketable({ pokemons }) {
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th>Image</th>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Weight</th>
-        </tr>
-      </thead>
-      <tbody>
-        <Columns pokemons={pokemons} />
-      </tbody>
-    </table>
-  );
-}
-
-function Pokedex() {
-  const context = useContext(PokemonsContext);
-
+function Pokedex({ pokemons, trainerPokemons }) {
   return (
     <div>
-      <Poketable pokemons={context.pokemons} />
+      <Poketable
+        pokemons={pokemons}
+        trainerPokemons={trainerPokemons}
+      />
     </div>
   );
 }
 
-export default Pokedex;
+export default withPokemons(Pokedex);

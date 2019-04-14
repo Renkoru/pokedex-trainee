@@ -1,66 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { css } from '@emotion/core';
 
 import { isCought, getRandomId } from 'Services/pokemon';
+import { addTrainerPokemon } from 'Services/api';
 import Container from 'Components/Container';
 import Flex from 'Components/Flex';
 
-import { PokemonsContext } from '../../context.js';
+import { withPokemons } from '../../store';
 import Pokemon from './Pokemon';
 import Trainer from './Trainer';
 
-class Garden extends React.Component {
-  constructor(props) {
-    super(props);
+function Garden({
+  profile,
+  pokemons,
+  trainerPokemons,
+  setTrainerPokemons,
+}) {
+  const [pokemonId, setPokemon] = useState(getRandomId());
 
-    this.state = {
-      pokemonId: getRandomId(),
-    };
-
-    this.onFight = this.onFight.bind(this);
-  }
-
-  changePokemon() {
-    this.setState({ pokemonId: getRandomId() });
-  }
-
-  addPokemon(pokemonId) {
-    const pokemonData = this.context.pokemons.find(
-      ({ id }) => id === pokemonId,
+  const addPokemon = pokemonId => {
+    // const pokemonData = pokemons.find(({ pid }) => pid === pokemonId);
+    addTrainerPokemon(profile.id, pokemonId).then(newPokemon =>
+      setTrainerPokemons([...trainerPokemons, newPokemon]),
     );
-    this.context.setTrainerPokemons([
-      ...this.context.trainerPokemons,
-      pokemonData,
-    ]);
-  }
+  };
 
-  onFight() {
+  const onFight = () => {
+    // fix typo isCought -> isCaught
     if (isCought()) {
-      this.addPokemon(this.state.pokemonId);
+      console.log('Caught!');
+      addPokemon(pokemonId);
     }
 
-    this.changePokemon();
-  }
+    setPokemon(getRandomId());
+  };
 
-  render() {
-    return (
-      <Container>
-        <Flex>
-          <Trainer
-            onFight={this.onFight}
-            pokemons={this.context.trainerPokemons}
-          />
+  return (
+    <Container>
+      <Flex>
+        <Trainer onFight={onFight} />
 
-          <Pokemon
-            pid={this.state.pokemonId}
-            css={css({ marginLeft: '160px' })}
-          />
-        </Flex>
-      </Container>
-    );
-  }
+        <Pokemon pid={pokemonId} css={css({ marginLeft: '160px' })} />
+      </Flex>
+    </Container>
+  );
 }
 
-Garden.contextType = PokemonsContext;
-
-export default Garden;
+export default withPokemons(Garden);

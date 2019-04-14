@@ -26,8 +26,8 @@ function PokemonList({ pokemons }) {
       <Header>
         {amount ? `My Pokemons (${amount}):` : 'My Pokemons:'}
       </Header>
-      {pokemons.map(({ name, id }) => (
-        <Pokemon key={id}>{capitalize(name)}</Pokemon>
+      {pokemons.map(({ name, pid }) => (
+        <Pokemon key={pid}>{capitalize(name)}</Pokemon>
       ))}
     </div>
   );
