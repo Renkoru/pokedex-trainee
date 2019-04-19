@@ -10,14 +10,18 @@ const lessons = [
   '06-Fragments',
   '07-Context',
   '08-HOC',
+  '09-Own-store',
+  '10-Redux',
 ];
 
 // const currentLesson = lessons[5];
-const currentLesson = lessons[8];
+// const currentLesson = lessons[10];
+const currentLesson = lessons[10];
 
 module.exports = {
   mode: 'development',
   entry: `./src/${currentLesson}/index.js`,
+  // devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js',
@@ -29,10 +33,16 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
+      {
+        test: /\.js$/,
+        use: ['source-map-loader'],
+        enforce: 'pre',
+      },
     ],
   },
   resolve: {
     alias: {
+      Shared: path.resolve(__dirname, `src/000-Shared/`),
       Components: path.resolve(
         __dirname,
         `src/${currentLesson}/components/`,
