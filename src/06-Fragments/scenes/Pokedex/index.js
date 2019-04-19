@@ -40,7 +40,7 @@ function Columns({ pokemons }) {
   );
 }
 
-function Poketable({ pokemons }) {
+function Pocketable({ pokemons }) {
   return (
     <table>
       <thead>
@@ -61,7 +61,7 @@ function Poketable({ pokemons }) {
 function Pokedex({ pokemons }) {
   return (
     <div>
-      <Poketable pokemons={pokemons} />
+      <Pocketable pokemons={pokemons} />
     </div>
   );
 }

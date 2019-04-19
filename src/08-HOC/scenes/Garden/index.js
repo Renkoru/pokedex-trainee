@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/core';
 
-import { isCought, getRandomId } from 'Services/pokemon';
+import { isCaught, getRandomId } from 'Services/pokemon';
 import { addTrainerPokemon } from 'Services/api';
 import Container from 'Components/Container';
 import Flex from 'Components/Flex';
@@ -26,8 +26,8 @@ function Garden({
   };
 
   const onFight = () => {
-    // fix typo isCought -> isCaught
-    if (isCought()) {
+    // fix typo isCaught -> isCaught
+    if (isCaught()) {
       console.log('Caught!');
       addPokemon(pokemonId);
     }

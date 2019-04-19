@@ -65,9 +65,9 @@ function PokemonListContainer({
   removePokemon,
   setTrainerPokemons,
   profile,
-  poket,
-  onPoketAdd,
-  onPoketRemove,
+  pocket,
+  onPocketAdd,
+  onPocketRemove,
   dispatch,
 }) {
   if (isEmpty(pokemons)) {
@@ -99,20 +99,20 @@ function PokemonListContainer({
   };
 
   const onItemClick = id => {
-    const found = poket.find(pokemonId => pokemonId === id);
+    const found = pocket.find(pokemonId => pokemonId === id);
     if (found) {
-      dispatch({ type: 'POKET_REMOVE', payload: id });
-      // onPoketRemove(id);
+      dispatch({ type: 'POCKET_REMOVE', payload: id });
+      // onPocketRemove(id);
       return;
     }
-    // onPoketAdd(id);
-    dispatch({ type: 'POKET_ADD', payload: id });
+    // onPocketAdd(id);
+    dispatch({ type: 'POCKET_ADD', payload: id });
   };
 
   return (
     <PokemonList
       pokemons={myPokemons}
-      activeList={poket}
+      activeList={pocket}
       onChange={onChange}
       onRemove={onRemove}
       onItemClick={onItemClick}

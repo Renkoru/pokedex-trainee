@@ -5,8 +5,8 @@ import isEmpty from 'lodash/isEmpty';
 import { connect } from 'react-redux';
 
 import {
-  poketAdd,
-  poketRemove,
+  pocketAdd,
+  pocketRemove,
   removePokemon,
 } from '../../store/actions';
 import { removeTrainerPokemon } from 'Services/api';
@@ -25,9 +25,9 @@ function PokemonList({
   trainerPokemons,
   removePokemon,
   profile,
-  poket,
-  poketAdd,
-  poketRemove,
+  pocket,
+  pocketAdd,
+  pocketRemove,
 }) {
   if (isEmpty(pokemons)) {
     return <div>Zero pokemons.</div>;
@@ -46,18 +46,18 @@ function PokemonList({
   };
 
   const onItemClick = id => {
-    const found = poket.find(pokemonId => pokemonId === id);
+    const found = pocket.find(pokemonId => pokemonId === id);
     if (found) {
-      poketRemove(id);
+      pocketRemove(id);
       return;
     }
-    poketAdd(id);
+    pocketAdd(id);
   };
 
   return (
     <ListContainer>
       {myPokemons.map((pokemon, index) => {
-        const isActive = !!poket.find(id => pokemon.id === id);
+        const isActive = !!pocket.find(id => pokemon.id === id);
         return (
           <Pokemon
             /* key={index} */
@@ -76,15 +76,15 @@ function PokemonList({
 const mapStateToProps = state => {
   return {
     profile: state.profile,
-    poket: state.poket,
+    pocket: state.pocket,
     pokemons: state.allPokemons,
     trainerPokemons: state.trainerPokemons,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  poketAdd: id => dispatch(poketAdd(id)),
-  poketRemove: id => dispatch(poketRemove(id)),
+  pocketAdd: id => dispatch(pocketAdd(id)),
+  pocketRemove: id => dispatch(pocketRemove(id)),
   removePokemon: id => dispatch(removePokemon(id)),
 });
 

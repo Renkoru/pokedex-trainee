@@ -10,12 +10,12 @@ const Header = styled.h2`
 
 function Profile({ pokemons, pocket }) {
   const amount = pokemons.length;
-  const inPoketAmount = pocket.length;
+  const inPocketAmount = pocket.length;
 
   return (
     <div>
       <Header>
-        {`Pokemons: ${amount}`}/{`In pocket: ${inPoketAmount}`}
+        {`Pokemons: ${amount}`}/{`In pocket: ${inPocketAmount}`}
       </Header>
     </div>
   );
@@ -24,7 +24,7 @@ function Profile({ pokemons, pocket }) {
 function mapStateToProps(state) {
   return {
     pokemons: state.trainerPokemons,
-    pocket: state.poket,
+    pocket: state.pocket,
   };
 }
 

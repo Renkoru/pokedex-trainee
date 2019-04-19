@@ -7,7 +7,7 @@ const store = {
     id: 8,
     name: 'Ash',
   },
-  poket: [],
+  pocket: [],
 };
 
 const PokemonsContext = React.createContext({
@@ -19,7 +19,7 @@ export function PokemonProvider({ children }) {
     store.trainerPokemons,
   );
   const [allPokemons, setAllPokemons] = useState(store.allPokemons);
-  const [poket, setPoket] = useState(store.poket);
+  const [pocket, setPocket] = useState(store.pocket);
 
   const removePokemon = removeId => {
     const newList = trainerPokemons.filter(
@@ -28,21 +28,21 @@ export function PokemonProvider({ children }) {
     setTrainerPokemons(newList);
   };
 
-  const onPoketAdd = id => {
-    setPoket([...poket, id]);
+  const onPocketAdd = id => {
+    setPocket([...pocket, id]);
   };
 
-  const onPoketRemove = rid => {
-    setPoket(poket.filter(id => id !== rid));
+  const onPocketRemove = rid => {
+    setPocket(pocket.filter(id => id !== rid));
   };
 
   const dispatch = action => {
     switch (action.type) {
-      case 'POKET_ADD':
-        onPoketAdd(action.payload);
+      case 'POCKET_ADD':
+        onPocketAdd(action.payload);
         break;
-      case 'POKET_REMOVE':
-        onPoketRemove(action.payload);
+      case 'POCKET_REMOVE':
+        onPocketRemove(action.payload);
         break;
       default:
         break;
@@ -51,7 +51,7 @@ export function PokemonProvider({ children }) {
 
   const contextValue = {
     profile: store.profile,
-    poket,
+    pocket,
     trainerPokemons,
     pokemons: allPokemons,
     setTrainerPokemons,
@@ -76,7 +76,7 @@ export function withPokemons(Component) {
       setTrainerPokemons,
       removePokemon,
       profile,
-      poket,
+      pocket,
       dispatch,
     } = useContext(PokemonsContext);
 
@@ -88,7 +88,7 @@ export function withPokemons(Component) {
         setTrainerPokemons={setTrainerPokemons}
         removePokemon={removePokemon}
         profile={profile}
-        poket={poket}
+        pocket={pocket}
         dispatch={dispatch}
         {...props}
       />

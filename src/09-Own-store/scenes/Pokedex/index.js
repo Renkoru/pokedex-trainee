@@ -6,7 +6,7 @@ import PokemonImage from 'Components/PokemonImage';
 
 import { connect } from '../../store';
 
-function Poketable({ pokemons, trainerPokemons }) {
+function Pocketable({ pokemons, trainerPokemons }) {
   const ownedIds = new Set();
   trainerPokemons.forEach(pokemon => {
     ownedIds.add(pokemon.pid);
@@ -35,7 +35,7 @@ function Poketable({ pokemons, trainerPokemons }) {
 function Pokedex({ pokemons, trainerPokemons }) {
   return (
     <div>
-      <Poketable
+      <Pocketable
         pokemons={pokemons}
         trainerPokemons={trainerPokemons}
       />

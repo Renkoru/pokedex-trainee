@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import capitalize from 'lodash/capitalize';
 import isEmpty from 'lodash/isEmpty';
 
-import { isCought, getRandomId } from 'Services/pokemon';
+import { isCaught, getRandomId } from 'Services/pokemon';
 import Container from 'Components/Container';
 import Flex from 'Components/Flex';
 

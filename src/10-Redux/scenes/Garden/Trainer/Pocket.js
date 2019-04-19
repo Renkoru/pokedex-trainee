@@ -40,7 +40,7 @@ Pocket.propTypes = {
 
 const mapStateToProps = state => ({
   trainerPokemons: state.trainerPokemons,
-  pocket: state.poket,
+  pocket: state.pocket,
 });
 
 export default connect(mapStateToProps)(Pocket);

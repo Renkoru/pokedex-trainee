@@ -19,7 +19,7 @@ export function getFileNameById(id) {
   return `${id}`;
 }
 
-export function isCought() {
+export function isCaught() {
   const result = Math.floor(Math.random() * 10);
 
   // return result > 4;

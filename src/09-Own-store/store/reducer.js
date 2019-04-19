@@ -1,4 +1,4 @@
-import { POKET_REMOVE, POKET_ADD } from './actions';
+import { POCKET_REMOVE, POCKET_ADD } from './actions';
 
 const defaultState = [];
 // {
@@ -8,16 +8,16 @@ const defaultState = [];
 //   id: 8,
 //   name: 'Ash',
 // },
-// poket: [],
+// pocket: [],
 // };
 
 const trainerReducer = (state = defaultState, action) => {
   const pid = action.payload;
 
   switch (action.type) {
-    case POKET_ADD:
+    case POCKET_ADD:
       return [...state, pid];
-    case POKET_REMOVE:
+    case POCKET_REMOVE:
       return state.filter(id => id !== pid);
     default:
       return state;

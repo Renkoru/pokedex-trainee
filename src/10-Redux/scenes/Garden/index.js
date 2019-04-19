@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { connect } from 'react-redux';
 
-import { isCought, getRandomId } from 'Services/pokemon';
+import { isCaught, getRandomId } from 'Services/pokemon';
 import { addTrainerPokemon } from 'Services/api';
 import Container from 'Components/Container';
 import Flex from 'Components/Flex';
@@ -37,8 +37,7 @@ function Garden({
   };
 
   const onFight = () => {
-    // fix typo isCought -> isCaught
-    if (!isCought()) {
+    if (!isCaught()) {
       setPokemon(getRandomId());
       return;
     }

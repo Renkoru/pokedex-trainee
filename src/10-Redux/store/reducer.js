@@ -1,6 +1,6 @@
 import {
-  POKET_REMOVE,
-  POKET_ADD,
+  POCKET_REMOVE,
+  POCKET_ADD,
   REMOVE_POKEMON,
   SET_TRAINER_POKEMONS,
   SET_ALL_POKEMONS,
@@ -13,19 +13,19 @@ const defaultState = {
     id: 8,
     name: 'Ash',
   },
-  poket: [],
+  pocket: [],
 };
 
 const trainerReducer = (state = defaultState, action) => {
   const pid = action.payload;
 
   switch (action.type) {
-    case POKET_ADD:
-      return { ...state, poket: [...state.poket, pid] };
-    case POKET_REMOVE:
+    case POCKET_ADD:
+      return { ...state, pocket: [...state.pocket, pid] };
+    case POCKET_REMOVE:
       return {
         ...state,
-        poket: state.poket.filter(id => id !== pid),
+        pocket: state.pocket.filter(id => id !== pid),
       };
     case REMOVE_POKEMON:
       return {

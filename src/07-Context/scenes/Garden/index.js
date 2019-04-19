@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/core';
 
-import { isCought, getRandomId } from 'Services/pokemon';
+import { isCaught, getRandomId } from 'Services/pokemon';
 import Container from 'Components/Container';
 import Flex from 'Components/Flex';
 
@@ -35,7 +35,7 @@ class Garden extends React.Component {
   }
 
   onFight() {
-    if (isCought()) {
+    if (isCaught()) {
       this.addPokemon(this.state.pokemonId);
     }
 

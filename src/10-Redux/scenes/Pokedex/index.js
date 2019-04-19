@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Table from 'Shared/Table';
 import PokemonImage from 'Components/PokemonImage';
 
-function Poketable({ pokemons, trainerPokemons }) {
+function Pocketable({ pokemons, trainerPokemons }) {
   const ownedIds = new Set();
   trainerPokemons.forEach(pokemon => {
     ownedIds.add(pokemon.pid);
@@ -33,7 +33,7 @@ function Poketable({ pokemons, trainerPokemons }) {
 
 function Pokedex({ pokemons, trainerPokemons }) {
   return (
-    <Poketable
+    <Pocketable
       pokemons={pokemons}
       trainerPokemons={trainerPokemons}
     />

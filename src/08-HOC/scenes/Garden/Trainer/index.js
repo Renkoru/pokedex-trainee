@@ -12,7 +12,7 @@ const CatcherContainer = styled.div`
   width: 200px;
 `;
 
-function Trainer({ onFight, trainerPokemons, poket }) {
+function Trainer({ onFight, trainerPokemons, pocket }) {
   const [isThrown, setThrown] = useState(false);
 
   const onClick = () => {
@@ -24,7 +24,7 @@ function Trainer({ onFight, trainerPokemons, poket }) {
   };
 
   const pokemons = trainerPokemons.filter(
-    ({ id }) => poket.indexOf(id) !== -1,
+    ({ id }) => pocket.indexOf(id) !== -1,
   );
 
   return (
