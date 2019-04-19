@@ -13,6 +13,7 @@ const lessons = [
   '09-Own-store',
   '10-Redux',
   '11-Redux-Async',
+  '12-Redux-Thunk',
 ];
 
 // const currentLesson = lessons[5];
