@@ -4,21 +4,18 @@ import { connect } from 'react-redux';
 
 import Navbar from 'Shared/Navbar';
 import Container from 'Shared/Container';
-import { getPokemons, getTrainerPokemons } from 'Services/api';
 
-import { setAllPokemons } from './store/mainActions';
-import { setTrainerPokemons } from './store/trainerActions';
+import { fetchPokemons } from './store/mainActions';
+import { fetchTrainerPokemons } from './store/trainerActions';
 
 import Garden from './scenes/Garden';
 import Trainer from './scenes/Trainer';
 import Pokedex from './scenes/Pokedex';
 
-function App({ profile, setAllPokemons, setTrainerPokemons }) {
+function App({ profile, fetchPokemons, fetchTrainerPokemons }) {
   useEffect(() => {
-    getPokemons().then(pokemons => setAllPokemons(pokemons));
-    getTrainerPokemons(profile.id).then(pokemons =>
-      setTrainerPokemons(pokemons),
-    );
+    fetchPokemons();
+    fetchTrainerPokemons(profile.id);
   }, []);
 
   return (
@@ -50,13 +47,8 @@ function App({ profile, setAllPokemons, setTrainerPokemons }) {
 const mapStateToProps = state => ({
   profile: { id: state.trainer.id, name: state.trainer.name },
 });
-const mapDispatchToProps = dispatch => ({
-  setAllPokemons: pokemons => dispatch(setAllPokemons(pokemons)),
-  setTrainerPokemons: pokemons =>
-    dispatch(setTrainerPokemons(pokemons)),
-});
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  { fetchPokemons, fetchTrainerPokemons },
 )(App);
