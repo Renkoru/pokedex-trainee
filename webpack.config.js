@@ -12,6 +12,7 @@ const lessons = [
   '08-HOC',
   '09-Own-store',
   '10-Redux',
+  '11-Redux-Async',
 ];
 
 // const currentLesson = lessons[5];

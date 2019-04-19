@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pokemon renders correctly 1`] = `
+<div
+  class="box css-nbf5ef-Container e17ty68t0"
+>
+  <span
+    class="icon css-1n714qs-DeleteIcon e17ty68t2"
+    title="Remove"
+  >
+    <i
+      class="fas fa-times"
+    />
+  </span>
+  <img
+    class="css-1yo5pq8-PokemonImage er1sp6i0"
+    src="/image/poke/01.gif"
+  />
+  <span
+    class="css-o3ie5u-NameContainer e17ty68t1"
+  >
+    Pikapika
+  </span>
+</div>
+`;
