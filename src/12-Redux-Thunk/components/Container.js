@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Container({ children, onClick, ...rest }) {
+function Container({ children, ...rest }) {
   return (
-    <div className="container" {...rest} onClick={onClick}>
+    <div className="container" {...rest}>
       {children}
     </div>
   );

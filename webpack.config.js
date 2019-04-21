@@ -16,9 +16,8 @@ const lessons = [
   '12-Redux-Thunk',
 ];
 
-// const currentLesson = lessons[5];
+const currentLesson = lessons[12];
 // const currentLesson = lessons[10];
-const currentLesson = lessons[10];
 
 module.exports = {
   mode: 'development',

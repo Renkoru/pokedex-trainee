@@ -20,10 +20,9 @@ const colorMap = {
   danger: 'is-danger',
 };
 
-// const Button = props => <button style={{ fontSize: '24px' }} {...props} />;
 function Button({ children, type, size, ...rest }) {
   return (
-    <a
+    <button
       className={classNames(
         'button',
         'is-delete',
@@ -33,7 +32,7 @@ function Button({ children, type, size, ...rest }) {
       {...rest}
     >
       {children}
-    </a>
+    </button>
   );
 }
 

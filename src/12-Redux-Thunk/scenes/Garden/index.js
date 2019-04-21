@@ -8,9 +8,9 @@ import { addTrainerPokemon } from 'Services/api';
 import Container from 'Components/Container';
 import Flex from 'Components/Flex';
 import Button from 'Components/Button';
+import PokemonImage from 'Components/PokemonImage';
 
 import { setTrainerPokemons } from '../../store/trainerActions';
-import Pokemon from './Pokemon';
 import Trainer from './Trainer';
 
 const Message = styled.h2`
@@ -28,9 +28,10 @@ function Garden({
 }) {
   const [pokemonId, setPokemon] = useState(getRandomId());
   const [showMessage, setMessage] = useState(null);
+  const pokemonData =
+    pokemons.find(({ pid }) => pid === pokemonId) || {};
 
   const addPokemon = pokemonId => {
-    // const pokemonData = pokemons.find(({ pid }) => pid === pokemonId);
     addTrainerPokemon(profile.id, pokemonId).then(newPokemon =>
       setTrainerPokemons([...trainerPokemons, newPokemon]),
     );
@@ -63,7 +64,7 @@ function Garden({
 
         <Flex column css={css({ marginLeft: '160px' })}>
           <Message>{showMessage}</Message>
-          <Pokemon pid={pokemonId} />
+          <PokemonImage size="large" src={pokemonData.imageUrl} />
           <Button onClick={onSkip}>Escape -&gt;</Button>
         </Flex>
       </Flex>

@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 const widthMap = {
   default: '20%',
   medium: '150px',
+  large: '200px',
 };
 
 const PokemonImage = styled.img`
