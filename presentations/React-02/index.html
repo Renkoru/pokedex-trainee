@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>React - 1</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="shower/themes/ribbon/styles/styles.css">
+    <!-- <link href="prism.css" rel="stylesheet" /> -->
+    <style>
+     .shower {
+       --slide-ratio: calc(16 / 9);
+     }
+    </style>
+  </head>
+  <body class="shower list">
+    <header class="caption">
+      <h1>React - 2</h1>
+      <p>by Maxim Rurenko</p>
+    </header>
+
+    <section class="slide">
+      <h2>What we have learned</h2>
+      <ul>
+        <li>
+          UI building blocks in React are Components. Independent and reusable.
+        </li>
+        <li class="next">
+          Component can be considered as function that takes props and returns an element
+        </li>
+        <li class="next">
+          React 'reacts' on changes (state, props) and updates UI when it is needed.
+        </li>
+        <li class="next">
+          Data on input -> UI on output
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Remember about</h2>
+      <ul>
+        <li>
+          Do Not Modify State Directly, use <b>setState()</b>
+        </li>
+        <li class="next">
+          The data flows down. From parent to child
+        </li>
+        <li class="next">
+          If you can use <i>'functional'</i> components use them istead of class components (check hooks).
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Fragment</h2>
+      <p>
+        A common pattern in React is for a component to return
+        multiple elements. Fragments let you group a list of children
+        without adding extra nodes to the DOM.
+      </p>
+      <pre style="font-size: 14px">
+        <code>&lt;React.Fragment&gt;</code>
+        <code>  &lt;ChildA /&gt;</code>
+        <code>  &lt;ChildB /&gt;</code>
+        <code>&lt;/React.Fragment&gt;</code>
+        <code>// -- Short syntax</code>
+        <code>&lt;&gt;</code>
+        <code>  // children here</code>
+        <code>&lt;/&gt;</code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <h2>Context</h2>
+      <p>
+        Context provides a way to pass data through the component tree without
+        having to pass props down manually at every level.
+      </p>
+
+      <pre style="font-size: 14px">
+        <code>const MyContext = React.createContext(defaultValue);</code>
+        <code>// -- Provider</code>
+        <code>&lt;MyContext.Provider value={/* some value */}&gt; ... &lt;/MyContext.Provider &gt;</code>
+        <code>// -- Class consumer</code>
+        <code>MyClass.contextType = MyContext;</code>
+        <code>// -- Functional consumer</code>
+        <code>&lt;MyContext.Consumer&gt; {value =&gt; /* render something based on the context value */} &lt;/MyContext.Consumer&gt;</code>
+        <code>// -- Hook consumer</code>
+        <code>const value = useContext(MyContext);</code>
+      </pre>
+
+    </section>
+
+    <section class="slide">
+      <h2>Context / When to Use</h2>
+      <ul>
+        <li>
+          Context is designed to share data that can be considered “global” for
+          a tree of React components, such as the current authenticated user,
+          theme, or preferred language.
+        </li>
+        <li class="next">
+          Context is primarily used when some data needs to be accessible by
+          many components at different nesting levels. Apply it sparingly
+          because it makes component reuse more difficult.
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Higher-Order Components</h2>
+      <ul>
+        <li>
+          A higher-order comlionent (HOC) is an advanced technique in React for
+          reusing comlionent logic. HOCs are not part of the React API, per
+          se. They are a liattern that emerges from React’s compositional nature.
+        </li>
+        <li class="next">
+          Concretely, a higher-order comlionent is a function that takes
+          a comlionent and returns a new component.
+        </li>
+        <li class="next">
+          HOC doesn’t modify the inliut component, nor does it use inheritance
+          to copy its behavior. Rather, a HOC composes the original component
+          by wraliping it in a container component. A HOC is a pure function
+          with zero side-effects.
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Hooks</h2>
+      <ul style="font-size: 18px">
+        <li>useState</li>
+        <li>useEffect</li>
+        <li>useContext</li>
+        <li>useReducer</li>
+        <li>useCallback</li>
+        <li>useMemo</li>
+        <li>useRef</li>
+        <li>useImperativeHandle</li>
+        <li>useLayoutEffect</li>
+        <li>useDebugValue</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Other / Error Boundaries</h2>
+      <p>
+        Error boundaries are React components that catch JavaScript errors
+        anywhere in their child component tree, log those errors, and display
+        a fallback UI instead of the component tree that crashed.
+      </p>
+      <p>
+        A class component becomes an error boundary if it defines
+        either (or both) of the lifecycle methods static
+        <b>getDerivedStateFromError()</b> or <b>componentDidCatch()</b>
+      </p>
+    </section>
+
+    <section class="slide">
+      <h2>Other / Portals</h2>
+      <p>
+        Portals provide a first-class way to render children into a DOM node
+        that exists outside the DOM hierarchy of the parent component.
+      </p>
+      <pre style="font-size: 20px">
+        <code>render() {</code>
+        <code>  return ReactDOM.createPortal(</code>
+        <code>    this.props.children,</code>
+        <code>    domNode</code>
+        <code>  );</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <h2>Other / Refs and the DOM</h2>
+      <p>
+        Refs provide a way to access DOM nodes or React elements created in the render method.
+      </p>
+      <pre style="font-size: 20px">
+        <code>// -- somewhere in constructor</code>
+        <code>this.myRef = React.createRef();</code>
+        <code>...</code>
+        <code>render() {</code>
+        <code>  return &lt;div ref={this.myRef} /&gt;;</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- section.slide>(h2>{Title})+p -->
+
+    <div class="progress"></div>
+
+    <script src="shower/shower.min.js"></script>
+
+    <!-- <script src="prism.js"></script> -->
+    <!-- Copyright © 3000 Yours Truly, Famous Inc. -->
+
+  </body>
+</html>

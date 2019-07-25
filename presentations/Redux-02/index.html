@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Redux - 2</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="shower/themes/ribbon/styles/styles.css">
+    <link href="prism.css" rel="stylesheet" />
+    <style>
+     .shower {
+       --slide-ratio: calc(16 / 9);
+     }
+    </style>
+  </head>
+  <body class="shower list">
+    <header class="caption">
+      <h1>Redux - 2</h1>
+      <p>by Maxim Rurenko</p>
+    </header>
+
+    <section class="slide">
+      <h2>Redux</h2>
+      <ol>
+        <li> Store </li>
+        <li> Actions </li>
+        <li> Reducers </li>
+      </ol>
+    </section>
+
+    <section class="slide">
+      <h2>Immutable Data Structures</h2>
+      <p>
+        Do not mutate the state object!
+      </p>
+      <ul>
+        <li>
+          JavaScript's primitive data types (Number, String, Boolean, Undefined,
+          and Null) are already immutable.
+        </li>
+        <li>
+          Objects, arrays, and functions are mutable.
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>How to implement immutability</h2>
+
+      <div class="language-js" style="display: flex; width: 90%; margin-left: 40px;">
+        <pre style="font-size: 18px">
+          <code>const newState = Object.assign({}, state, { foo: 123 });</code>
+          <code>const newState = { ...state, foo: 123 };</code>
+          <code>const newList = [ ...oldList, newElement ];</code>
+          <code>// immutability-helper, immutable-js, seamless-immutable, ...</code>
+        </pre>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2>Combining Reducers</h2>
+
+      <div class="language-js" style="display: flex; width: 90%; margin-left: 40px;">
+        <pre style="font-size: 18px">
+          <code>import mainReducer from './mainReducer';</code>
+          <code>import trainerReducer from './trainerReducer';</code>
+          <code></code>
+          <code>const reducer = combineReducers({</code>
+          <code>  main: mainReducer,</code>
+          <code>  trainer: trainerReducer,</code>
+          <code>});</code>
+        </pre>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2>Middlewares</h2>
+
+      <figure>
+        <img
+            class="cover"
+            src="pictures/go-deeper.jpg"
+            alt="Go deeper image"
+            style="opacity: 0.2; max-height: none;"
+        />
+      </figure>
+
+      <ul>
+        <li class="next">
+          Middleware is some code you can put between the framework receiving a request,
+          and the framework generating a response.
+        </li>
+        <li class="next">
+          Redux middleware solves different problems than Express or Koa
+          middleware, but in a conceptually similar way. It provides a
+          third-party extension point between dispatching an action, and the
+          moment it reaches the reducer.
+        </li>
+        <li class="next">
+          (Restriction) Last middleware in a chain sould return a plain object
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h1>Send me a link to your repo when you are ready for a review</h1>
+    </section>
+
+    <section class="slide">
+      <h2>Useful links</h2>
+      <ul>
+        <li>
+          <a href="https://github.com/reduxjs/redux-thunk" target="_blank">Redux Thunk</a>
+        </li>
+        <li>
+          <a href="https://github.com/redux-saga/redux-saga" target="_blank">Redux Saga</a>
+        </li>
+        <li>
+          <a href="https://redux-observable.js.org/" target="_blank">Redux Observable</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- section.slide>(h2>{Title})+p -->
+
+    <div class="progress"></div>
+
+    <script src="shower/shower.min.js"></script>
+
+    <script src="prism.js"></script>
+    <!-- Copyright © 3000 Yours Truly, Famous Inc. -->
+
+  </body>
+</html>

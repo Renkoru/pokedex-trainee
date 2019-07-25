@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>React - 1</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="shower/themes/ribbon/styles/styles.css">
+    <!-- <link href="prism.css" rel="stylesheet" /> -->
+    <style>
+     .shower {
+       --slide-ratio: calc(16 / 9);
+     }
+    </style>
+  </head>
+  <body class="shower list">
+    <header class="caption">
+      <h1>React - 1</h1>
+      <p>by Maxim Rurenko</p>
+    </header>
+
+    <section class="slide">
+      <h2>Regulations</h2>
+      <ul>
+        <li>4 lessons: React + Redux</li>
+        <li>Questions - anytime, please</li>
+        <li>Please put aside your backend implementation and let's study React!</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Desired outcome</h2>
+      <ul>
+        <li>Understand core concepts of React/Redux</li>
+        <li>Comfortable to use React/Redux in your apps</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>What is 'React'?</h2>
+      <p>
+        A JavaScript library for building user interfaces. <br/>
+        View layer for your data managment.
+      </p>
+
+      <ul>
+        <li><b>Declarative</b></li>
+        <li><b>Component-Based</b></li>
+        <li><b>Learn Once, Write Anywhere</b></li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Frontend project structure / Dan Abramov</h2>
+      <div class="columns two">
+        <p>
+          <img src="pictures/dan.png" alt="Dan Abramov picture">
+        </p>
+        <p>
+          "move files around until it feels right" <br/>
+          <a href="http://react-file-structure.surge.sh/" target="_blank">Click</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2>Frontend project structure / Goals</h2>
+      <ul>
+        <li>Easy to navigate</li>
+        <li>Easy to maintain</li>
+        <li>Moving files should be effortless</li>
+        <li>Structure should encourage scalability, but also reusability</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Frontend project structure / Template</h2>
+      <ul>
+        <li>
+          <b>components</b> - all reusable global components (could contain nested folders) without any
+          business logic.
+        </li>
+        <li>
+          <b>scenes</b> - here could be separate scene for each route
+        </li>
+        <li>
+          <b>services</b> - a good place for your api calls and project business logic/utils classes
+        </li>
+        <li>
+          <b>store</b> - a place for redux files. Store / Reducers / Action creators
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>React Elements</h2>
+      <ul>
+        <li>
+          Elements are the smallest building blocks of React apps.
+        </li>
+        <li class="next">
+          React elements are immutable. Once you create an element,
+          you can’t change its children or attributes.
+          An element is like a single frame in a movie: it represents the UI at a certain point in time.
+        </li>
+        <li class="next">
+          React Only Updates What’s Necessary
+        </li>
+        <li class="next">
+          In our experience, thinking about how the UI should look at any given
+          moment rather than how to change it over time eliminates a whole class
+          of bugs.
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>About JSX</h2>
+      <p>
+        <ul>
+          <li>
+            JSX is a syntax extension to JavaScript.
+          </li>
+          <li class="next">
+            JSX may remind you of a template language, but it comes with the full power of JavaScript.
+            <br/> You can put any valid JavaScript expression inside the curly braces in JSX.
+          </li>
+          <li class="next">
+            React doesn’t require using JSX, but most people find it helpful as a visual aid when
+            working with UI inside the JavaScript code.
+          </li>
+          <li class="next">
+            Babel compiles JSX down to React.createElement() calls.
+          </li>
+        </ul>
+      </p>
+    </section>
+
+    <section class="slide">
+      <h2>Components and Props</h2>
+      <ul>
+        <li>
+          Components let you split the UI into independent, reusable
+          pieces, and think about each piece in isolation.
+        </li>
+        <li>
+          The simplest way to define a component is to write a JavaScript function
+        </li>
+        <li>
+          Don’t be afraid to split components into smaller components.
+        </li>
+      </ul>
+
+      <p>
+      <pre style="font-size: 18px">
+        <code class="language-jsx">const FullName = (props) => (</code>
+        <code >  &lt;span&gt;</code>
+        <code >    {props.firstName + " " + props.lastName}</code>
+        <code >  &lt;/span&gt;</code>
+        <code >);</code>
+      </pre>
+      </p>
+    </section>
+
+    <section class="slide">
+      <h2>Class Components</h2>
+      <pre style="font-size: 20px">
+        <code>class Garden extends React.Component {</code>
+        <code>  render () {</code>
+        <code>    return (</code>
+        <code>      &lt;div&gt;</code>
+        <code>        &lt;Trainer name="Ash" age={10}/&gt;</code>
+        <code>        &lt;Button onClick={this.props.onCatch}&gt;Catch!&lt;/Button&gt;</code>
+        <code>      &lt;/div&gt;</code>
+        <code>    );</code>
+        <code>  };</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <h2>Hooks (The Future of React)</h2>
+      <p>
+        Hooks are a new addition in React 16.8. They let you use state
+        and other React features without writing a class.
+      </p>
+      <ul style="font-size: 22px">
+        <li>
+          State Hook - <b>useState</b>. Effect Hook - <b>useEffect</b>
+        </li>
+        <li class="next">
+          Only call Hooks at the top level. Don’t call Hooks inside
+          loops, conditions, or nested functions.
+        </li>
+        <li class="next">
+          Only call Hooks from React function components. Don’t call
+          Hooks from regular JavaScript functions. (There is just one
+          other valid place to call Hooks — your own custom Hooks.)
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Props are Read-Only. State is for changes</h2>
+      <ul>
+        <li>
+          All React components must act like pure functions with respect to their props.
+        </li>
+        <li class="next">
+          Component must never modify its own props.
+        </li>
+        <li class="next">
+          Use state to store internal component state. Change state by <b>setState</b> method.
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>State example</h2>
+      <pre style="font-size: 20px">
+        <code>class TrainerInput extends React.Component {</code>
+        <code>  constructor () {</code>
+        <code>    super(props);</code>
+        <code>    this.state = {</code>
+        <code>      name: "Ash",</code>
+        <code>      age: 10,</code>
+        <code>    };</code>
+        <code>  )</code>
+        <code></code>
+        <code>  ...</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <h2>State / Use Correctly</h2>
+      <ul>
+        <li>Do Not Modify State Directly. Use <b>setState()</b></li>
+        <li>State Updates May Be Asynchronous</li>
+        <li>State Updates are Merged</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>State / The Data Flows Down</h2>
+      <ul>
+        <li>
+          Neither parent nor child components can know if a certain component is stateful or stateless,
+          and they shouldn’t care whether it is defined as a function or a class.
+        </li>
+        <li class="next">
+          This is why state is often called local or encapsulated.
+          It is not accessible to any component other than the one that owns and sets it.
+        </li>
+        <li class="next">
+          A component may choose to pass its state down as props to its child components.
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Handling Events</h2>
+      <ul>
+        <li>
+          Handling events with React elements is very similar to handling events on DOM elements.
+          With JSX you pass a function as the event handler, rather than a string
+        </li>
+        <li>
+          React events are named using camelCase, rather than lowercase
+        </li>
+      </ul>
+
+      <pre>
+        <code>&lt;button onClick={() =&gt; alert('Clicked!')}&gt;Click me&lt;/button&gt;</code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <h2>Lifecycle Methods</h2>
+      <a target="_blank" href="https://reactjs.org/docs/react-component.html">React Docs</a>
+      <a target="_blank" href="http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/">Diagram</a>
+      <ul>
+        <li>
+          <b>componentDidMount()</b> DOM is available here. Place to make external requests.
+        </li>
+        <li>
+          <b>componentDidUpdate(prevProps, prevState, snapshot)</b> - react on external updates
+        </li>
+        <li>
+          <b>componentWillUnmount()</b> - Good place to release resources
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>
+        Conditional Rendering |
+        <a target="_blank" href="https://reactjs.org/docs/conditional-rendering.html">React Docs</a>
+      </h2>
+      <pre class="language-jsx" style="font-size: 16px">
+        <code>function PokemonList({ pokemons, withHeader = false }) {</code>
+        <code>  if (isEmpty(pokemons)) {</code>
+        <code>    return &lt;Header&gt;No pokemons yet&lt;/Header&gt;;</code>
+        <code>  }</code>
+        <code>  return (</code>
+        <code>    &lt;div&gt;</code>
+        <code>      &lt;Header&gt;{withHeader ? 'My Pokemons:' : ''}&lt;/Header&gt;</code>
+        <code>      {pokemons.map(({ id, name }) =&gt; (</code>
+        <code>        &lt;Pokemon key={id}&gt;{name}&lt;/Pokemon&gt;</code>
+        <code>      ))}</code>
+        <code>    &lt;/div&gt;</code>
+        <code>  );</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <h2>Lists and Keys</h2>
+      <ul>
+        <li>
+          A “key” is a special string attribute you need to include when creating lists of elements
+        </li>
+        <li class="next">
+          Keys help React identify which items have changed, are added, or are removed
+        </li>
+        <li class="next">
+          Keys should be given to the elements inside the array to give the elements a stable identity
+        </li>
+        <li class="next">
+          The best way to pick a key is to use a string that uniquely identifies a list item among its
+          siblings
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Forms</h2>
+      <ul>
+        <li>
+          HTML form elements work a little bit differently from other DOM elements in React,
+          because form elements naturally keep some internal state.
+        </li>
+        <li class="next">
+          This form has the default HTML form behavior of browsing to a new page when the user submits
+          the form. If you want this behavior in React, it just works.
+        </li>
+        <li class="next">
+          But in most cases, it’s convenient to have a JavaScript
+          function that handles the submission of the form and has
+          access to the data that the user entered into the form.
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Forms / Controlled Components</h2>
+      <ul style="font-size: 22px;">
+        <li>
+          In HTML, form elements such as &lt;input&gt;, &lt;textarea&gt;, and &lt;select&gt;
+          typically maintain their own state and update it based
+          on user input.
+        </li>
+        <li class="next">
+          In React, mutable state is typically kept in the state property of components,
+          and only updated with setState().
+        </li>
+        <li class="next">
+          We can combine the two by making the React state be the “single source of truth”.
+        </li>
+        <li class="next">
+          Then the React component that renders a form also controls what
+          happens in that form on subsequent user input.
+        </li>
+        <li class="next">
+          An input form element whose value is controlled by React in
+          this way is called a “controlled component”.
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Forms / Uncontrolled components</h2>
+      <p>
+        In most cases, we recommend using controlled components to
+        implement forms. In a controlled component, form data is
+        handled by a React component. The alternative is uncontrolled
+        components, where form data is handled by the DOM itself.
+      </p>
+      <pre>
+        <code>this.input = React.createRef();</code>
+        <code>...</code>
+        <code>&lt;input type="text" ref={this.input} /&gt;</code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <h2>Lifting State Up</h2>
+      <ul>
+        <li>
+          Often, several components need to reflect the same changing data.
+        </li>
+        <li class="next">
+          In React, sharing state is accomplished by moving it up to the closest common ancestor
+          of the components that need it.
+        </li>
+        <li class="next">
+          This is called “lifting state up”.
+        </li>
+        <li class="next">
+          There should be a single “source of truth” for any data that changes in a React application.
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Lifting State Up / Example</h2>
+      <pre style="font-size: 18px">
+        <code>&lt;ParentComponent&gt; // Shared data stored here</code>
+        <code>  ...</code>
+        <code>   &lt;Child1&gt;</code>
+        <code>     // Using shared data from props</code>
+        <code>   &lt;/Child1&gt;</code>
+        <code>  ...</code>
+        <code>   &lt;Child2&gt;</code>
+        <code>     // Using shared data from props</code>
+        <code>   &lt;/Child2&gt;</code>
+        <code>  ...</code>
+        <code>&lt;/ParentComponent&gt;</code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <h2>Links</h2>
+      <ul>
+        <li>
+          <a target="_blank" href="https://reactjs.org/docs/hello-world.html">
+            React Docs
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="https://reach.tech/router">
+            Reach Router
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="https://reacttraining.com/react-router/web/guides/quick-start">
+            React Router
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="https://github.com/axios/axios">
+            Axios (fetching package)
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="https://bulma.io/">
+            Bulma (CSS Framework)
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="https://emotion.sh/docs/introduction">
+            Emotion (CSS-in-JS)
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="https://lodash.com/">Lodash</a>
+        </li>
+        <li>
+          <a target="_blank" href="https://github.com/JedWatson/classnames">ClassNames</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- section.slide>(h2>{Title})+p -->
+
+    <div class="progress"></div>
+
+    <script src="shower/shower.min.js"></script>
+
+    <!-- <script src="prism.js"></script> -->
+    <!-- Copyright © 3000 Yours Truly, Famous Inc. -->
+
+  </body>
+</html>

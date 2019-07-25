@@ -59,7 +59,7 @@
   },
   "jest": {
     "transform": {
-      "^.+\\.jsx?$": "babel-jest"
+      "^.+\\.js?$": "babel-jest"
     },
     "moduleNameMapper": {
       "^Shared(.*)$": "<rootDir>/src/000-Shared$1",
