@@ -1,47 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const pokeballRef = React.createRef();
-const pokeball = <div className="mr-pokeball" ref={pokeballRef} />;
-const pContainer = (
-  <div className="mr-container" ref={pokeballRef}>
-    {pokeball}
-  </div>
-);
+import Catch from './Catch';
+import Pokemon from './Pokemon';
+import Header from './Header';
 
-const catchButton = (
-  <button
-    style={{ fontSize: '24px' }}
-    onClick={() => {
-      pokeballRef.current.classList.add('mr-throw');
-      window.setTimeout(
-        () => pokeballRef.current.classList.remove('mr-throw'),
-        1300,
-      );
-    }}
-  >
-    Catch!
-  </button>
-);
-
-const catchContainer = (
-  <div style={{ textAlign: 'center', width: '200px' }}>
-    {pContainer}
-    {catchButton}
-  </div>
-);
-
-const pokemonContainer = (
-  <img
-    src="/images/pokemons/001.gif"
-    style={{
-      marginLeft: 'auto',
-      height: '200px',
-    }}
-  />
-);
-
-const mainContainer = (
+const MainContainer = (
   <div
     style={{
       margin: '100px',
@@ -49,22 +13,16 @@ const mainContainer = (
       width: '80%',
     }}
   >
-    {catchContainer}
-    {pokemonContainer}
+    {Catch}
+    {Pokemon}
   </div>
 );
 
-const header = (
-  <h1 style={{ fontSize: '64px', textAlign: 'center' }}>
-    Catch them All!
-  </h1>
-);
-
-const app = (
+const App = (
   <div>
-    {header}
-    {mainContainer}
+    {Header}
+    {MainContainer}
   </div>
 );
 
-ReactDOM.render(app, document.getElementById('app'));
+ReactDOM.render(App, document.getElementById('app'));
