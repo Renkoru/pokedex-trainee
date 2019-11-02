@@ -2,6 +2,14 @@ Here will be React educational project.
 
 1. React Element
 2.
+   
+* How to install
+1. npm install
+1. npm run css:build
+
+* How to run
+1. Run a pokedex backend
+2. Run a frontend
 
 * Links
 ** React

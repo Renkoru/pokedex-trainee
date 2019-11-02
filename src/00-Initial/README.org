@@ -1,0 +1,10 @@
+*00-Initial* 
+
+* Stage 1
+1. Show empty ~index.html~ page without connected ~bundle.js~
+2. Connect a ~bundle.js~
+   There should be several JS files with simple logic.
+   In these files, several DOM nodes should be added with util function
+   that uses ~document.createElement~ under the hood.
+   There should be a button with ~onClick~ handler.
+3. Show the code and expain how it works. Ask questions.

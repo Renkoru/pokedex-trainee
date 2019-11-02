@@ -16,7 +16,7 @@ const lessons = [
   '12-Redux-Thunk',
 ];
 
-const currentLesson = lessons[12];
+const currentLesson = lessons[0];
 // const currentLesson = lessons[10];
 
 module.exports = {
@@ -34,24 +34,18 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
-      {
-        test: /\.js$/,
-        use: ['source-map-loader'],
-        enforce: 'pre',
-      },
+      // {
+      //   test: /\.js$/,
+      //   use: ['source-map-loader'],
+      //   enforce: 'pre',
+      // },
     ],
   },
   resolve: {
     alias: {
-      Shared: path.resolve(__dirname, `src/000-Shared/`),
-      Components: path.resolve(
-        __dirname,
-        `src/${currentLesson}/components/`,
-      ),
-      Services: path.resolve(
-        __dirname,
-        `src/${currentLesson}/services/`,
-      ),
+      Shared: path.resolve(__dirname, 'src/000-Shared/'),
+      Components: path.resolve(__dirname, `src/${currentLesson}/components/`),
+      Services: path.resolve(__dirname, `src/${currentLesson}/services/`),
     },
   },
 };

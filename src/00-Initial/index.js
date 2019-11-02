@@ -1,76 +1,17 @@
-const createElement = ({
-  el = 'div',
-  html = '',
-  className = null,
-  css = null,
-  src = null,
-  onClick = null,
-}) => {
-  const element = document.createElement(el);
+import { createElement } from './utils';
 
-  element.innerHTML = html;
+import Catch from './Catch';
+import Pokemon from './Pokemon';
+import Header from './Header';
 
-  if (className) {
-    element.className = className;
-  }
-
-  if (css) {
-    element.style.cssText = css;
-  }
-
-  if (src) {
-    element.src = src;
-  }
-
-  if (onClick) {
-    element.onclick = onClick;
-  }
-
-  return element;
-};
-
-const pContainer = createElement({ className: 'mr-container' });
-const pokeball = createElement({ className: 'mr-pokeball' });
-pContainer.appendChild(pokeball);
-
-const catchButton = createElement({
-  el: 'button',
-  html: 'Throw',
-  css: 'font-size: 24px',
-  onClick: () => {
-    pokeball.classList.add('mr-throw');
-    window.setTimeout(
-      () => pokeball.classList.remove('mr-throw'),
-      1000,
-    );
-  },
-});
-
-const catchContainer = createElement({
-  css: 'text-align: center; width: 200px',
-});
-catchContainer.appendChild(pContainer);
-catchContainer.appendChild(catchButton);
-
-const pokemonContainer = createElement({
-  el: 'img',
-  src: '/images/pokemons/001.gif',
-  css: 'margin-left: auto; height: 200px',
-});
-
-const mainContainer = createElement({
+const App = createElement({
   css: 'margin: 100px; display: flex; width: 80%',
-});
-mainContainer.appendChild(catchContainer);
-mainContainer.appendChild(pokemonContainer);
-
-const header = createElement({
-  el: 'h1',
-  css: 'font-size: 64px; text-align: center;',
-  html: 'Catch them All!',
 });
 
 const appContainer = document.getElementById('app');
 
-appContainer.appendChild(header);
-appContainer.appendChild(mainContainer);
+App.appendChild(Catch);
+App.appendChild(Pokemon);
+
+appContainer.appendChild(Header);
+appContainer.appendChild(App);
