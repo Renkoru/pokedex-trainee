@@ -8,3 +8,8 @@
    that uses ~document.createElement~ under the hood.
    There should be a button with ~onClick~ handler.
 3. Show the code and expain how it works. Ask questions.
+* Stage 2
+1. Replace ~createElement~ function from utils with ~React.createElement~
+   - be aware how to handle ~React.createElement~
+   - be aware how to handle ~Refs~
+   - be aware how to ~ReactDOM.render~ works

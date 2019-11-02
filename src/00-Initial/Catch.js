@@ -8,9 +8,9 @@ const PokeballContainer = createElement({ className: 'mr-container' });
 
 const Pokeball = createElement({ className: 'mr-pokeball' });
 
-const catchButton = createElement({
+const CatchButton = createElement({
   el: 'button',
-  html: 'Throw',
+  html: 'Catch',
   css: 'font-size: 24px',
   onClick: () => {
     Pokeball.classList.add('mr-throw');
@@ -20,6 +20,6 @@ const catchButton = createElement({
 
 PokeballContainer.appendChild(Pokeball);
 Catch.appendChild(PokeballContainer);
-Catch.appendChild(catchButton);
+Catch.appendChild(CatchButton);
 
 export default Catch;
