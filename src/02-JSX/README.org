@@ -1,0 +1,27 @@
+*02-JSX* 
+
+* Stage 1
+1. Customize 'Catch them All!' header. Apply styles different ways (inline-styles, SCSS, CSS-in-JS)
+2. Create folder structure
+   - App
+   - components
+   - scenes
+   - services
+3. Create simple 'Forest' scene component.
+4. Describe what is the 'component' and how to define it. Functional components / Class components
+5. Add simple components:
+   - Title
+   - Button (to fetch pokemons)
+6. On button click, add axios request to get list of pokemons
+   1) Print them
+   2) Store them
+7. Refactor to use ~useEffect~
+8. Copy *Pokemon* service from *03-React-Components* state
+
+* TODO:
+1. Split functions into files
+2. Functional components
+3. Class components
+4. Functional components with Hooks
+   - componentDidMount / fetch pokemons
+   - Trainer. Trainers pokemons

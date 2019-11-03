@@ -16,7 +16,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['react', 'jest'],
+  plugins: ['react', 'react-hooks', 'jest'],
   rules: {
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'warn',
@@ -24,5 +24,12 @@ module.exports = {
     'react/jsx-filename-extension': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'react/jsx-one-expression-per-line': 'off',
+    'react/no-array-index-key': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'object-curly-newline': ['error', { consistent: true }],
+    'arrow-parens': ['error', 'as-needed'],
+    'no-underscore-dangle': 'off',
   },
 };

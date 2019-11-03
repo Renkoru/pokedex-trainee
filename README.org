@@ -5,7 +5,8 @@ Here will be React educational project.
    
 * How to install
 1. npm install
-1. npm run css:build
+2. npm run css:build
+3. Be sure that backend have been initialized correctly (have needed data)
 
 * How to run
 1. Run a pokedex backend
