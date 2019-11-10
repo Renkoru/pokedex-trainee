@@ -1,22 +1,29 @@
 *02-JSX* 
 
 * Stage 1
-1. Customize 'Catch them All!' header. Apply styles different ways (inline-styles, SCSS, CSS-in-JS)
-2. Create folder structure
+1. Customize 'Catch them All!' header. Apply *styles* different ways (inline-styles, SCSS, CSS-in-JS)
+2. Create *folder structure*
    - App
    - components
    - scenes
    - services
-3. Create simple 'Forest' scene component.
-4. Describe what is the 'component' and how to define it. Functional components / Class components
-5. Add simple components:
+3. Copy *Pokemon* service from *03-React-Components* state
+4. Create simple 'Forest' *scene* component.
+5. Describe what is the *'component'* and how to define it. Functional components / Class components
+6. Add simple components:
    - Title
    - Button (to fetch pokemons)
-6. On button click, add axios request to get list of pokemons
+7. On button click, add *axios* request to get list of pokemons
    1) Print them
    2) Store them
-7. Refactor to use ~useEffect~
-8. Copy *Pokemon* service from *03-React-Components* state
+8. Refactor to use ~useEffect~
+9. Move API requiest to a separate api.js file
+10. Add axios request to get current user (user with id 1, '/api/v1/trainers/1') 
+    and add 'Trainer' component
+11. Add axios post request to add pokemon to trainer
+12. Add *EditTrainer* component
+    - `/images/trainers/${getFileNameById(data.imageNumber)}.gif`
+    - return axios.put(`/api/v1/trainers/${meUserId}`, data);
 
 * TODO:
 1. Split functions into files

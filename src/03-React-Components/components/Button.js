@@ -17,6 +17,7 @@ const colorMap = {
   success: 'is-success',
   warning: 'is-warning',
   danger: 'is-danger',
+  light: 'is-light',
 };
 
 function Button({ children, as, type, size, ...rest }) {

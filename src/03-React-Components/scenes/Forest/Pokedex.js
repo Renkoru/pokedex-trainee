@@ -4,12 +4,12 @@ import React from 'react';
 import styled from '@emotion/styled';
 import capitalize from 'lodash/fp/capitalize';
 
-function Bug({ pokemonList, className }) {
+function Pokedex({ pokemonList, className }) {
   const amount = pokemonList.length;
 
   return (
     <Container className={className}>
-      <Header>Pokemons in my Bug ({amount}):</Header>
+      <Header>Pokemons in my Pokedex ({amount}):</Header>
 
       <ListContainer>
         {pokemonList.map(({ name, id }, index) => (
@@ -20,10 +20,10 @@ function Bug({ pokemonList, className }) {
   );
 }
 
-function BugContainer({ pokemonList }) {
+function PokedexContainer({ pokemonList, className }) {
   return (
-    <div css={{ marginTop: '20px' }}>
-      {isEmpty(pokemonList) ? <span>No pokemons caught</span> : <Bug pokemonList={pokemonList} />}
+    <div className={className}>
+      {isEmpty(pokemonList) ? <div>No pokemons caught</div> : <Pokedex pokemonList={pokemonList} />}
     </div>
   );
 }
@@ -52,4 +52,4 @@ const ListContainer = styled('div')({
   flexWrap: 'wrap',
 });
 
-export default BugContainer;
+export default PokedexContainer;
