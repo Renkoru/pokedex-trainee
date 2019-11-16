@@ -1,3 +1,20 @@
+*03-React-Components* 
+
+* Stage 1
+1. Split on two scenes
+   - *Trainer*
+     1) Extract whole user from Forest container
+     2) In *App* component check *window.location.pathname* and show needed content
+     3) Add *Navigation* component, use links
+     4) Refactor links to modify window pathname
+     5) Write your own *Router*
+        - window.history.replaceState({}, name, path);
+        - const [route, setRoute] = useState(window.location.pathname);
+        - Create *Router* component (React.Children.forEach)
+     6) Trainer and its pokemons should be in sharead state. *"Lifting state up"* principle
+   - *Forest*
+
+* TODO:
 1. Split on three routes.
    - Home
    - Garden

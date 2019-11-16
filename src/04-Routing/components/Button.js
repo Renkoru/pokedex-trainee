@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const sizeMap = {
@@ -11,36 +10,30 @@ const sizeMap = {
 };
 
 const colorMap = {
-  default: '',
+  default: 'is-success',
   primary: 'is-primary',
   link: 'is-link',
   info: 'is-info',
   success: 'is-success',
   warning: 'is-warning',
   danger: 'is-danger',
+  light: 'is-light',
 };
 
-// const Button = props => <button style={{ fontSize: '24px' }} {...props} />;
-function Button({ children, type, size, ...rest }) {
+function Button({ children, as, type, size, ...rest }) {
+  const DomContainer = as;
+
   return (
-    <a
-      className={classNames('button', sizeMap[size], colorMap[type])}
-      {...rest}
-    >
+    <DomContainer className={classNames('button', sizeMap[size], colorMap[type])} {...rest}>
       {children}
-    </a>
+    </DomContainer>
   );
 }
 
 Button.defaultProps = {
   type: 'default',
   size: 'default',
-};
-
-Button.propTypes = {
-  type: PropTypes.string,
-  size: PropTypes.string,
-  children: PropTypes.node,
+  as: 'button',
 };
 
 export default Button;

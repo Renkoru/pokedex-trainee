@@ -1,57 +1,47 @@
-import React from 'react';
-import axios from 'axios';
-import { css } from '@emotion/core';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
-import capitalize from 'lodash/capitalize';
-import isEmpty from 'lodash/isEmpty';
 
-import { isCaught, getRandomId } from 'Services/pokemon';
-import Container from 'Components/Container';
-import Flex from 'Components/Flex';
+import { fetchMe, fetchTrainerPokemons, updateMe } from 'Services/api';
 
-// import Pokemon from './Pokemon';
+import Trainer from './Trainer';
+import Pokedex from './Pokedex';
 
-const Pokemon = styled.div`
-  text-align: center;
-  font-size: 24px;
-`;
+function TrainerScene() {
+  const [user, setUser] = useState(null);
+  const [trainerPokemonList, setTrainerPokemonList] = useState(null);
 
-const Header = styled.h2`
-  text-align: center;
-  font-size: 26px;
-`;
+  useEffect(() => {
+    async function fetchData() {
+      const userData = await fetchMe();
+      const trainersList = await fetchTrainerPokemons();
 
-function PokemonList({ pokemons }) {
-  if (isEmpty(pokemons)) {
-    return <Header>Zero pokemons.</Header>;
+      setUser(userData);
+      setTrainerPokemonList(trainersList);
+    }
+    fetchData();
+  }, []);
+
+  async function onTrainerUpdate(data) {
+    await updateMe(data);
+    setUser(prevState => ({ ...prevState, ...data }));
   }
 
-  const amount = pokemons.length;
+  if (!user || !trainerPokemonList) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div>
-      <Header>
-        {amount ? `My Pokemons (${amount}):` : 'My Pokemons:'}
-      </Header>
-      {pokemons.map(({ name, id }) => (
-        <Pokemon key={id}>{capitalize(name)}</Pokemon>
-      ))}
-    </div>
+    <TrainerContainer>
+      <Trainer name={user.name} imageUrl={user.imageUrl} onTrainerUpdate={onTrainerUpdate} />
+      <Pokedex css={{ marginLeft: '50px' }} pokemonList={trainerPokemonList} />
+    </TrainerContainer>
   );
 }
 
-class Trainer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const TrainerContainer = styled('div')({
+  display: 'flex',
+  marginTop: '50px',
+  marginBottom: '50px',
+});
 
-  render() {
-    return (
-      <Container>
-        <PokemonList pokemons={this.props.trainerPokemons} />
-      </Container>
-    );
-  }
-}
-
-export default Trainer;
+export default TrainerScene;
