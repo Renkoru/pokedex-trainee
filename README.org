@@ -2,7 +2,34 @@ Here will be React educational project.
 
 1. React Element
 2.
-   
+* DONE CHANGES in slides
+CLOSED: [2019-11-17 Sun 03:04]
+- CLOSING NOTE [2019-11-17 Sun 03:04]
+** React router
+*** Primary components
+**** Routers
+- <BrowserRouter>
+- <HashRouter>
+**** Route Matchers
+- <Route>
+- <Switch>
+**** Navigation ("route changers")
+- <Link>
+- <NavLink>
+- <Redirect>
+*** Hooks
+- useHistory
+- useLocation
+- useParams
+** Hooks
+- useState
+- useEffect
+- useContext
+- useRef
+- useReducer
+- useMemo (optimization)
+- useCallback (optimization)
+- ...
 * How to install
 1. npm install
 2. npm run css:build

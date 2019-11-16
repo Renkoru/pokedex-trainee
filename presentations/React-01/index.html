@@ -21,7 +21,7 @@
     <section class="slide">
       <h2>Regulations</h2>
       <ul>
-        <li>4 lessons: React + Redux</li>
+        <li>5 master-classes: React + Redux</li>
         <li>Questions - anytime, please</li>
         <li>Please put aside your backend implementation and let's study React!</li>
       </ul>
@@ -50,6 +50,20 @@
     </section>
 
     <section class="slide">
+      <h2>Building blocks of React are Components</h2>
+      <p>
+          <img src="pictures/simple-project.jpg" width="80%" alt="Simple project">
+      </p>
+    </section>
+
+    <section class="slide">
+      <h2>You can combine simple components into complex solutions</h2>
+      <p>
+          <img src="pictures/complex-project.jpg" width="50%" alt="Simple project">
+      </p>
+    </section>
+
+    <section class="slide">
       <h2>Frontend project structure / Dan Abramov</h2>
       <div class="columns two">
         <p>
@@ -57,7 +71,9 @@
         </p>
         <p>
           "move files around until it feels right" <br/>
-          <a href="http://react-file-structure.surge.sh/" target="_blank">Click</a>
+          <a href="http://react-file-structure.surge.sh/" target="_blank">Click</a> <br/>
+
+          <img class="next" src="pictures/project-structure.gif" alt="Project file structure">
         </p>
       </div>
     </section>
@@ -184,9 +200,6 @@
         and other React features without writing a class.
       </p>
       <ul style="font-size: 22px">
-        <li>
-          State Hook - <b>useState</b>. Effect Hook - <b>useEffect</b>
-        </li>
         <li class="next">
           Only call Hooks at the top level. Don’t call Hooks inside
           loops, conditions, or nested functions.
@@ -196,6 +209,22 @@
           Hooks from regular JavaScript functions. (There is just one
           other valid place to call Hooks — your own custom Hooks.)
         </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Hooks list</h2>
+      <p>
+        "Hook into" state and lifecycle methods of components without using classes.
+      </p>
+      <ul style="font-size: 22px">
+        <li>useState</li>
+        <li>useEffect</li>
+        <li>useContext</li>
+        <li>useRef</li>
+        <li>useReducer</li>
+        <li>useMemo (optimization)</li>
+        <li>useCallback (optimization)</li>
       </ul>
     </section>
 
@@ -217,15 +246,12 @@
     <section class="slide">
       <h2>State example</h2>
       <pre style="font-size: 20px">
-        <code>class TrainerInput extends React.Component {</code>
-        <code>  constructor () {</code>
-        <code>    super(props);</code>
-        <code>    this.state = {</code>
-        <code>      name: "Ash",</code>
-        <code>      age: 10,</code>
-        <code>    };</code>
-        <code>  )</code>
-        <code></code>
+        <code>import React, { useState } from 'react';</code>
+        <code>...</code>
+        <code>function TrainerInput() {</code>
+        <code>  const [user, setUser] = useState({ name: "Ash", age: 10});</code>
+        <code>  ...</code>
+        <code>  function onClick() { setUser({ name: "Max", age: 30 }); }</code>
         <code>  ...</code>
         <code>}</code>
       </pre>
@@ -236,7 +262,8 @@
       <ul>
         <li>Do Not Modify State Directly. Use <b>setState()</b></li>
         <li>State Updates May Be Asynchronous</li>
-        <li>State Updates are Merged</li>
+        <li>State Updates are not Merged (in FunctionComponents)</li>
+        <li>State Updates are Merged (in ClassComponents)</li>
       </ul>
     </section>
 
@@ -429,16 +456,52 @@
     </section>
 
     <section class="slide">
+      <h2>React Router / Primary components</h2>
+      <div style="font-size: 22px" class="columns two">
+        <div>
+          <div>
+            <h3>Routers</h3>
+            <ul>
+              <li>&lt;BrowserRouter&gt;</li>
+              <li>&lt;HashRouter&gt;</li>
+            </ul>
+          </div>
+          <div class="next">
+            <h3>Route Matchers</h3>
+            <ul>
+              <li>&lt;Route&gt;</li>
+              <li>&lt;Switch&gt;</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="next">
+            <h3>Navigation ("route changers")</h3>
+            <ul>
+              <li>&lt;Link&gt;</li>
+              <li>&lt;NavLink&gt;</li>
+              <li>&lt;Redirect&gt;</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2>React Router / Hooks</h2>
+      <ul>
+        <li>useHistory</li>
+        <li>useLocation</li>
+        <li>useParams</li>
+      </ul>
+    </section>
+
+    <section class="slide">
       <h2>Links</h2>
       <ul>
         <li>
           <a target="_blank" href="https://reactjs.org/docs/hello-world.html">
             React Docs
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://reach.tech/router">
-            Reach Router
           </a>
         </li>
         <li>

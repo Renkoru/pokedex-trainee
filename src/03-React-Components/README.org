@@ -12,6 +12,7 @@
         - const [route, setRoute] = useState(window.location.pathname);
         - Create *Router* component (React.Children.forEach)
      6) Trainer and its pokemons should be in sharead state. *"Lifting state up"* principle
+     7) Use ReactRouter
    - *Forest*
 
 * TODO:
