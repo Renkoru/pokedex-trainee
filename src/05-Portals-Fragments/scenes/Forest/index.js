@@ -4,17 +4,14 @@ import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 
 import Loading from 'Shared/Loading';
-import { isCaught } from 'Services/pokemon';
 import { fetchAllPokemons } from 'Services/api';
-import NotificationList from 'Components/NotificationList';
 
+import PokemonList from 'Components/PokemonList';
 import Header from './Header';
 import Tree from './Tree';
 import PlayGround from './PlayGround';
-import { useNotifications } from './hooks';
 
-function Forest() {
-  const [notificationList, addNotification, removeNotification] = useNotifications([]);
+function Forest({ addNotification, bagPokemonList }) {
   const [forestPokemon, setForestPokemon] = useState(null);
   const [pokemonList, setPokemonList] = useState(null);
 
@@ -34,29 +31,6 @@ function Forest() {
   }, []);
 
   function onCatch() {
-    let notification;
-    if (isCaught()) {
-      notification = {
-        type: 'warning',
-        message: (
-          <span>
-            Pokemon <b>{forestPokemon.name}</b> caught! (Implementation required)
-          </span>
-        ),
-      };
-    } else {
-      notification = {
-        type: 'danger',
-        message: (
-          <span>
-            Pokemon <b>{forestPokemon.name}</b> escaped!
-          </span>
-        ),
-      };
-    }
-
-    addNotification(notification);
-
     selectRandomPokemon(pokemonList);
   }
 
@@ -64,22 +38,23 @@ function Forest() {
     <Loading dataList={[pokemonList, forestPokemon]}>
       {() => (
         <>
-          <Header>
-            Here are &nbsp;
-            {pokemonList.length}
-            &nbsp; pokemons. You met &nbsp;
-            <b>{forestPokemon.name}</b>
-            &nbsp;
-          </Header>
+          <Header total={pokemonList.length} pokemonName={forestPokemon.name} />
           <ForestContainer>
             <Tree />
 
-            <PlayGround pokemon={forestPokemon} onCatch={onCatch} />
+            <PlayGround
+              pokemon={forestPokemon}
+              onCatch={onCatch}
+              addNotification={addNotification}
+            />
 
             <Tree />
           </ForestContainer>
-
-          <NotificationList notifications={notificationList} onClose={removeNotification} />
+          <PokemonList
+            title={`Pokemons in my Bag (${bagPokemonList.length}):`}
+            emptyMessage="No pokemons in my bag"
+            pokemonList={bagPokemonList}
+          />
         </>
       )}
     </Loading>

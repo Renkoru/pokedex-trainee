@@ -2,7 +2,11 @@
 
 * Stage 1
 1. Implement *Loading* component with *Render-props* pattern
-2. Implement *Notification* component about 'Catch!' action. Use Bulma class.
-3. Use *portals* ReactDOM.createPortal(<Component/>, DOMElement)
-4. Use *Fragments* in NotificationList
-5. Extract custom hook *useNotifications* (Notify about 'Rules of Hooks')
+2. Move most of *onCatch* from Forest to Playground component
+3. Implement *Notification* component about 'Catch!' action. Use Bulma class.
+4. Use *portals* ReactDOM.createPortal(<Component/>, DOMElement)
+   Notifications are not kept between routes
+5. Use *Fragments* in NotificationList
+6. Extract custom hook *useNotifications* (Notify about 'Rules of Hooks')
+7. Lift the state up (Notifications). Show that notifications now keep while routing.
+8. But we need to pass props throught all child components
