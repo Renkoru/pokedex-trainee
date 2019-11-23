@@ -30,7 +30,7 @@ function PokedexContainer({ pokemonList, className }) {
 
 const Container = styled('div')({
   fontSize: '18px',
-  backgroundColor: 'rgba(30, 70, 15, 0.5)',
+  backgroundColor: '#00d1b2',
   color: 'white',
   padding: '10px 20px',
   borderRadius: '10px',

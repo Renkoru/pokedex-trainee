@@ -8,7 +8,6 @@ import Section from 'Shared/layout/Section';
 import Navigation from './Navigation';
 import Forest from '../scenes/Forest';
 import Trainer from '../scenes/Trainer';
-// import styles from './App.scss';
 
 function App() {
   const [user, setUser] = useState(null);

@@ -20,7 +20,7 @@ function Catch({ onClick }) {
     <CatcherContainer>
       <Pokeball thrown={isThrown} />
 
-      <Button onClick={_onClick} size="medium" type="primary">
+      <Button onClick={_onClick} size="medium" type="light">
         Catch!
       </Button>
     </CatcherContainer>

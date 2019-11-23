@@ -1,11 +1,13 @@
 import random from 'lodash/fp/random';
+import path from 'lodash/fp/path';
 
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 
 import { isCaught } from 'Services/pokemon';
-// import { fetchAllPokemons, addTrainerPokemon, updateMe } from 'Services/api';
 import { fetchAllPokemons } from 'Services/api';
+
+import Loading from 'Shared/Loading';
 
 import Header from './Header';
 import Tree from './Tree';
@@ -32,21 +34,21 @@ function Forest() {
 
   async function onCatch() {
     if (isCaught()) {
-      // await addTrainerPokemon(user.id, forestPokemon.pid);
-      // setTrainerPokemonList(list => [...list, forestPokemon]);
       alert('Implementation required');
     }
 
     selectRandomPokemon(pokemonList);
   }
 
-  if (!pokemonList || !forestPokemon) {
-    return <div>Loading...</div>;
-  }
-
   return (
-    <div>
-      <Header pokemonsLength={pokemonList.length} pokemonName={forestPokemon.name} />
+    <Loading dataList={[pokemonList, forestPokemon]}>
+      <Header>
+        Here are &nbsp;
+        {path('length')(pokemonList)}
+        &nbsp; pokemons. You met &nbsp;
+        <b>{path('name')(forestPokemon)}</b>
+        &nbsp;
+      </Header>
       <ForestContainer>
         <Tree />
 
@@ -54,7 +56,7 @@ function Forest() {
 
         <Tree />
       </ForestContainer>
-    </div>
+    </Loading>
   );
 }
 

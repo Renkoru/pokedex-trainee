@@ -2,17 +2,11 @@ import React from 'react';
 
 import Title from 'Shared/Title';
 
-function Header({ pokemonsLength, pokemonName }) {
+function Header({ children }) {
   return (
     <div>
       <Title>You are in the forest</Title>
-      <Title type="subtitle">
-        Here are &nbsp;
-        {pokemonsLength}
-        &nbsp; pokemons. You met &nbsp;
-        <b>{pokemonName}</b>
-        &nbsp;
-      </Title>
+      <Title type="subtitle">{children}</Title>
     </div>
   );
 }
