@@ -1,4 +1,8 @@
-1. Split on three routes.
-   - Home
-   - Garden
-   - Trainer
+*05-Portals-Fragments* 
+
+* Stage 1
+1. Add *context* to main index.js. No store changes
+2. Apply store for bagPokemonList
+3. extract store into separate file
+4. add *useStore* custom hook. Apply it
+5. Refactore *Notifications* to use store

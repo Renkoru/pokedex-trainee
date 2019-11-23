@@ -10,3 +10,4 @@
 6. Extract custom hook *useNotifications* (Notify about 'Rules of Hooks')
 7. Lift the state up (Notifications). Show that notifications now keep while routing.
 8. But we need to pass props throught all child components
+9. Switch to next step. And show Trainer's bag component
