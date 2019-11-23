@@ -1,26 +1,22 @@
 import React from 'react';
 
-function NavLink({ path, name, onClick }) {
-  function _onClick(event) {
-    event.preventDefault();
+import Navbar from 'Shared/Navbar';
 
-    onClick(path);
-  }
-
+function Navigation() {
   return (
-    <a href={path} onClick={_onClick}>
-      {name}
-    </a>
-  );
-}
-
-function Navigation({ onLinkClick }) {
-  return (
-    <div>
-      <NavLink path="/forest" name="Forest" onClick={onLinkClick} />
-      &nbsp;/&nbsp;
-      <NavLink path="/trainer" name="Trainer" onClick={onLinkClick} />
-    </div>
+    <Navbar>
+      <Navbar.Brand>
+        <Navbar.Item url="/">
+          <b>Catch them All!</b>
+        </Navbar.Item>
+      </Navbar.Brand>
+      <Navbar.Menu>
+        <Navbar.Start>
+          <Navbar.Item url="/forest">Forest</Navbar.Item>
+          <Navbar.Item url="/trainer">Trainer</Navbar.Item>
+        </Navbar.Start>
+      </Navbar.Menu>
+    </Navbar>
   );
 }
 

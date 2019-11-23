@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
-import Button from 'Components/Button';
+import Button from 'Shared/Button';
 
 import Pokeball from './Pokeball';
 

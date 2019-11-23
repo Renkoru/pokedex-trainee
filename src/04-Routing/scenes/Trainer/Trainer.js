@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
 import { getFileNameById } from 'Services/pokemon';
-import Button from 'Components/Button';
+import Button from 'Shared/Button';
 
 function Trianer({ className, name, imageUrl, onTrainerUpdate }) {
   const [isEditMode, setEditMode] = useState(false);

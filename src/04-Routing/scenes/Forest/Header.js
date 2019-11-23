@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Title from 'Components/Title';
+import Title from 'Shared/Title';
 
 function Header({ pokemonsLength, pokemonName }) {
   return (
