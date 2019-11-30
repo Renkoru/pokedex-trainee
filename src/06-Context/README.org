@@ -1,4 +1,10 @@
-1. Split on three routes.
-   - Home
-   - Garden
-   - Trainer
+*06-Context* 
+
+* Stage 1
+1. Describe problems of passing a lot of callback that changes global state
+2. Talk about *store, action(type, payload), dispatch, reducer* concept
+3. Create *reducer.js*, add action handler
+4. Handle 'BAG_ADD_POKEMON' action, replace *onBagAdd* with dispatch from reducer
+5. Move dispatch to *Trainer* component
+6. Create one *actionCreator*
+7. Create selector *getTrainerPokemons*

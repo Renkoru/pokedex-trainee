@@ -36,6 +36,10 @@ function PokemonList({ title, pokemonList, className, onPokemonClick, onRemove }
   );
 }
 
+PokemonList.defaultProps = {
+  onPokemonClick: () => {},
+};
+
 function PokemonListContainer({
   title,
   pokemonList,
