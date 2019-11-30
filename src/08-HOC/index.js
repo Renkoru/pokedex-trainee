@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import { PokemonProvider } from './store';
 import App from './App';
+import StoreProvider from './store';
 
 ReactDOM.render(
-  <PokemonProvider>
-    <App />
-  </PokemonProvider>,
+  <Router>
+    <StoreProvider>
+      <App />
+    </StoreProvider>
+  </Router>,
   document.getElementById('app'),
 );

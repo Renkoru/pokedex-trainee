@@ -1,101 +1,67 @@
-import React, { useState, useContext } from 'react';
+import React, { useReducer, useContext, useState } from 'react';
 
-const store = {
-  trainerPokemons: [],
-  allPokemons: [],
-  profile: {
-    id: 8,
-    name: 'Ash',
-  },
-  pocket: [],
-};
+import reducer, { getInitialState } from './reducer';
 
-const PokemonsContext = React.createContext({
-  ...store,
-});
+export const StoreContext = React.createContext({});
 
-export function PokemonProvider({ children }) {
-  const [trainerPokemons, setTrainerPokemons] = useState(
-    store.trainerPokemons,
-  );
-  const [allPokemons, setAllPokemons] = useState(store.allPokemons);
-  const [pocket, setPocket] = useState(store.pocket);
-
-  const removePokemon = removeId => {
-    const newList = trainerPokemons.filter(
-      ({ id }) => id !== removeId,
-    );
-    setTrainerPokemons(newList);
-  };
-
-  const onPocketAdd = id => {
-    setPocket([...pocket, id]);
-  };
-
-  const onPocketRemove = rid => {
-    setPocket(pocket.filter(id => id !== rid));
-  };
-
-  const dispatch = action => {
-    switch (action.type) {
-      case 'POCKET_ADD':
-        onPocketAdd(action.payload);
-        break;
-      case 'POCKET_REMOVE':
-        onPocketRemove(action.payload);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const contextValue = {
-    profile: store.profile,
-    pocket,
-    trainerPokemons,
-    pokemons: allPokemons,
-    setTrainerPokemons,
-    setAllPokemons,
-    removePokemon,
-    dispatch,
-  };
+function StoreProvider({ children }) {
+  const [state, dispatch] = useReducer(reducer, getInitialState());
 
   return (
-    <PokemonsContext.Provider value={contextValue}>
+    <StoreContext.Provider
+      value={{
+        ...state,
+        dispatch,
+      }}
+    >
       {children}
-    </PokemonsContext.Provider>
+    </StoreContext.Provider>
   );
 }
 
-export function withPokemons(Component) {
-  function WrappedComponent(props) {
-    const {
-      pokemons,
-      trainerPokemons,
-      setAllPokemons,
-      setTrainerPokemons,
-      removePokemon,
-      profile,
-      pocket,
-      dispatch,
-    } = useContext(PokemonsContext);
+export function useStore() {
+  const store = useContext(StoreContext);
 
-    return (
-      <Component
-        pokemons={pokemons}
-        trainerPokemons={trainerPokemons}
-        setAllPokemons={setAllPokemons}
-        setTrainerPokemons={setTrainerPokemons}
-        removePokemon={removePokemon}
-        profile={profile}
-        pocket={pocket}
-        dispatch={dispatch}
-        {...props}
-      />
-    );
-  }
-
-  return WrappedComponent;
+  return store;
 }
 
-export default store;
+export function withDispatchLog(Component) {
+  function WrapperComponent(props) {
+    const [timestamp, setTimestamp] = useState(new Date());
+    const { dispatch: originalDispatch, ...rest } = props;
+    const resultProps = rest;
+
+    if (originalDispatch) {
+      rest.dispatch = action => {
+        const now = new Date();
+        console.log(action, (now - timestamp) / 1000);
+        setTimestamp(now);
+
+        originalDispatch(action);
+      };
+    }
+
+    return <Component {...resultProps} />;
+  }
+
+  return WrapperComponent;
+}
+
+export function connect(mapStateToProps, mapDispatchToProps) {
+  function HOC(Component) {
+    function WrapperComponent(props) {
+      const { dispatch, ...state } = useStore();
+
+      const storeProps = mapStateToProps(state);
+      const dispatchProps = mapDispatchToProps(dispatch);
+
+      return <Component {...props} {...storeProps} {...dispatchProps} dispatch={dispatch} />;
+    }
+
+    return WrapperComponent;
+  }
+
+  return HOC;
+}
+
+export default StoreProvider;

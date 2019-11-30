@@ -1,25 +1,37 @@
 import axios from 'axios';
 
-export function getPokemons() {
-  return axios.get('/api/v1/pokemons').then(result => result.data);
+const meUserId = 1;
+
+export async function fetchAllPokemons() {
+  const { data } = await axios.get('/api/v1/pokemons');
+
+  return data;
 }
 
-export function getTrainerPokemons(trainerId) {
-  return axios
-    .get(`/api/v1/trainers/${trainerId}/pokemons`)
-    .then(result => result.data);
+export async function fetchMe() {
+  const { data } = await axios.get(`/api/v1/trainers/${meUserId}`);
+
+  return data;
 }
 
-export function addTrainerPokemon(trainerId, pokemonId) {
-  return axios
-    .post(`/api/v1/trainers/${trainerId}/pokemons`, {
-      pid: pokemonId,
-    })
-    .then(result => result.data);
+export async function fetchTrainerPokemons() {
+  const { data } = await axios.get(`/api/v1/trainers/${meUserId}/pokemons`);
+
+  return data;
 }
 
-export function removeTrainerPokemon(trainerId, pokemonId) {
-  return axios
-    .delete(`/api/v1/trainers/${trainerId}/pokemons/${pokemonId}`)
-    .then(result => result.data);
+export async function addTrainerPokemon(trainerId, pokemonId) {
+  const { data } = await axios.post(`/api/v1/trainers/${meUserId}/pokemons`, { pid: pokemonId });
+
+  return data;
+}
+
+export async function removeTrainerPokemon(trainerId, pokemonId) {
+  const { data } = await axios.delete(`/api/v1/trainers/${meUserId}/pokemons/${pokemonId}`);
+
+  return data;
+}
+
+export async function updateMe(data) {
+  return axios.put(`/api/v1/trainers/${meUserId}`, data);
 }

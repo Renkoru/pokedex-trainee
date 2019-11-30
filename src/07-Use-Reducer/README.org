@@ -1,4 +1,7 @@
-*06-Context* 
+*07-Use-Reducer* 
 
 * Stage 1
-1. 
+1. Tell about *Container/Presenter* pattern
+2. Implement *dispatch log HOC* on *Pokedex* component
+3. Add timestamp to the log message
+4. Implement *connect* HOC
