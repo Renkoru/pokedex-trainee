@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>React - 1</title>
+    <title>React - 2</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="shower/themes/ribbon/styles/styles.css">
@@ -46,9 +46,52 @@
           The data flows down. From parent to child
         </li>
         <li class="next">
-          If you can use <i>'functional'</i> components use them istead of class components (check hooks).
+          Prefere <b>'functional'</b> components instead of 'class' components.
+        </li>
+        <li class="next">
+          Investigate Hooks in React docs, they are great!
         </li>
       </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Render Props</h2>
+      <div style="font-size: 22px">
+        <p>
+          The term <i>“render prop”</i> refers to a technique for
+          sharing code between React components using a prop whose value
+          is a function.
+        </p>
+        <p>
+          A component with a render prop takes a function that returns a
+          React element and calls it instead of implementing its own
+          render logic.
+        </p>
+      </div>
+      <pre style="font-size: 14px">
+        <code>&lt;Loading render={() =&gt; (</code>
+        <code>    &lt;Child1 /&gt;</code>
+        <code>    &lt;Child2 /&gt;</code>
+        <code>    ...</code>
+        <code>  )}</code>
+        <code>/&gt;</code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <h2>Portals</h2>
+      <p>
+        Portals provide a first-class way to render children into a DOM node
+        that exists outside the DOM hierarchy of the parent component.
+      </p>
+      <pre style="font-size: 20px">
+        <code>function Component() {</code>
+        <code>  return ReactDOM.createPortal(</code>
+        <code>    this.props.children,</code>
+        <code>    domNode</code>
+        <code>  );</code>
+        <code>}</code>
+      </pre>
     </section>
 
     <section class="slide">
@@ -129,22 +172,6 @@
     </section>
 
     <section class="slide">
-      <h2>Hooks</h2>
-      <ul style="font-size: 18px">
-        <li>useState</li>
-        <li>useEffect</li>
-        <li>useContext</li>
-        <li>useReducer</li>
-        <li>useCallback</li>
-        <li>useMemo</li>
-        <li>useRef</li>
-        <li>useImperativeHandle</li>
-        <li>useLayoutEffect</li>
-        <li>useDebugValue</li>
-      </ul>
-    </section>
-
-    <section class="slide">
       <h2>Other / Error Boundaries</h2>
       <p>
         Error boundaries are React components that catch JavaScript errors
@@ -156,22 +183,6 @@
         either (or both) of the lifecycle methods static
         <b>getDerivedStateFromError()</b> or <b>componentDidCatch()</b>
       </p>
-    </section>
-
-    <section class="slide">
-      <h2>Other / Portals</h2>
-      <p>
-        Portals provide a first-class way to render children into a DOM node
-        that exists outside the DOM hierarchy of the parent component.
-      </p>
-      <pre style="font-size: 20px">
-        <code>render() {</code>
-        <code>  return ReactDOM.createPortal(</code>
-        <code>    this.props.children,</code>
-        <code>    domNode</code>
-        <code>  );</code>
-        <code>}</code>
-      </pre>
     </section>
 
     <section class="slide">

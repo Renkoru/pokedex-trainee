@@ -7,6 +7,7 @@ function Loading({ dataList, children }) {
     return <div>Loading...</div>;
   }
 
+  // return <div>{render()}</div>;
   return <div>{children()}</div>;
 }
 
