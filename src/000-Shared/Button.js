@@ -20,11 +20,14 @@ const colorMap = {
   light: 'is-light',
 };
 
-function Button({ children, as, type, size, ...rest }) {
+function Button({ className, children, as, type, size, ...rest }) {
   const DomContainer = as;
 
   return (
-    <DomContainer className={classNames('button', sizeMap[size], colorMap[type])} {...rest}>
+    <DomContainer
+      className={classNames('button', className, sizeMap[size], colorMap[type])}
+      {...rest}
+    >
       {children}
     </DomContainer>
   );

@@ -1,24 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { fetchMe } from 'Services/api';
 import Section from 'Shared/layout/Section';
 
 import Notifications from './Notifications';
 import Forest from '../scenes/Forest';
 import Trainer from '../scenes/Trainer';
 import Navigation from './Navigation';
+import { useStoreData } from './hooks';
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      const data = await fetchMe();
-      setUser(data);
-    }
-    fetchData();
-  }, []);
+  useStoreData();
 
   return (
     <div>
@@ -29,7 +21,7 @@ function App() {
       <Section>
         <Switch>
           <Route path="/forest">
-            <Forest user={user} />
+            <Forest />
           </Route>
           <Route path="/trainer">
             <Trainer />

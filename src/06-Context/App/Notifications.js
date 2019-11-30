@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NotificationList from 'Components/NotificationList';
+import NotificationList from 'Shared/NotificationList';
 import { useStore } from '../store';
 
 function Notifications() {

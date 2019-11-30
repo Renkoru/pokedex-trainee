@@ -26,6 +26,12 @@ export async function addTrainerPokemon(trainerId, pokemonId) {
   return data;
 }
 
+export async function removeTrainerPokemon(trainerId, pokemonId) {
+  const { data } = await axios.delete(`/api/v1/trainers/${meUserId}/pokemons/${pokemonId}`);
+
+  return data;
+}
+
 export async function updateMe(data) {
   return axios.put(`/api/v1/trainers/${meUserId}`, data);
 }

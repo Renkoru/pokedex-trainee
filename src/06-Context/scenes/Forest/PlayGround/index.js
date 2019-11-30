@@ -2,21 +2,27 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import { isCaught } from 'Services/pokemon';
+import { addTrainerPokemon as addTrainerPokemonAPI } from 'Services/api';
+import Button from 'Shared/Button';
+
 import Pokemon from './Pokemon';
 import Catch from './Catch';
 import { useStore } from '../../../store';
 
-function PlayGround({ onCatch, pokemon }) {
-  const { addNotification } = useStore();
+function PlayGround({ onCatch, pokemon, onSkip }) {
+  const { addNotification, addTrainerPokemon, user } = useStore();
 
-  function _onCatch() {
+  async function _onCatch() {
     let notification;
     if (isCaught()) {
+      const caughtPokemon = await addTrainerPokemonAPI(user.id, pokemon.pid);
+      addTrainerPokemon(caughtPokemon);
+
       notification = {
-        type: 'warning',
+        type: 'success',
         message: (
           <span>
-            Pokemon <b>{pokemon.name}</b> caught! (Implementation required)
+            Pokemon <b>{caughtPokemon.name}</b> caught!
           </span>
         ),
       };
@@ -39,11 +45,18 @@ function PlayGround({ onCatch, pokemon }) {
   return (
     <Container>
       <Catch onClick={_onCatch} />
-      <Pokemon
-        pid={pokemon.pid}
-        imageUrl={pokemon.imageUrl}
-        css={{ marginLeft: 'auto', alignSelf: 'flex-end' }}
-      />
+      <div
+        css={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginLeft: 'auto' }}
+      >
+        <Pokemon
+          pid={pokemon.pid}
+          imageUrl={pokemon.imageUrl}
+          css={{ marginLeft: 'auto', alignSelf: 'flex-end' }}
+        />
+        <Button css={{ fontSize: '14px', width: '100px', marginTop: 'auto' }} onClick={onSkip}>
+          Skip
+        </Button>
+      </div>
     </Container>
   );
 }

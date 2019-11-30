@@ -1,15 +1,13 @@
 import React from 'react';
 
 import PokemonList from 'Shared/PokemonList';
-
 import { useStore } from '../../store';
 
-function Bag({ className }) {
+function TrainersBag() {
   const { bagPokemonList } = useStore();
 
   return (
     <PokemonList
-      className={className}
       title={`Pokemons in my Bag (${bagPokemonList.length}):`}
       emptyMessage="No pokemons in my bag"
       pokemonList={bagPokemonList}
@@ -17,4 +15,4 @@ function Bag({ className }) {
   );
 }
 
-export default Bag;
+export default TrainersBag;

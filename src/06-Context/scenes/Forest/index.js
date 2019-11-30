@@ -4,18 +4,16 @@ import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 
 import Loading from 'Shared/Loading';
-import { fetchAllPokemons } from 'Services/api';
 
-import PokemonList from 'Components/PokemonList';
 import { useStore } from '../../store';
 import Header from './Header';
 import Tree from './Tree';
 import PlayGround from './PlayGround';
+import TrainersBag from './TrainersBag';
 
 function Forest() {
   const [forestPokemon, setForestPokemon] = useState(null);
-  const [pokemonList, setPokemonList] = useState(null);
-  const { bagPokemonList } = useStore();
+  const { pokemonList } = useStore();
 
   function selectRandomPokemon(pokemons) {
     const randomIndex = random(0, pokemons.length);
@@ -23,14 +21,10 @@ function Forest() {
   }
 
   useEffect(() => {
-    async function fetchData() {
-      const list = await fetchAllPokemons();
-
-      setPokemonList(list);
-      selectRandomPokemon(list);
+    if (pokemonList) {
+      selectRandomPokemon(pokemonList);
     }
-    fetchData();
-  }, []);
+  }, [pokemonList]);
 
   function onCatch() {
     selectRandomPokemon(pokemonList);
@@ -44,15 +38,11 @@ function Forest() {
           <ForestContainer>
             <Tree />
 
-            <PlayGround pokemon={forestPokemon} onCatch={onCatch} />
+            <PlayGround pokemon={forestPokemon} onCatch={onCatch} onSkip={onCatch} />
 
             <Tree />
           </ForestContainer>
-          <PokemonList
-            title={`Pokemons in my Bag (${bagPokemonList.length}):`}
-            emptyMessage="No pokemons in my bag"
-            pokemonList={bagPokemonList}
-          />
+          <TrainersBag />
         </>
       )}
     </Loading>

@@ -1,20 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const Image = ({ src }) => (
-  <figure
-    className="image is-128x128"
-    style={{
-      backgroundImage: `url(${src})`,
-      backgroundRepeat: 'no-repeat',
-    }}
-  >
-    {/* <img src={src} /> */}
-  </figure>
-);
+function Image({ src, className, onClick }) {
+  return <img className={className} alt="Asdfs" src={src} onClick={onClick} />;
+}
 
-Image.propTypes = {
-  children: PropTypes.node,
-};
+// const Image = ({ src }) => (
+//   <figure
+//     className="image is-square"
+//     style={{
+//       backgroundImage: `url(${src})`,
+//       backgroundRepeat: 'no-repeat',
+//     }}
+//   >
+//     {/* <img src={src} /> */}
+//   </figure>
+// );
 
 export default Image;

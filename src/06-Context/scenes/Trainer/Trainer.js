@@ -2,13 +2,27 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
 import Button from 'Shared/Button';
+import { updateMe } from 'Services/api';
+
+import { useStore } from '../../store';
 import EditTrainer from './EditTrainer';
 
-function Trianer({ className, name, imageUrl, onTrainerUpdate }) {
+function Trianer({ className }) {
   const [isEditMode, setEditMode] = useState(false);
+  const { user, setUser } = useStore();
+  const { name, imageUrl } = user;
+
+  async function onTrainerUpdate(data) {
+    await updateMe(data);
+    setUser(data);
+  }
 
   function onToggleEdit() {
     setEditMode(value => !value);
+  }
+
+  if (!user) {
+    return <div>Loading...</div>;
   }
 
   return (

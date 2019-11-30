@@ -27,7 +27,7 @@ function Notification({ children, type, onClose, delay }) {
       <div css={{ marginRight: '10px' }}>{children}</div>
 
       <Button type="light" size="small" onClick={onClose}>
-        Close
+        X
       </Button>
     </div>
   );
