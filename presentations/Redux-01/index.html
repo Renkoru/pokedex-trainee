@@ -10,6 +10,9 @@
      .shower {
        --slide-ratio: calc(16 / 9);
      }
+     .slide pre {
+       white-space: normal;
+     }
     </style>
   </head>
   <body class="shower list">
@@ -80,8 +83,8 @@
         Functions that returns you an object with <b>type</b> and <b>payload</b>
         are action creators
       </p>
-      <div class="language-js" style="display: flex; width: 90%; margin-left: 40px;">
-        <pre style="font-size: 20px">
+      <div style="display: flex; width: 90%; margin-left: 40px; ">
+        <pre class="language-js" style="font-size: 20px">
           <code>const <b>action</b> = {</code>
           <code>  type: 'ADD_POKEMON',</code>
           <code>  payload: { id: '009' },</code>
@@ -165,18 +168,12 @@
           <a href="https://github.com/reduxjs/react-redux" target="_blank">React-Redux</a>
         </li>
         <li>
-          <a href="https://github.com/redux-utilities/redux-actions" target="_blank">redux-actions</a>
-        </li>
-        <li>
           <a href="https://jestjs.io/" target="_blank">Jest</a>
         </li>
         <li>
           <a href="https://github.com/kentcdodds/react-testing-library" target="_blank">
             react-testing-library
           </a>
-        </li>
-        <li>
-          <a href="https://github.com/airbnb/enzyme" target="_blank">Enzyme</a>
         </li>
       </ul>
     </section>
