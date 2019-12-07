@@ -1,4 +1,11 @@
-*06-Context* 
+*08-HOC* 
 
-* Stage 1
-1. 
+1. Write tests for *actions*
+2. Write tests for *reducer*, 'add notification' action
+3. Write tests for *selectors*, 'getTrainerPokemons' selector
+4. Write tests for *NotificationList* component
+   - import { render, fireEvent } from 'test-utils';
+   - const { container } = render(...)
+   - 1. Renders correctly
+   - 2. auto onClose
+   - 3. onClose byClick

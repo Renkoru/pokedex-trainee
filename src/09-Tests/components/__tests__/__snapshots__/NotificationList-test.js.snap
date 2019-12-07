@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotificationList renders correctly 1`] = `
+<div
+  class="notification css-hogfir-Notification"
+>
+  <div
+    class="css-4n1t59-Notification"
+  >
+    Pokemon caught
+  </div>
+  <button
+    class="button is-small is-light"
+  >
+    X
+  </button>
+</div>
+`;

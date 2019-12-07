@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { initFontAwesomeLibrary } from './src/utils';
+// import { initFontAwesomeLibrary } from './src/utils';
+
+const notificationContainer = document.createElement('div');
+notificationContainer.id = 'notification';
+document.body.appendChild(notificationContainer);
 
 // initFontAwesomeLibrary();
 
