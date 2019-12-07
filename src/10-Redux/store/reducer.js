@@ -1,52 +1,67 @@
+import uuid from 'uuid/v4';
+
 import {
-  POCKET_REMOVE,
-  POCKET_ADD,
-  REMOVE_POKEMON,
-  SET_TRAINER_POKEMONS,
-  SET_ALL_POKEMONS,
+  BAG_ADD_POKEMON,
+  NOTIFICATION_ADD,
+  NOTIFICATION_REMOVE,
+  USER_SET,
+  POKEMONS_SET,
+  TRAINER_POKEMONS_SET,
+  TRAINER_POKEMONS_ADD,
+  TRAINER_POKEMONS_REMOVE,
 } from './actions';
 
-const defaultState = {
-  trainerPokemons: [],
-  allPokemons: [],
-  profile: {
-    id: 8,
-    name: 'Ash',
-  },
-  pocket: [],
-};
+export function getInitialState() {
+  return {
+    user: null,
+    pokemonList: null,
+    trainerPokemonList: null,
+    bagPokemonList: [],
+    notifications: [],
+  };
+}
 
-const trainerReducer = (state = defaultState, action) => {
-  const pid = action.payload;
+function reducer(previousState, recivedAction) {
+  const actionHandlerMap = {
+    [BAG_ADD_POKEMON]: (state, action) => ({
+      ...state,
+      bagPokemonList: [...state.bagPokemonList, action.payload],
+    }),
+    [NOTIFICATION_ADD]: (state, action) => ({
+      ...state,
+      notifications: [...state.notifications, { ...action.payload, id: uuid() }],
+    }),
+    [NOTIFICATION_REMOVE]: (state, action) => ({
+      ...state,
+      notifications: state.notifications.filter(({ id: listId }) => listId !== action.payload),
+    }),
+    [USER_SET]: (state, action) => ({
+      ...state,
+      user: action.payload,
+    }),
+    [POKEMONS_SET]: (state, action) => ({
+      ...state,
+      pokemonList: action.payload,
+    }),
+    [TRAINER_POKEMONS_SET]: (state, action) => ({
+      ...state,
+      trainerPokemonList: action.payload,
+    }),
+    [TRAINER_POKEMONS_ADD]: (state, action) => ({
+      ...state,
+      trainerPokemonList: [...state.trainerPokemonList, action.payload],
+    }),
+    [TRAINER_POKEMONS_REMOVE]: (state, action) => ({
+      ...state,
+      trainerPokemonList: state.trainerPokemonList.filter(
+        ({ id: listId }) => listId !== action.payload,
+      ),
+    }),
+  };
 
-  switch (action.type) {
-    case POCKET_ADD:
-      return { ...state, pocket: [...state.pocket, pid] };
-    case POCKET_REMOVE:
-      return {
-        ...state,
-        pocket: state.pocket.filter(id => id !== pid),
-      };
-    case REMOVE_POKEMON:
-      return {
-        ...state,
-        trainerPokemons: state.trainerPokemons.filter(
-          ({ id }) => id !== pid,
-        ),
-      };
-    case SET_TRAINER_POKEMONS:
-      return {
-        ...state,
-        trainerPokemons: action.payload,
-      };
-    case SET_ALL_POKEMONS:
-      return {
-        ...state,
-        allPokemons: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+  const handler = actionHandlerMap[recivedAction.type];
 
-export default trainerReducer;
+  return handler ? handler(previousState, recivedAction) : getInitialState();
+}
+
+export default reducer;

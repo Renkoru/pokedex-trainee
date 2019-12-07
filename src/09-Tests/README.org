@@ -1,4 +1,8 @@
-*08-HOC* 
+*09-Test* 
 
-* Stage 1
-1. Write tests for ...
+1. Use redux
+   - import { createStore } from 'redux';
+   - Fix all imports with connect
+2. Fix ReduxDevTools 
+   - const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+   - const store = createStore(reducer, /* preloadedState, */ composeEnhancers());

@@ -1,17 +1,26 @@
 import React from 'react';
+import styled from '@emotion/styled';
 
-import Container from 'Components/Container';
+import Trainer from './Trainer';
+import Pokedex from './Pokedex';
+import Bag from './Bag';
 
-import Profile from './Profile';
-import PokemonList from './PokemonList';
-
-function Trainer() {
+function TrainerScene() {
   return (
-    <Container>
-      <Profile />
-      <PokemonList />
-    </Container>
+    <TrainerContainer>
+      <Trainer />
+      <div>
+        <Pokedex css={{ marginLeft: '50px' }} />
+        <Bag css={{ marginTop: '50px', marginLeft: '50px' }} />
+      </div>
+    </TrainerContainer>
   );
 }
 
-export default Trainer;
+const TrainerContainer = styled('div')({
+  display: 'flex',
+  marginTop: '50px',
+  marginBottom: '50px',
+});
+
+export default TrainerScene;

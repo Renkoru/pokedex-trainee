@@ -1,8 +1,8 @@
-import React, { useState, useContext } from 'react';
-import { createStore } from 'redux';
+import { createStore, compose } from 'redux';
 
-import trainerReducer from './reducer';
+import reducer from './reducer';
 
-const rstore = createStore(trainerReducer);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducer, /* preloadedState, */ composeEnhancers());
 
-export default rstore;
+export default store;

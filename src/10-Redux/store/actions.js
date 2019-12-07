@@ -1,24 +1,63 @@
-export const POCKET_ADD = 'POCKET_ADDADD2';
-export function pocketAdd(id) {
-  return { type: POCKET_ADD, payload: id };
+export const BAG_ADD_POKEMON = 'BAG_ADD_POKEMON';
+export function bagAddPokemon(pokemon) {
+  return {
+    type: BAG_ADD_POKEMON,
+    payload: pokemon,
+  };
 }
 
-export const POCKET_REMOVE = 'POCKET_REMOVE_2';
-export function pocketRemove(id) {
-  return { type: POCKET_REMOVE, payload: id };
+export const NOTIFICATION_ADD = 'NOTIFICATION_ADD';
+export function notificationAdd(notification) {
+  return {
+    type: NOTIFICATION_ADD,
+    payload: notification,
+  };
 }
 
-export const REMOVE_POKEMON = 'REMOVE_POKEMON_2';
-export function removePokemon(id) {
-  return { type: REMOVE_POKEMON, payload: id };
+export const NOTIFICATION_REMOVE = 'NOTIFICATION_REMOVE';
+export function notificationRemove(id) {
+  return {
+    type: NOTIFICATION_REMOVE,
+    payload: id,
+  };
 }
 
-export const SET_TRAINER_POKEMONS = 'SET_TRAINER_POKEMONS_2';
-export function setTrainerPokemons(pokemons) {
-  return { type: SET_TRAINER_POKEMONS, payload: pokemons };
+export const USER_SET = 'USER_SET';
+export function userSet(user) {
+  return {
+    type: USER_SET,
+    payload: user,
+  };
 }
 
-export const SET_ALL_POKEMONS = 'SET_ALL_POKEMONS_2';
-export function setAllPokemons(pokemons) {
-  return { type: SET_ALL_POKEMONS, payload: pokemons };
+export const POKEMONS_SET = 'POKEMONS_SET';
+export function pokemonsSet(pokemonList) {
+  return {
+    type: POKEMONS_SET,
+    payload: pokemonList,
+  };
+}
+
+export const TRAINER_POKEMONS_SET = 'TRAINER_POKEMONS_SET';
+export function trainerPokemonsSet(pokemonList) {
+  return {
+    type: TRAINER_POKEMONS_SET,
+    payload: pokemonList,
+  };
+}
+
+export const TRAINER_POKEMONS_ADD = 'TRAINER_POKEMONS_ADD';
+export function trainerPokemonsAdd(pokemon) {
+  return {
+    type: TRAINER_POKEMONS_ADD,
+    payload: pokemon,
+  };
+}
+
+export const TRAINER_POKEMONS_REMOVE = 'TRAINER_POKEMONS_REMOVE';
+export function trainerPokemonsRemove(pokemon) {
+  return {
+    type: TRAINER_POKEMONS_REMOVE,
+    payload: pokemon,
+  };
 }
