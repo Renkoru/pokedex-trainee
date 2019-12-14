@@ -1,4 +1,13 @@
-*08-HOC* 
+*10-Redux* 
 
-* Stage 1
-1. Write tests for ...
+1. Immutability. Use *immer* package to refactor reducer. Run *tests* to verify
+   - /* eslint-disable no-param-reassign */
+2. Use *import { combineReducers } from 'redux';*
+   - main
+   - trainer
+3. Try to implement logger and counter middlewares *by yourself*
+4. Write a *loggerMiddleware* and *counterMiddleware* middleware
+   - import { applyMiddleware } from 'redux';
+   - update returned action meta in middleware
+5. Add async action *trainerAddPokemon*
+6. Implement *AsyncActions* middleware.

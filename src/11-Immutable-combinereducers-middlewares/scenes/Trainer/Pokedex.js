@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import PokemonList from 'Shared/PokemonList';
 
 import { removeTrainerPokemon as removeTrainerPokemonAPI } from 'Services/api';
-import { trainerPokemonsRemove, bagAddPokemon } from 'Store/actions';
-import { getTrainerPokemons, getBagPokemonList, getUser } from 'Store/selectors';
+import { trainerPokemonsRemove, bagAddPokemon } from 'Store/trainerActions';
+import { getTrainerPokemons } from 'Store/selectors';
 
 function Pokedex({
   className,
@@ -47,10 +47,14 @@ function Pokedex({
 }
 
 function mapStateToProps(state) {
+  const { user } = state.main;
+  const { bagPokemonList } = state.trainer;
+  const trainerPokemonList = getTrainerPokemons(state);
+
   return {
-    bagPokemonList: getBagPokemonList(state),
-    user: getUser(state),
-    trainerPokemonList: getTrainerPokemons(state),
+    bagPokemonList,
+    user,
+    trainerPokemonList,
   };
 }
 

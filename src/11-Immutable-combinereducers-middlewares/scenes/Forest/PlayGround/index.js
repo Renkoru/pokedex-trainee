@@ -3,37 +3,27 @@ import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 
 import { isCaught } from 'Services/pokemon';
-import { addTrainerPokemon as addTrainerPokemonAPI } from 'Services/api';
 import Button from 'Shared/Button';
-import { notificationAdd, trainerPokemonsAdd } from 'Store/actions';
-import { getUser } from 'Store/selectors';
+import { notificationAdd as notificationAddAction } from 'Store/actions';
+import { trainerAddPokemon as trainerAddPokemonAction } from 'Store/trainerActions';
 
 import Pokemon from './Pokemon';
 import Catch from './Catch';
 
-function PlayGround({ onCatch, pokemon, onSkip, user, trainerPokemonsAdd, notificationAdd }) {
+function PlayGround({ onCatch, pokemon, onSkip, user, trainerAddPokemon, notificationAdd }) {
   async function _onCatch() {
     let notification;
     if (isCaught()) {
-      const caughtPokemon = await addTrainerPokemonAPI(user.id, pokemon.pid);
-      trainerPokemonsAdd(caughtPokemon);
+      const caughtPokemon = await trainerAddPokemon(user.id, pokemon.pid);
 
       notification = {
         type: 'success',
-        message: (
-          <span>
-            Pokemon <b>{caughtPokemon.name}</b> caught!
-          </span>
-        ),
+        message: `Pokemon ${caughtPokemon.name} caught!`,
       };
     } else {
       notification = {
         type: 'danger',
-        message: (
-          <span>
-            Pokemon <b>{pokemon.name}</b> escaped!
-          </span>
-        ),
+        message: `Pokemon ${pokemon.name} escaped!`,
       };
     }
 
@@ -68,11 +58,11 @@ const Container = styled('div')({
 
 function mapStateToProps(state) {
   return {
-    user: getUser(state),
+    user: state.main.user,
   };
 }
 
 export default connect(
   mapStateToProps,
-  { notificationAdd, trainerPokemonsAdd },
+  { notificationAdd: notificationAddAction, trainerAddPokemon: trainerAddPokemonAction },
 )(PlayGround);

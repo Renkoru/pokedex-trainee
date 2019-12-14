@@ -5,7 +5,6 @@ import styled from '@emotion/styled';
 import Button from 'Shared/Button';
 import { updateMe } from 'Services/api';
 import { userSet } from 'Store/actions';
-import { getUser } from 'Store/selectors';
 
 import EditTrainer from './EditTrainer';
 
@@ -50,7 +49,7 @@ const TrainerContainer = styled('div')({
 
 function mapStateToProps(state) {
   return {
-    user: getUser(state),
+    user: state.main.user,
   };
 }
 

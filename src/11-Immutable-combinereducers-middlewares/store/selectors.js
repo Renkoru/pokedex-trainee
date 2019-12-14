@@ -1,5 +1,6 @@
 export function getTrainerPokemons(state) {
-  const { trainerPokemonList, pokemonList } = state;
+  const { trainerPokemonList } = state.trainer;
+  const { pokemonList } = state.main;
 
   if (!trainerPokemonList || !pokemonList) {
     return null;
@@ -10,16 +11,4 @@ export function getTrainerPokemons(state) {
 
     return { ...trainerPokemon, imageUrl: pokemon.imageUrl };
   });
-}
-
-export function getBagPokemonList(state) {
-  return state.bagPokemonList;
-}
-
-export function getUser(state) {
-  return state.user;
-}
-
-export function getPokemonList(state) {
-  return state.pokemonList;
 }

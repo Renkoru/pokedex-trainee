@@ -6,7 +6,6 @@ import styled from '@emotion/styled';
 
 import Loading from 'Shared/Loading';
 
-import { getPokemonList } from 'Store/selectors';
 import Header from './Header';
 import Tree from './Tree';
 import PlayGround from './PlayGround';
@@ -57,7 +56,7 @@ const ForestContainer = styled('div')({
 
 function mapStateToProps(state) {
   return {
-    pokemonList: getPokemonList(state),
+    pokemonList: state.main.pokemonList,
   };
 }
 

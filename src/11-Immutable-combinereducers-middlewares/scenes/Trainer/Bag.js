@@ -1,10 +1,9 @@
 import { connect } from 'react-redux';
 
 import PokemonList from 'Shared/PokemonList';
-import { getBagPokemonList } from 'Store/selectors';
 
 function mapStateToProps(state) {
-  const bagPokemonList = getBagPokemonList(state);
+  const { bagPokemonList } = state.trainer;
   return {
     title: `Pokemons in my Bag (${bagPokemonList.length}):`,
     emptyMessage: 'No pokemons in my bag',
