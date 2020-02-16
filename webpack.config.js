@@ -6,18 +6,18 @@ const lessons = [
   '02-JSX',
   '03-React-Components',
   '04-Routing',
-  '05-Forms',
-  '06-Fragments',
-  '07-Context',
+  '05-Portals-Fragments',
+  '06-Context',
+  '07-Use-Reducer',
   '08-HOC',
-  '09-Own-store',
+  '09-Tests',
   '10-Redux',
-  '11-Redux-Async',
-  '12-Redux-Thunk',
+  '11-Immutable-combinereducers-middlewares',
+
+  '13-Redux-thunk-old',
 ];
 
-const currentLesson = lessons[0];
-// const currentLesson = lessons[10];
+const currentLesson = lessons[10];
 
 module.exports = {
   mode: 'development',
@@ -62,6 +62,7 @@ module.exports = {
       Shared: path.resolve(__dirname, 'src/000-Shared/'),
       Components: path.resolve(__dirname, `src/${currentLesson}/components/`),
       Services: path.resolve(__dirname, `src/${currentLesson}/services/`),
+      Store: path.resolve(__dirname, `src/${currentLesson}/store/`),
     },
   },
 };
