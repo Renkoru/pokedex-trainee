@@ -1,4 +1,4 @@
-import { createElement } from './utils';
+import createElement from './utils';
 
 import Catch from './Catch';
 import Pokemon from './Pokemon';

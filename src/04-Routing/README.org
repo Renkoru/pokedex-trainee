@@ -1,6 +1,5 @@
 *04-Routing* 
 
-* Stage 1
 1. Implement *Loading* component with *Render-props* pattern
 2. Move most of *onCatch* from Forest to Playground component
 3. Implement *Notification* component about 'Catch!' action. Use Bulma class.

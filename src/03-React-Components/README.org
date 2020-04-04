@@ -1,6 +1,5 @@
 *03-React-Components* 
 
-* Stage 1
 1. Split on two scenes
    - *Trainer*
      1) Extract whole user from Forest container

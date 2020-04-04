@@ -1,6 +1,5 @@
 *02-JSX* 
 
-* Stage 1
 1. Customize 'Catch them All!' header. Apply *styles* different ways (inline-styles, SCSS, CSS-in-JS)
 2. Create *folder structure*
    - App

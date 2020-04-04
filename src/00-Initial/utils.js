@@ -1,4 +1,4 @@
-export const createElement = ({
+const createElement = ({
   el = 'div',
   html = '',
   className = null,
@@ -28,3 +28,5 @@ export const createElement = ({
 
   return element;
 };
+
+export default createElement;

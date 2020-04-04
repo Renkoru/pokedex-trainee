@@ -1,7 +1,5 @@
 Here will be React educational project.
 
-1. React Element
-2.
 * DONE CHANGES in slides
 CLOSED: [2019-11-17 Sun 03:04]
 - CLOSING NOTE [2019-11-17 Sun 03:04]

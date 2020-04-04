@@ -1,6 +1,5 @@
 *05-Portals-Fragments* 
 
-* Stage 1
 1. Add *context* to main index.js. No store changes
 2. Apply store for bagPokemonList
 3. extract store into separate file
