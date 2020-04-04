@@ -36,6 +36,10 @@
     </section>
 
     <section class="slide">
+      <h2>But we will start from JS and DOM</h2>
+    </section>
+
+    <section class="slide">
       <h2>What is 'React'?</h2>
       <p>
         A JavaScript library for building user interfaces. <br/>
@@ -112,6 +116,11 @@
           you can’t change its children or attributes.
           An element is like a single frame in a movie: it represents the UI at a certain point in time.
         </li>
+
+        <div class="next">
+          <img style="width: 190px; position: absolute; top:0px;left:450px" src="pictures/Gastly.png" alt="Legacy" />
+        </div>
+
         <li class="next">
           React Only Updates What’s Necessary
         </li>
@@ -172,7 +181,7 @@
     </section>
 
     <section class="slide">
-      <h2>Class Components</h2>
+      <h2>Class Components (Legacy)</h2>
       <pre style="font-size: 20px">
         <code>class Garden extends React.Component {</code>
         <code>  render () {</code>
@@ -185,6 +194,10 @@
         <code>  };</code>
         <code>}</code>
       </pre>
+
+      <div class="next">
+        <img style="width: 35vh; position: absolute; bottom:200px;right:100px" src="pictures/Snorlax.png" alt="Legacy" />
+      </div>
     </section>
 
     <section class="slide">
@@ -235,6 +248,10 @@
           Use state to store internal component state. Change state by <b>setState</b> method.
         </li>
       </ul>
+
+      <div class="next">
+        <img style="width: 230px; position: absolute; bottom:50px;right:10px" src="pictures/Kakuna.png" alt="Legacy" />
+      </div>
     </section>
 
     <section class="slide">
@@ -276,6 +293,10 @@
           A component may choose to pass its state down as props to its child components.
         </li>
       </ul>
+
+      <div class="next">
+        <img style="width: 240px; position: absolute; bottom:0px;right:10px" src="pictures/Grimer.png" alt="Legacy" />
+      </div>
     </section>
 
     <section class="slide">
@@ -335,121 +356,6 @@
     </section>
 
     <section class="slide">
-      <h2>Lists and Keys</h2>
-      <ul>
-        <li>
-          A “key” is a special string attribute you need to include when creating lists of elements
-        </li>
-        <li class="next">
-          Keys help React identify which items have changed, are added, or are removed
-        </li>
-        <li class="next">
-          Keys should be given to the elements inside the array to give the elements a stable identity
-        </li>
-        <li class="next">
-          The best way to pick a key is to use a string that uniquely identifies a list item among its
-          siblings
-        </li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2>Forms</h2>
-      <ul>
-        <li>
-          HTML form elements work a little bit differently from other DOM elements in React,
-          because form elements naturally keep some internal state.
-        </li>
-        <li class="next">
-          This form has the default HTML form behavior of browsing to a new page when the user submits
-          the form. If you want this behavior in React, it just works.
-        </li>
-        <li class="next">
-          But in most cases, it’s convenient to have a JavaScript
-          function that handles the submission of the form and has
-          access to the data that the user entered into the form.
-        </li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2>Forms / Controlled Components</h2>
-      <ul style="font-size: 22px;">
-        <li>
-          In HTML, form elements such as &lt;input&gt;, &lt;textarea&gt;, and &lt;select&gt;
-          typically maintain their own state and update it based
-          on user input.
-        </li>
-        <li class="next">
-          In React, mutable state is typically kept in the state property of components,
-          and only updated with setState().
-        </li>
-        <li class="next">
-          We can combine the two by making the React state be the “single source of truth”.
-        </li>
-        <li class="next">
-          Then the React component that renders a form also controls what
-          happens in that form on subsequent user input.
-        </li>
-        <li class="next">
-          An input form element whose value is controlled by React in
-          this way is called a “controlled component”.
-        </li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2>Forms / Uncontrolled components</h2>
-      <p>
-        In most cases, we recommend using controlled components to
-        implement forms. In a controlled component, form data is
-        handled by a React component. The alternative is uncontrolled
-        components, where form data is handled by the DOM itself.
-      </p>
-      <pre>
-        <code>this.input = React.createRef();</code>
-        <code>...</code>
-        <code>&lt;input type="text" ref={this.input} /&gt;</code>
-      </pre>
-    </section>
-
-    <section class="slide">
-      <h2>Lifting State Up</h2>
-      <ul>
-        <li>
-          Often, several components need to reflect the same changing data.
-        </li>
-        <li class="next">
-          In React, sharing state is accomplished by moving it up to the closest common ancestor
-          of the components that need it.
-        </li>
-        <li class="next">
-          This is called “lifting state up”.
-        </li>
-        <li class="next">
-          There should be a single “source of truth” for any data that changes in a React application.
-        </li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2>Lifting State Up / Example</h2>
-      <pre style="font-size: 18px">
-        <code>&lt;ParentComponent&gt; // Shared data stored here</code>
-        <code>  ...</code>
-        <code>   &lt;Child1&gt;</code>
-        <code>     // Using shared data from props</code>
-        <code>   &lt;/Child1&gt;</code>
-        <code>  ...</code>
-        <code>   &lt;Child2&gt;</code>
-        <code>     // Using shared data from props</code>
-        <code>   &lt;/Child2&gt;</code>
-        <code>  ...</code>
-        <code>&lt;/ParentComponent&gt;</code>
-      </pre>
-    </section>
-
-    <section class="slide">
       <h2>React Router / Primary components</h2>
       <div style="font-size: 22px" class="columns two">
         <div>
@@ -478,6 +384,10 @@
             </ul>
           </div>
         </div>
+      </div>
+
+      <div class="next">
+        <img style="width: 25vh; position: absolute; bottom:50px;right:100px" src="pictures/Starmie.png" alt="Legacy" />
       </div>
     </section>
 
@@ -525,6 +435,10 @@
           <a target="_blank" href="https://github.com/JedWatson/classnames">ClassNames</a>
         </li>
       </ul>
+
+      <div class="next">
+        <img style="width: 45vh; position: absolute; bottom:50px;right:100px" src="pictures/Psyduck.png" alt="Legacy" />
+      </div>
     </section>
 
     <!-- section.slide>(h2>{Title})+p -->

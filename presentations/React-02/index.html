@@ -55,6 +55,121 @@
     </section>
 
     <section class="slide">
+      <h2>Lists and Keys</h2>
+      <ul>
+        <li>
+          A “key” is a special string attribute you need to include when creating lists of elements
+        </li>
+        <li class="next">
+          Keys help React identify which items have changed, are added, or are removed
+        </li>
+        <li class="next">
+          Keys should be given to the elements inside the array to give the elements a stable identity
+        </li>
+        <li class="next">
+          The best way to pick a key is to use a string that uniquely identifies a list item among its
+          siblings
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Forms</h2>
+      <ul>
+        <li>
+          HTML form elements work a little bit differently from other DOM elements in React,
+          because form elements naturally keep some internal state.
+        </li>
+        <li class="next">
+          This form has the default HTML form behavior of browsing to a new page when the user submits
+          the form. If you want this behavior in React, it just works.
+        </li>
+        <li class="next">
+          But in most cases, it’s convenient to have a JavaScript
+          function that handles the submission of the form and has
+          access to the data that the user entered into the form.
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Forms / Controlled Components</h2>
+      <ul style="font-size: 22px;">
+        <li>
+          In HTML, form elements such as &lt;input&gt;, &lt;textarea&gt;, and &lt;select&gt;
+          typically maintain their own state and update it based
+          on user input.
+        </li>
+        <li class="next">
+          In React, mutable state is typically kept in the state property of components,
+          and only updated with setState().
+        </li>
+        <li class="next">
+          We can combine the two by making the React state be the “single source of truth”.
+        </li>
+        <li class="next">
+          Then the React component that renders a form also controls what
+          happens in that form on subsequent user input.
+        </li>
+        <li class="next">
+          An input form element whose value is controlled by React in
+          this way is called a “controlled component”.
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Forms / Uncontrolled components</h2>
+      <p>
+        In most cases, we recommend using controlled components to
+        implement forms. In a controlled component, form data is
+        handled by a React component. The alternative is uncontrolled
+        components, where form data is handled by the DOM itself.
+      </p>
+      <pre>
+        <code>this.input = React.createRef();</code>
+        <code>...</code>
+        <code>&lt;input type="text" ref={this.input} /&gt;</code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <h2>Lifting State Up</h2>
+      <ul>
+        <li>
+          Often, several components need to reflect the same changing data.
+        </li>
+        <li class="next">
+          In React, sharing state is accomplished by moving it up to the closest common ancestor
+          of the components that need it.
+        </li>
+        <li class="next">
+          This is called “lifting state up”.
+        </li>
+        <li class="next">
+          There should be a single “source of truth” for any data that changes in a React application.
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Lifting State Up / Example</h2>
+      <pre style="font-size: 18px">
+        <code>&lt;ParentComponent&gt; // Shared data stored here</code>
+        <code>  ...</code>
+        <code>   &lt;Child1&gt;</code>
+        <code>     // Using shared data from props</code>
+        <code>   &lt;/Child1&gt;</code>
+        <code>  ...</code>
+        <code>   &lt;Child2&gt;</code>
+        <code>     // Using shared data from props</code>
+        <code>   &lt;/Child2&gt;</code>
+        <code>  ...</code>
+        <code>&lt;/ParentComponent&gt;</code>
+      </pre>
+    </section>
+
+    <section class="slide">
       <h2>Render Props</h2>
       <div style="font-size: 22px">
         <p>
