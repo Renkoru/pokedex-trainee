@@ -41,3 +41,40 @@ CLOSED: [2019-11-17 Sun 03:04]
 ** React
 - [[https://www.youtube.com/watch?v=V-QO-KO90iQ][Great demo about hooks]]
 - [[http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/][Lifecycle diagram]]
+* Lecture plans
+** React 1
+1. Show a presentation "Lecture: Основы рендеринга web страниц в браузере"
+   (https://docs.google.com/presentation/d/1K9_ZLouwSbtU2yQezQKkzC0oWLF-h0MdfJqlzjfG1wQ/edit#slide=id.g1121d2f5a7_0_27)
+   in a fast tempo, slides:
+   - 3 *DOM tree*
+   - 4 *DOM + CSSOM*
+   - 15 *HTML document structure*
+   - 17 *HTML markup. Tags*
+   - 18 *HTML markup. Attributes*
+     
+   *React components (JSX) are the same as tags and their attributes.*
+2. Get ~index.html~ file with no ~bundle.js~ yet. Show that there is nothing there.
+   1) h3, h2, h1 tag. Browser decides how to show an element by himself
+      "Holy crab! What a creature!"
+   2) Add an image tag with some source. Play with it attributes, show how they affect the view.
+      src, title, width
+   3) Add an 'onclick' function to the image
+3. Add ~simple.js~ into the ~index.html~ and move all tags generation there.
+   1) Generate a button component with some action
+   2) After an action change attribute value of one of DOM elements. It is a power
+      of JS to change a lot of things on a page.
+4. *00-Initial* Include ~bundle.js~ into ~index.html~.
+   1) Show how all elements were rendered with JS
+   2) Inspect the code, show the JS
+5. *01-React-Elements*
+6. *02-JSX*
+7. *03-React-Components*
+   - useState
+   - useEffect
+   - axios
+8. *04-Routing*
+** React 2
+1. *05-Portals-Fragments*
+    - Portals
+    - Fragments
+    - customHooks

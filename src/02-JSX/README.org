@@ -1,28 +1,43 @@
 *02-JSX* 
 
 1. Customize 'Catch them All!' header. Apply *styles* different ways (inline-styles, SCSS, CSS-in-JS)
-2. Create *folder structure*
-   - App
-   - components
-   - scenes
-   - services
-3. Copy *Pokemon* service from *03-React-Components* state
-4. Create simple 'Forest' *scene* component.
-5. Describe what is the *'component'* and how to define it. Functional components / Class components
-6. Add simple components:
+2. Create simple 'Forest' *scene* component.
+3. Describe what is the *'component'* and how to define it. Functional components / Class components
+4. Add simple components:
    - Title
-   - Button (to fetch pokemons)
-7. On button click, add *axios* request to get list of pokemons
+   - Button (to fetch pokemons).
+     - On hover font shound became bold
+     - There should be a size attribute
+5. *!Ask students* to implement their own *Button* component
+   1) with *type* support (info, danger, ...) from Bulma.
+   2) Add three buttons on a page with different types.
+   3) On click it should alert their type
+6. On button click, add *axios* request to get list of pokemons
    1) Print them
-   2) Store them
-8. Refactor to use ~useEffect~
+   2) Store them, ~useState~
+7. Refactor to use ~useEffect~
+8. use getFileNameById and random to change pokemons;
+   - lodash/fp/random
+   - import {getFileNameById} from 'Shared/services/pokemon';
 9. Move API requiest to a separate api.js file
 10. Add axios request to get current user (user with id 1, '/api/v1/trainers/1') 
     and add 'Trainer' component
-11. Add axios post request to add pokemon to trainer
-12. Add *EditTrainer* component
+11. Make trainers bag. Use new state to catch and store pokemons
+12. *!Ask students* to use ~useState~ hook with counter. Implement four buttons:
+    1) Increase counter by 1
+    2) Decrease counter by 1
+    3) Reset to default state (0)
+    4) Super increase: increase by 1 and multiply by 2
+13. Create *folder structure*
+    - App
+    - components
+    - scenes
+    - services
+14. Add axios post request to add pokemon to trainer
+15. Add *EditTrainer* component
     - `/images/trainers/${getFileNameById(data.imageNumber)}.gif`
     - return axios.put(`/api/v1/trainers/${meUserId}`, data);
+    - 
 
 * TODO:
 1. Split functions into files
