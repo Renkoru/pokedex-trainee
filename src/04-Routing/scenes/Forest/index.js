@@ -4,18 +4,16 @@ import path from 'lodash/fp/path';
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 
-import { isCaught } from 'Services/pokemon';
-import { fetchAllPokemons } from 'Services/api';
-
-import Loading from 'Shared/Loading';
+import { isCaught } from 'Shared/services/pokemon';
+import { fetchAllPokemons } from 'Shared/services/api';
+import PlayGround from 'Shared/PlayGround';
+import Tree from 'Shared/Tree';
 
 import Header from './Header';
-import Tree from './Tree';
-import PlayGround from './PlayGround';
 
 function Forest() {
   const [forestPokemon, setForestPokemon] = useState(null);
-  const [pokemonList, setPokemonList] = useState(null);
+  const [pokemonList, setPokemonList] = useState(null); // TODO: Lifting state up
 
   function selectRandomPokemon(pokemons) {
     const randomIndex = random(0, pokemons.length);
@@ -40,8 +38,12 @@ function Forest() {
     selectRandomPokemon(pokemonList);
   }
 
+  if (!pokemonList || !forestPokemon) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <Loading dataList={[pokemonList, forestPokemon]}>
+    <div>
       <Header>
         Here are &nbsp;
         {path('length')(pokemonList)}
@@ -56,7 +58,7 @@ function Forest() {
 
         <Tree />
       </ForestContainer>
-    </Loading>
+    </div>
   );
 }
 

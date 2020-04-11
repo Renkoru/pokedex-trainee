@@ -1,38 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 
-import { fetchMe, fetchTrainerPokemons, updateMe } from 'Services/api';
+import {
+  fetchAllPokemons,
+  fetchMe,
+  fetchTrainerPokemons,
+} from 'Shared/services/api';
+
+import { updateTrainerPokemons } from 'Shared/services/pokemon';
+import Pokedex from 'Shared/Pokedex';
 
 import Trainer from './Trainer';
-import Pokedex from './Pokedex';
 
 function TrainerScene() {
   const [user, setUser] = useState(null);
   const [trainerPokemonList, setTrainerPokemonList] = useState(null);
+  const [pokemonList, setPokemonList] = useState(null); // TODO: Lifting state up
 
   useEffect(() => {
     async function fetchData() {
+      const list = await fetchAllPokemons();
       const userData = await fetchMe();
       const trainersList = await fetchTrainerPokemons();
 
+      setPokemonList(list);
       setUser(userData);
-      setTrainerPokemonList(trainersList);
+      setTrainerPokemonList(
+        updateTrainerPokemons({
+          trainerPokemonList: trainersList,
+          pokemonList: list,
+        }),
+      );
     }
     fetchData();
   }, []);
 
-  async function onTrainerUpdate(data) {
-    await updateMe(data);
-    setUser(prevState => ({ ...prevState, ...data }));
-  }
-
-  if (!user || !trainerPokemonList) {
+  if (!user || !trainerPokemonList || !pokemonList) {
     return <div>Loading...</div>;
   }
 
   return (
     <TrainerContainer>
-      <Trainer name={user.name} imageUrl={user.imageUrl} onTrainerUpdate={onTrainerUpdate} />
+      <Trainer name={user.name} imageUrl={user.imageUrl} />
       <Pokedex css={{ marginLeft: '50px' }} pokemonList={trainerPokemonList} />
     </TrainerContainer>
   );

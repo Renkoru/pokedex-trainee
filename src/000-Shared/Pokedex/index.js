@@ -2,7 +2,9 @@ import isEmpty from 'lodash/fp/isEmpty';
 
 import React from 'react';
 import styled from '@emotion/styled';
-import capitalize from 'lodash/fp/capitalize';
+
+import PokemonList from './PokemonList';
+import PokedexImg from './PokedexImg';
 
 function Pokedex({ pokemonList, className }) {
   const amount = pokemonList.length;
@@ -11,11 +13,15 @@ function Pokedex({ pokemonList, className }) {
     <Container className={className}>
       <Header>Pokemons in my Pokedex ({amount}):</Header>
 
-      <ListContainer>
-        {pokemonList.map(({ name, id }, index) => (
-          <Pokemon key={`${id}-${index}`}>{capitalize(name)}</Pokemon>
-        ))}
-      </ListContainer>
+      <Flex>
+        <PokemonList
+          emptyMessage="No pokemons caught"
+          pokemonList={pokemonList}
+          onPokemonClick={() => {}}
+          onRemove={() => {}}
+        />
+        <PokedexImg />
+      </Flex>
     </Container>
   );
 }
@@ -23,10 +29,18 @@ function Pokedex({ pokemonList, className }) {
 function PokedexContainer({ pokemonList, className }) {
   return (
     <div className={className}>
-      {isEmpty(pokemonList) ? <div>No pokemons caught</div> : <Pokedex pokemonList={pokemonList} />}
+      {isEmpty(pokemonList) ? (
+        <div>No pokemons caught</div>
+      ) : (
+        <Pokedex pokemonList={pokemonList} />
+      )}
     </div>
   );
 }
+
+const Flex = styled('div')({
+  display: 'flex',
+});
 
 const Container = styled('div')({
   fontSize: '18px',
@@ -36,20 +50,8 @@ const Container = styled('div')({
   borderRadius: '10px',
 });
 
-const Pokemon = styled('div')({
-  fontSize: '20px',
-  marginLeft: '10px',
-  marginRight: '10px',
-});
-
 const Header = styled('h2')({
   fontSize: '18px',
-});
-
-const ListContainer = styled('div')({
-  fontSize: '18px',
-  display: 'flex',
-  flexWrap: 'wrap',
 });
 
 export default PokedexContainer;

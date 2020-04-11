@@ -16,3 +16,11 @@ export function isCaught() {
   return result > 4;
   // return result > 1;
 }
+
+export function updateTrainerPokemons({ trainerPokemonList, pokemonList }) {
+  return trainerPokemonList.map(trainerPokemon => {
+    const pokemon = pokemonList.find(({ pid }) => pid === trainerPokemon.pid);
+
+    return { ...trainerPokemon, imageUrl: pokemon.imageUrl };
+  });
+}

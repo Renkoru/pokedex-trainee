@@ -17,7 +17,6 @@
    - *Forest*
 
 * TODO:
-1. Split on three routes.
-   - Home
-   - Garden
-   - Trainer
+1. Remove Trainer form component, it would be implemented and used later
+2. Use Tree component from shared components
+     
