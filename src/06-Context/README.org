@@ -1,6 +1,5 @@
 *06-Context* 
 
-* Stage 1
 1. Describe problems of passing a lot of callback that changes global state
 2. Talk about *store, action(type, payload), dispatch, reducer* concept
 3. Create *reducer.js*, add action handler

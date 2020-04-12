@@ -72,9 +72,9 @@ CLOSED: [2019-11-17 Sun 03:04]
    - useState
    - useEffect
    - axios
-8. *04-Routing*
+   - Implement routing by yourself
+   - Use React Router components
+     
 ** React 2
-1. *05-Portals-Fragments*
-    - Portals
-    - Fragments
-    - customHooks
+1. *04-Routing*
+6. *05-Portals-Fragments*

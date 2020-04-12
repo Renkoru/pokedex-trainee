@@ -1,6 +1,6 @@
 import random from 'lodash/fp/random';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from '@emotion/styled';
 
 const Image = styled('div')(({ id }) => ({
@@ -13,7 +13,7 @@ const Image = styled('div')(({ id }) => ({
 }));
 
 function Tree() {
-  const treeId = random(0, 3);
+  const treeId = useMemo(() => random(0, 3), []);
   return <Image id={treeId} />;
 }
 

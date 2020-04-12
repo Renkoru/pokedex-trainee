@@ -1,12 +1,25 @@
 *04-Routing* 
 
-1. Implement *Loading* component with *Render-props* pattern
-2. Move most of *onCatch* from Forest to Playground component
-3. Implement *Notification* component about 'Catch!' action. Use Bulma class.
-4. Use *portals* ReactDOM.createPortal(<Component/>, DOMElement)
-   Notifications are not kept between routes
-5. Use *Fragments* in NotificationList
-6. Extract custom hook *useNotifications* (Notify about 'Rules of Hooks')
-7. Lift the state up (Notifications). Show that notifications now keep while routing.
-8. But we need to pass props throught all child components
-9. Switch to next step. And show Trainer's bag component
+1. Render a *list of notifications*, use notification component from Shared.
+   - ? Implement *Notification* component about 'Catch!' action. Use Bulma class.
+   Show the list *key* attribute importance. (with input bug example)
+2. Render notifications to *Portal*
+   ReactDOM.createPortal(<Component/>, DOMElement)
+3. Show *Fragments* on example of Notifications
+4. *!Ask students* to implement their *Modal* component with some content.
+   Use Portal to render it.
+5. Create Edit Trainer form
+   1) Uncontrolled component
+   2) Controlled component
+   Use FormField shared component
+6. *!Ask students* to implement their *Form* controlled component with email and password fields.
+7. Implement *Loading* component with *Render-props* pattern
+8. Move most of *onCatch* from Forest to Playground component
+10. Use *portals* ReactDOM.createPortal(<Component/>, DOMElement)
+    Notifications are not kept between routes
+    
+* TODO Process
+12. Extract custom hook *useNotifications* (Notify about 'Rules of Hooks')
+13. Lift the state up (Notifications). Show that notifications now keep while routing.
+14. But we need to pass props throught all child components
+15. Switch to next step. And show Trainer's bag component

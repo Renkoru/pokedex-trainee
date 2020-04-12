@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import classNames from 'classnames';
 
 import Button from './Button';
@@ -9,10 +9,15 @@ const typeMap = {
   success: 'is-success',
 };
 
-function Notification({ children, type, onClose, delay }) {
+function Notification({ id, children, type, onClose, delay, noAutoClose }) {
+  const _onClose = useCallback(() => onClose(id), [id, onClose]);
+
   useEffect(() => {
-    setTimeout(() => onClose(), delay * 1000);
-  }, [delay, onClose]);
+    if (noAutoClose) {
+      return;
+    }
+    setTimeout(() => _onClose(), delay * 1000);
+  }, [delay, _onClose, noAutoClose]);
 
   return (
     <div
@@ -21,7 +26,12 @@ function Notification({ children, type, onClose, delay }) {
     >
       <div css={{ marginRight: '10px' }}>{children}</div>
 
-      <Button type="light" size="small" onClick={onClose}>
+      <Button
+        css={{ marginLeft: 'auto' }}
+        type="light"
+        size="small"
+        onClick={_onClose}
+      >
         X
       </Button>
     </div>
@@ -29,8 +39,10 @@ function Notification({ children, type, onClose, delay }) {
 }
 
 Notification.defaultProps = {
-  type: 'is-success',
+  type: 'success',
   delay: 5,
+  onClose: () => {},
+  noAutoClose: false,
 };
 
 export default Notification;

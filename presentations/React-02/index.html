@@ -74,6 +74,41 @@
     </section>
 
     <section class="slide">
+      <h2>Portals</h2>
+      <p>
+        Portals provide a first-class way to render children into a DOM node
+        that exists outside the DOM hierarchy of the parent component.
+      </p>
+      <pre style="font-size: 20px">
+        <code>function Component() {</code>
+        <code>  return ReactDOM.createPortal(</code>
+        <code>    this.props.children,</code>
+        <code>    domNode</code>
+        <code>  );</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <h2>Fragment</h2>
+      <p>
+        A common pattern in React is for a component to return
+        multiple elements. Fragments let you group a list of children
+        without adding extra nodes to the DOM.
+      </p>
+      <pre style="font-size: 14px">
+        <code>&lt;React.Fragment&gt;</code>
+        <code>  &lt;ChildA /&gt;</code>
+        <code>  &lt;ChildB /&gt;</code>
+        <code>&lt;/React.Fragment&gt;</code>
+        <code>// -- Short syntax</code>
+        <code>&lt;&gt;</code>
+        <code>  // children here</code>
+        <code>&lt;/&gt;</code>
+      </pre>
+    </section>
+
+    <section class="slide">
       <h2>Forms</h2>
       <ul>
         <li>
@@ -127,9 +162,9 @@
         components, where form data is handled by the DOM itself.
       </p>
       <pre>
-        <code>this.input = React.createRef();</code>
+        <code>const inputEl = useRef(null);</code>
         <code>...</code>
-        <code>&lt;input type="text" ref={this.input} /&gt;</code>
+        <code>&lt;input type="text" ref={inputEl} /&gt;</code>
       </pre>
     </section>
 
@@ -190,41 +225,6 @@
         <code>    ...</code>
         <code>  )}</code>
         <code>/&gt;</code>
-      </pre>
-    </section>
-
-    <section class="slide">
-      <h2>Portals</h2>
-      <p>
-        Portals provide a first-class way to render children into a DOM node
-        that exists outside the DOM hierarchy of the parent component.
-      </p>
-      <pre style="font-size: 20px">
-        <code>function Component() {</code>
-        <code>  return ReactDOM.createPortal(</code>
-        <code>    this.props.children,</code>
-        <code>    domNode</code>
-        <code>  );</code>
-        <code>}</code>
-      </pre>
-    </section>
-
-    <section class="slide">
-      <h2>Fragment</h2>
-      <p>
-        A common pattern in React is for a component to return
-        multiple elements. Fragments let you group a list of children
-        without adding extra nodes to the DOM.
-      </p>
-      <pre style="font-size: 14px">
-        <code>&lt;React.Fragment&gt;</code>
-        <code>  &lt;ChildA /&gt;</code>
-        <code>  &lt;ChildB /&gt;</code>
-        <code>&lt;/React.Fragment&gt;</code>
-        <code>// -- Short syntax</code>
-        <code>&lt;&gt;</code>
-        <code>  // children here</code>
-        <code>&lt;/&gt;</code>
       </pre>
     </section>
 
