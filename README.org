@@ -77,4 +77,19 @@ CLOSED: [2019-11-17 Sun 03:04]
      
 ** React 2
 1. *04-Routing*
-6. *05-Portals-Fragments*
+2. *05-Portals-Fragments*
+** React 3
+1. Common mistakes discussion
+   - Bulma/Bootstrap classes in scenes components
+   - Html code duplication. Lego big picture.
+   - Components in Scenes, that are not scenes
+   - history not from ReactRouter context
+   - * actions, reducers on top level with index
+2. New information
+   - Component/Presenter pattern
+   - Parametrized HOC (fetchDifferent URL)
+3. Dev-tools
+4. Tests
+   - Snapshot
+   - Inline snapshot
+   - Firing Events
